@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Card, CardContent, Typography, InputBase } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-export default function CreateTitle() {
+export default function NoteTitle() {
     const classes = useStyles()
     const [title, setTitle] = useState('')
 

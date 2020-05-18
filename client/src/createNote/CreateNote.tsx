@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import CreateTitle from './CreateTitle'
-import WritingArea from './WritingArea'
+import NoteTitle from './NoteTitle'
+import NoteBody from './NoteBody'
 
 export default function CreateNote() {
     const classes = useStyles()
@@ -10,10 +10,10 @@ export default function CreateNote() {
         <div className={classes.root}>
             <div className={classes.contentArea}>
                 <div className={classes.titleArea}>
-                    <CreateTitle />
+                    <NoteTitle />
                 </div>
                 <div className={classes.bodyArea}>
-                    <WritingArea />
+                    <NoteBody />
                 </div>
             </div>
         </div>
