@@ -11,8 +11,7 @@ export default function Background() {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundImage: 'linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)',
-        opacity: 1,
+        backgroundColor: theme.palette.grey[100],
         position: 'fixed',
         top: 0,
         height: '100vh',

@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
-    Redirect,
 } from "react-router-dom"
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import DrawerMenu from './DrawerMenu'
 import { PrivateRoute } from '../reusableComponents/PrivateRoute'
 import Header from './Header'
+import CreateNote from '../createNote/CreateNote'
+import Background from './Background'
 
 export default function Home() {
     const classes = useStyles()
@@ -30,10 +31,9 @@ export default function Home() {
                         />
                     </div>
                     <div className={classes.pageArea}>
+                        <Background />
                         <Switch>
-                            {/* <PrivateRoute path='/diary' component={DiaryPage} />
-                            <PrivateRoute path='/friends' component={FriendsPage} />
-                            <Redirect from='/' to='/diary' /> */}
+                            <PrivateRoute path='/create' component={CreateNote} />
                         </Switch>
                     </div>
                 </div>

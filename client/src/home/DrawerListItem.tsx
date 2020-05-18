@@ -58,10 +58,10 @@ const useStyles = makeStyles((theme) => ({
     },
     inactiveIcon: {
         marginLeft: '1.5rem',
-        color: theme.palette.grey[100]
+        color: theme.palette.grey[300]
     },
     inactiveText: {
         marginLeft: -20,
-        color: theme.palette.grey[100]
+        color: theme.palette.grey[300]
     },
 }))

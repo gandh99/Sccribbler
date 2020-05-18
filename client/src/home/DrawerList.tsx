@@ -5,10 +5,12 @@ import { Link } from "react-router-dom"
 import ListAltIcon from '@material-ui/icons/ListAlt'
 import DrawerListItem from './DrawerListItem'
 import StarBorderIcon from '@material-ui/icons/StarBorder'
+import CreateIcon from '@material-ui/icons/Create'
 
 export enum DrawerLinkType {
     ALL_NOTES,
-    STARRED_NOTES
+    STARRED_NOTES,
+    CREATE_NOTE,
 }
 
 export interface IDrawerListItem {
@@ -33,6 +35,12 @@ export default function DrawerList() {
             link: '/',
             icon: <StarBorderIcon />,
             text: 'Starred Notes'
+        },
+        {
+            drawerLinkType: DrawerLinkType.CREATE_NOTE,
+            link: '/create',
+            icon: <CreateIcon />,
+            text: 'Create Note'
         },
     ]
 
