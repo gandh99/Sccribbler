@@ -22,7 +22,7 @@ export default function DrawerMenu(props: any) {
                     Scribbler
                 </Typography>
             </div>
-            <DrawerList handleDrawerToggle={handleDrawerToggle} />
+            <DrawerList />
         </div>
     )
 

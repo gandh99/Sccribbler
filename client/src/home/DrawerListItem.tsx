@@ -8,7 +8,6 @@ export default function DrawerListItem(props: {
     item: IDrawerListItem,
     setActiveLink: Function,
     activeLink: DrawerLinkType,
-    handleDrawerToggle: Function
 }) {
     const classes = useStyles()
     const { drawerLinkType, link, icon, text } = props.item
@@ -20,7 +19,6 @@ export default function DrawerListItem(props: {
             selected={isSelected}
             onClick={() => {
                 props.setActiveLink(drawerLinkType)
-                props.handleDrawerToggle()
             }}
             button
             key={drawerLinkType}>

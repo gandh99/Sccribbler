@@ -50,7 +50,6 @@ export default function DrawerList(props: any) {
                 return (
                     <Link to={drawerListItem.link} style={{ textDecoration: 'none' }} className={classes.link}>
                         <DrawerListItem
-                            handleDrawerToggle={props.handleDrawerToggle}
                             item={drawerListItem}
                             setActiveLink={setActiveLink}
                             activeLink={activeLink}
