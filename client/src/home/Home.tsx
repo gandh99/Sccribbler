@@ -13,8 +13,6 @@ import Background from './Background'
 
 export default function Home() {
     const classes = useStyles()
-
-    // For drawer
     const [drawerOpen, setDrawerOpen] = useState(false)
 
     return (

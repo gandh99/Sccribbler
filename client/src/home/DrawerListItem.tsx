@@ -7,7 +7,8 @@ import clsx from 'clsx'
 export default function DrawerListItem(props: {
     item: IDrawerListItem,
     setActiveLink: Function,
-    activeLink: DrawerLinkType
+    activeLink: DrawerLinkType,
+    handleDrawerToggle: Function
 }) {
     const classes = useStyles()
     const { drawerLinkType, link, icon, text } = props.item
@@ -17,7 +18,10 @@ export default function DrawerListItem(props: {
         <ListItem
             className={classes.root}
             selected={isSelected}
-            onClick={() => props.setActiveLink(drawerLinkType)}
+            onClick={() => {
+                props.setActiveLink(drawerLinkType)
+                props.handleDrawerToggle()
+            }}
             button
             key={drawerLinkType}>
             {isSelected && <div className={classes.leftBlock} />}

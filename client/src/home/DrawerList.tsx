@@ -20,7 +20,7 @@ export interface IDrawerListItem {
     text: string
 }
 
-export default function DrawerList() {
+export default function DrawerList(props: any) {
     const classes = useStyles()
     const [activeLink, setActiveLink] = useState(DrawerLinkType.ALL_NOTES)
     const drawerListItems: IDrawerListItem[] = [
@@ -50,6 +50,7 @@ export default function DrawerList() {
                 return (
                     <Link to={drawerListItem.link} style={{ textDecoration: 'none' }} className={classes.link}>
                         <DrawerListItem
+                            handleDrawerToggle={props.handleDrawerToggle}
                             item={drawerListItem}
                             setActiveLink={setActiveLink}
                             activeLink={activeLink}
