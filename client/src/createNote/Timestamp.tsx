@@ -4,7 +4,7 @@ import { Chip } from '@material-ui/core'
 import UpdateIcon from '@material-ui/icons/Update'
 import Tooltip from '@material-ui/core/Tooltip'
 
-export default function TypingBar() {
+export default function Timestamp(props: { timestamp: string }) {
     const classes = useStyles()
     const icon =
         <Tooltip title='Update timestamp'>
@@ -12,12 +12,16 @@ export default function TypingBar() {
         </Tooltip>
 
     return (
-        <Chip
-            className={classes.root}
-            icon={icon}
-            label="1:10:10"
-            color="secondary"
-        />
+        <>
+            {props.timestamp !== '' &&
+                <Chip
+                    className={classes.root}
+                    icon={icon}
+                    label={props.timestamp}
+                    color="secondary"
+                />
+            }
+        </>
     )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import NoteTitle from './NoteTitle'
 import NoteBody from './NoteBody'
-import TypingBar from './TypingBar'
+import TypingArea from './TypingArea'
 
 export default function CreateNote() {
     const classes = useStyles()
@@ -18,7 +18,7 @@ export default function CreateNote() {
                 </div>
             </div>
             <div className={classes.footerArea}>
-                <TypingBar />
+                <TypingArea />
             </div>
         </div>
     )

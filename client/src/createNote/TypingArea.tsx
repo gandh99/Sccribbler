@@ -4,9 +4,21 @@ import TextareaAutosize from 'react-autosize-textarea'
 import CreateIcon from '@material-ui/icons/Create'
 import Timestamp from './Timestamp'
 
-export default function TypingBar() {
+export default function TypingArea() {
     const classes = useStyles()
+    const [timestamp, setTimestamp] = useState('')
     const [message, setMessage] = useState('')
+
+    const shouldGetTimestamp = (prevMessage: string, currentTimestamp: string): boolean => {
+        return prevMessage === '' && currentTimestamp === ''
+    }
+
+    const onTextareaChange = (value: string): void => {
+        if (shouldGetTimestamp(message, timestamp)) {
+
+        }
+        setMessage(value)
+    }
 
     const onSubmit = (event: MouseEvent, message: string): void => {
         event.preventDefault()
@@ -15,7 +27,7 @@ export default function TypingBar() {
     return (
         <>
             <div className={classes.timestampArea}>
-                <Timestamp />
+                <Timestamp timestamp={timestamp} />
             </div>
             <form onSubmit={(e: any) => { onSubmit(e, message) }} className={classes.root}>
                 <TextareaAutosize
@@ -23,7 +35,7 @@ export default function TypingBar() {
                     className={classes.messageArea}
                     placeholder='Scribble some notes ...'
                     rows={1}
-                    onChange={(e: any) => { setMessage(e.target.value) }}
+                    onChange={(e: any) => { onTextareaChange(e.target.value) }}
                 />
                 <CreateIcon
                     onClick={(e: any) => onSubmit(e, message)}
