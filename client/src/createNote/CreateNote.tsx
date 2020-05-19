@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import NoteTitle from './NoteTitle'
 import NoteBody from './NoteBody'
+import TypingBar from './TypingBar'
 
 export default function CreateNote() {
     const classes = useStyles()
@@ -17,7 +18,7 @@ export default function CreateNote() {
                 </div>
             </div>
             <div className={classes.footerArea}>
-                x
+                <TypingBar />
             </div>
         </div>
     )
@@ -29,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
         width: '100%',
     },
+
+    // Content area (= header + body)
     contentArea: {
         position: 'absolute',
         top: 0,
@@ -44,13 +47,16 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         height: '80%',
     },
+
+    // Footer area
     footerArea: {
         bottom: 0,
         left: 0,
         right: 0,
-        height: '3.5rem',
+        minHeight: '3.5rem',
         overflow: 'hidden',
         backgroundColor: theme.palette.grey[300],
+        opacity: 0.8,
         [theme.breakpoints.down('xs')]: {
             position: 'fixed'
         },

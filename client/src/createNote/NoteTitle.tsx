@@ -25,9 +25,9 @@ const useStyles = makeStyles((theme) => ({
     cardContent: {
         display: 'flex',
         flexDirection: 'row',
-        padding: '1rem 1.5rem',
+        padding: '0.5rem 1.5rem',
         "&:last-child": {
-            paddingBottom: '1rem'
+            paddingBottom: '0.5rem'
         }
     },
     textInput: {

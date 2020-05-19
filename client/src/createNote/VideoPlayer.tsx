@@ -15,6 +15,8 @@ export default function VideoPlayer() {
     const retrieveVideo = (event: MouseEvent, url: string): void => {
         event.preventDefault()
 
+        if (url === '') return
+
         if (!isValidUrl(url)) {
             dispatch(showSnackbarAction('Invalid video url. Only YouTube links are allowed.', 'error'))
             setUrlInput('')
@@ -41,13 +43,16 @@ export default function VideoPlayer() {
                     />
                 </CardContent>
             </Card>
-            <iframe
-                id='video-player'
-                width="99%"
-                height="250px"
-                src={videoSrc}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            />
+            {
+                videoSrc !== '' &&
+                <iframe
+                    id='video-player'
+                    width="99%"
+                    height="250px"
+                    src={videoSrc}
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                />
+            }
         </div>
     )
 }
