@@ -10,6 +10,7 @@ import { PrivateRoute } from '../reusableComponents/PrivateRoute'
 import Header from './Header'
 import CreateNote from '../createNote/CreateNote'
 import Background from './Background'
+import CustomSnackbar from '../reusableComponents/CustomSnackbar'
 
 export default function Home() {
     const classes = useStyles()
@@ -35,6 +36,7 @@ export default function Home() {
                         </Switch>
                     </div>
                 </div>
+                <CustomSnackbar />
             </div>
         </Router>
     )
