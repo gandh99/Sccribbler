@@ -21,12 +21,11 @@ export default function NoteBody() {
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        display: 'flex',
         [theme.breakpoints.down('xs')]: {
-            display: 'flex',
             flexDirection: 'column'
         },
         [theme.breakpoints.up('sm')]: {
-            display: 'flex',
             flexDirection: 'row',
             height: '100%'
         },
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
     // Video area
     videoContent: {
-        flexGrow: 1,
+        flex: 1,
         [theme.breakpoints.down('xs')]: {
             marginBottom: '1rem'
         },
@@ -45,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
     // Writing area
     writingCard: {
-        flexGrow: 4,
+        flex: 2,
         border: 'solid 10px transparent',
         [theme.breakpoints.down('xs')]: {
             marginBottom: '5rem'
