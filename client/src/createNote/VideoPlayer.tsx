@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { CardContent, Card, InputBase } from '@material-ui/core'
 import GetAppIcon from '@material-ui/icons/GetApp'
-import { getEmbeddedUrl, isValidUrl } from '../utils/videoPlayer.tsx'
+import { isValidUrl, getYTVideoId } from '../utils/videoPlayer.tsx'
 import { useDispatch } from 'react-redux'
 import { showSnackbarAction } from '../redux/actions/globalNotificationActions'
+import YouTube from 'react-youtube'
 
 export default function VideoPlayer() {
     const classes = useStyles()
@@ -23,7 +24,7 @@ export default function VideoPlayer() {
             return
         }
 
-        setVideoSrc(getEmbeddedUrl(urlInput))
+        setVideoSrc(getYTVideoId(urlInput))
     }
 
     return (
@@ -45,12 +46,13 @@ export default function VideoPlayer() {
             </Card>
             {
                 videoSrc !== '' &&
-                <iframe
-                    id='video-player'
-                    width="99%"
-                    height="250px"
-                    src={videoSrc}
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                <YouTube
+                    videoId={videoSrc}
+                    opts={{
+                        width: '100%',
+                        height: '250px'
+                    }}
+                    onStateChange={(event) => console.log(event.target.getCurrentTime())}
                 />
             }
         </div>
