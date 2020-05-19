@@ -13,9 +13,7 @@ export default function NoteBody() {
                 <VideoPlayer />
             </div>
             <Card className={classes.writingCard} variant='elevation'>
-                <CardContent className={classes.writingArea}>
-                    <WritingArea />
-                </CardContent>
+                <WritingArea />
             </Card>
         </div >
     )
@@ -29,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.up('sm')]: {
             display: 'flex',
-            flexDirection: 'row'
+            flexDirection: 'row',
+            height: '100%'
         },
     },
 
@@ -47,7 +46,15 @@ const useStyles = makeStyles((theme) => ({
     // Writing area
     writingCard: {
         flexGrow: 4,
-    },
-    writingArea: {
+        border: 'solid 10px transparent',
+        [theme.breakpoints.down('xs')]: {
+            marginBottom: '5rem'
+        },
+        [theme.breakpoints.up('sm')]: {
+            height: '100%',
+            overflow: 'auto',
+            overflowY: 'scroll',
+            scrollbarWidth: 'none', /* Firefox */
+        },
     }
 }))

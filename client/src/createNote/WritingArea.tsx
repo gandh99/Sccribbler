@@ -8,17 +8,31 @@ export default function WritingArea() {
 
     return (
         <div className={classes.root}>
-            xxx
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
+            xxx<br/>
         </div>
     )
 }
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: '100%'
     },
-    contentArea: {
-        display: 'flex',
-        flexDirection: 'row'
-    }
 }))

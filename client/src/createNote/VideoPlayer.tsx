@@ -44,7 +44,7 @@ export default function VideoPlayer() {
             <iframe
                 id='video-player'
                 width="99%"
-                height="300px"
+                height="250px"
                 src={videoSrc}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             />

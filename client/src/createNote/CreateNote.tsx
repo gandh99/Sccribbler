@@ -9,12 +9,15 @@ export default function CreateNote() {
     return (
         <div className={classes.root}>
             <div className={classes.contentArea}>
-                <div className={classes.titleArea}>
+                <div className={classes.headerArea}>
                     <NoteTitle />
                 </div>
                 <div className={classes.bodyArea}>
                     <NoteBody />
                 </div>
+            </div>
+            <div className={classes.footerArea}>
+                x
             </div>
         </div>
     )
@@ -22,16 +25,37 @@ export default function CreateNote() {
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        position: 'relative',
+        height: '100vh',
+        width: '100%',
     },
     contentArea: {
-        margin: '1rem 2rem'
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: '3.5rem',
+        margin: '1rem',
     },
-    titleArea: {
-        width: '100%',
+    headerArea: {
         marginBottom: '1rem'
     },
     bodyArea: {
         width: '100%',
-        height: '25rem',
+        height: '80%',
+    },
+    footerArea: {
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '3.5rem',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.grey[300],
+        [theme.breakpoints.down('xs')]: {
+            position: 'fixed'
+        },
+        [theme.breakpoints.up('sm')]: {
+            position: 'absolute',
+        },
     }
 }))
