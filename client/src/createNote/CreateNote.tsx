@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
     },
     contentArea: {
-        margin: '2rem'
+        margin: '1rem 2rem'
     },
     titleArea: {
         width: '100%',

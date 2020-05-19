@@ -8,33 +8,46 @@ export default function NoteBody() {
     const classes = useStyles()
 
     return (
-        <Card className={classes.root} variant='elevation'>
-            <CardContent className={classes.contentArea}>
-                <section className={classes.videoArea}>
-                    <VideoPlayer />
-                </section>
-                <section className={classes.writingArea}>
+        <div className={classes.root}>
+            <div className={classes.videoContent}>
+                <VideoPlayer />
+            </div>
+            <Card className={classes.writingCard} variant='elevation'>
+                <CardContent className={classes.writingArea}>
                     <WritingArea />
-                </section>
-            </CardContent>
-        </Card>
+                </CardContent>
+            </Card>
+        </div >
     )
 }
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        height: '100%'
+        [theme.breakpoints.down('xs')]: {
+            display: 'flex',
+            flexDirection: 'column'
+        },
+        [theme.breakpoints.up('sm')]: {
+            display: 'flex',
+            flexDirection: 'row'
+        },
     },
-    contentArea: {
-        display: 'flex',
-        flexDirection: 'row'
-    },
-    videoArea: {
+
+    // Video area
+    videoContent: {
         flexGrow: 1,
-        margin: '0.5rem'
+        [theme.breakpoints.down('xs')]: {
+            marginBottom: '1rem'
+        },
+        [theme.breakpoints.up('sm')]: {
+            marginRight: '1rem'
+        },
+    },
+
+    // Writing area
+    writingCard: {
+        flexGrow: 4,
     },
     writingArea: {
-        flexGrow: 4,
-        margin: '0.5rem'
     }
 }))

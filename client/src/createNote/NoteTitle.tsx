@@ -8,7 +8,7 @@ export default function NoteTitle() {
 
     return (
         <Card variant='elevation'>
-            <CardContent className={classes.root}>
+            <CardContent className={classes.cardContent}>
                 <InputBase
                     className={classes.textInput}
                     onChange={event => setTitle(event.target.value)}
@@ -22,9 +22,13 @@ export default function NoteTitle() {
 }
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+    cardContent: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        padding: '1rem 1.5rem',
+        "&:last-child": {
+            paddingBottom: '1rem'
+        }
     },
     textInput: {
         width: '100%',
