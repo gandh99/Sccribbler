@@ -6,6 +6,7 @@ import { isValidUrl, getYTVideoId } from '../utils/videoPlayer.tsx'
 import { useDispatch } from 'react-redux'
 import { showSnackbarAction } from '../redux/actions/globalNotificationActions'
 import YouTube from 'react-youtube'
+import Tooltip from '@material-ui/core/Tooltip'
 
 export default function VideoPlayer() {
     const classes = useStyles()
@@ -38,10 +39,12 @@ export default function VideoPlayer() {
                         placeholder={'Enter video url...'}
                         value={urlInput}
                     />
-                    <GetAppIcon
-                        onClick={(event: any) => retrieveVideo(event, urlInput)}
-                        className={classes.getIcon}
-                    />
+                    <Tooltip title='Get video'>
+                        <GetAppIcon
+                            onClick={(event: any) => retrieveVideo(event, urlInput)}
+                            className={classes.getIcon}
+                        />
+                    </Tooltip>
                 </CardContent>
             </Card>
             {

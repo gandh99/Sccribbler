@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
-export default function WritingArea() {
+export default function NotesDisplayArea() {
     const classes = useStyles()
 
     return (

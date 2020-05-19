@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextareaAutosize from 'react-autosize-textarea'
-import SendIcon from '@material-ui/icons/Send'
+import CreateIcon from '@material-ui/icons/Create'
+import Timestamp from './Timestamp'
 
 export default function TypingBar() {
     const classes = useStyles()
@@ -12,19 +13,24 @@ export default function TypingBar() {
     }
 
     return (
-        <form onSubmit={(e: any) => { onSubmit(e, message) }} className={classes.root}>
-            <TextareaAutosize
-                value={message}
-                className={classes.messageArea}
-                placeholder='Scribble some notes ...'
-                rows={1}
-                onChange={(e: any) => { setMessage(e.target.value) }}
-            />
-            <SendIcon
-                onClick={(e: any) => onSubmit(e, message)}
-                className={classes.sendIcon}
-            />
-        </form>
+        <>
+            <div className={classes.timestampArea}>
+                <Timestamp />
+            </div>
+            <form onSubmit={(e: any) => { onSubmit(e, message) }} className={classes.root}>
+                <TextareaAutosize
+                    value={message}
+                    className={classes.messageArea}
+                    placeholder='Scribble some notes ...'
+                    rows={1}
+                    onChange={(e: any) => { setMessage(e.target.value) }}
+                />
+                <CreateIcon
+                    onClick={(e: any) => onSubmit(e, message)}
+                    className={classes.createIcon}
+                />
+            </form>
+        </>
     )
 }
 
@@ -33,6 +39,13 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         padding: '1rem',
         backgroundColor: theme.palette.grey[200]
+    },
+    timestampArea: {
+        backgroundColor: 'transparent',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        marginLeft: '0.5rem',
+        marginBottom: '0.5rem'
     },
     messageArea: {
         border: 'none',
@@ -43,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'inherit',
         fontSize: 16
     },
-    sendIcon: {
+    createIcon: {
         marginLeft: '1rem',
         padding: '0 0.8rem',
         color: theme.palette.primary.dark,

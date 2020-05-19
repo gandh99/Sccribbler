@@ -55,8 +55,7 @@ const useStyles = makeStyles((theme) => ({
         right: 0,
         minHeight: '3.5rem',
         overflow: 'hidden',
-        backgroundColor: theme.palette.grey[300],
-        opacity: 0.8,
+       
         [theme.breakpoints.down('xs')]: {
             position: 'fixed'
         },
