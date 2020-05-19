@@ -1,18 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { CardContent, Card, InputBase } from '@material-ui/core'
 import GetAppIcon from '@material-ui/icons/GetApp'
 import { isValidUrl, getYTVideoId } from '../utils/videoPlayer.tsx'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { showSnackbarAction } from '../redux/actions/globalNotificationActions'
 import YouTube from 'react-youtube'
 import Tooltip from '@material-ui/core/Tooltip'
+import { fulfillTimestampRequestAction } from '../redux/actions/createNoteActions'
+import { formatTimestamp } from '../utils/createNote'
 
 export default function VideoPlayer() {
     const classes = useStyles()
     const dispatch = useDispatch()
+    const isRequestingTimestamp = useSelector((state: any) => state.createNote.isRequestingTimestamp)
     const [urlInput, setUrlInput] = useState('')
     const [videoSrc, setVideoSrc] = useState('')
+    const [timeElapsed, setTimeElapsed] = useState(0)
+
+    // Send the video's current timestamp to the store
+    useEffect(() => {
+        if (isRequestingTimestamp && timeElapsed !== 0) {
+            const formattedTimestamp = formatTimestamp(timeElapsed)
+            dispatch(fulfillTimestampRequestAction(formattedTimestamp))
+        }
+    }, [isRequestingTimestamp])
 
     const retrieveVideo = (event: MouseEvent, url: string): void => {
         event.preventDefault()
@@ -26,6 +38,7 @@ export default function VideoPlayer() {
         }
 
         setVideoSrc(getYTVideoId(urlInput))
+        setTimeElapsed(0)
     }
 
     return (
@@ -55,7 +68,7 @@ export default function VideoPlayer() {
                         width: '100%',
                         height: '250px'
                     }}
-                    onStateChange={(event) => console.log(event.target.getCurrentTime())}
+                    onStateChange={(event) => setTimeElapsed(event.target.getCurrentTime())}
                 />
             }
         </div>

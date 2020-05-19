@@ -1,27 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextareaAutosize from 'react-autosize-textarea'
 import CreateIcon from '@material-ui/icons/Create'
 import Timestamp from './Timestamp'
+import { useDispatch, useSelector } from 'react-redux'
+import { initiateTimestampRequestAction, resetTimestampAction } from '../redux/actions/createNoteActions'
 
 export default function TypingArea() {
     const classes = useStyles()
+    const dispatch = useDispatch()
+    const currentTimestamp = useSelector((state: any) => state.createNote.timestamp)
     const [timestamp, setTimestamp] = useState('')
     const [message, setMessage] = useState('')
 
-    const shouldGetTimestamp = (prevMessage: string, currentTimestamp: string): boolean => {
-        return prevMessage === '' && currentTimestamp === ''
+    // Get, set, and then reset the timestamp from the store
+    useEffect(() => {
+        if (currentTimestamp !== '') {
+            setTimestamp(currentTimestamp)
+            dispatch(resetTimestampAction())
+        }
+    }, [currentTimestamp])
+
+    // Get timestamp only if user is typing a "new" message
+    const shouldGetTimestamp = (prevMessage: string, timestamp: string): boolean => {
+        return prevMessage === '' && timestamp === ''
     }
 
     const onTextareaChange = (value: string): void => {
         if (shouldGetTimestamp(message, timestamp)) {
-
+            dispatch(initiateTimestampRequestAction())
         }
         setMessage(value)
     }
 
     const onSubmit = (event: MouseEvent, message: string): void => {
         event.preventDefault()
+        setMessage('')
+        setTimestamp('')
     }
 
     return (
