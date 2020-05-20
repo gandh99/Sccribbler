@@ -20,6 +20,7 @@ export default function VideoPlayer() {
 
     // Send the video's current timestamp to the store
     useEffect(() => {
+        console.log(isRequestingTimestamp, timeElapsed)
         if (isRequestingTimestamp && timeElapsed !== 0) {
             const formattedTimestamp = formatTimestamp(timeElapsed)
             dispatch(fulfillTimestampRequestAction(formattedTimestamp))

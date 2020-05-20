@@ -35,8 +35,11 @@ export default function TypingArea() {
 
     const onSubmit = (event: MouseEvent, message: string): void => {
         event.preventDefault()
+
+        // Reset the message and the timestamps
         setMessage('')
         setTimestamp('')
+        dispatch(resetTimestampAction())
     }
 
     return (
