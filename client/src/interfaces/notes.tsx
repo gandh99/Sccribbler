@@ -5,7 +5,9 @@ export interface IScribble {
 }
 
 export interface INote {
+    note_id: string | number,
     title: string,
-    scribbles: IScribble[],
+    videoUrl: string,
+    allScribbles: IScribble[],
     lastUpdated?: Date
 }

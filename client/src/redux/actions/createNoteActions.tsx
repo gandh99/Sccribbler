@@ -51,17 +51,17 @@ export const saveNoteToDatabaseAction = (
     axios
         .post('/notes/save', { title, videoUrl, allScribbles })
         .then(res => {
-            console.log(res.data)
-            // dispatch({
-            //     type: authentication.REGISTER_SUCCESS,
-            //     payload: res
-            // })
+            const savedNote = res.data.data
+            dispatch({
+                type: createNote.SAVE_NOTE_TO_DATABASE_SUCCESS,
+                payload: savedNote
+            })
         })
         .catch(err => {
-            // dispatch({
-            //     type: authentication.REGISTER_FAIL,
-            //     payload: err
-            // })
-            // dispatch(returnErrors(err))
+            dispatch({
+                type: createNote.SAVE_NOTE_TO_DATABASE_FAIL,
+                payload: err
+            })
+            dispatch(returnErrors(err))
         })
 }
