@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { IMessage } from '../../utils/note'
+import { IScribble } from '../../interfaces/notes'
 import { Chip } from '@material-ui/core'
 
-export default function Message(props: { message: IMessage }) {
+export default function Scribble(props: { scribble: IScribble }) {
     const classes = useStyles()
-    const { uuid, timestamp, text } = props.message
+    const { scribble_id, timestamp, text } = props.scribble
 
     return (
         <div className={classes.root}>
-            <span className={classes.message}>
+            <span className={classes.scribble}>
                 {timestamp !== '' &&
                     <Chip
                         className={classes.chip}
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '1rem 0',
         fontSize: 14
     },
-    message: {
+    scribble: {
         textAlign: 'left'
     },
     chip: {

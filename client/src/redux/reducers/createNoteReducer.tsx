@@ -1,10 +1,10 @@
 import { createNote } from '../actionTypes'
-import { IMessage } from '../../utils/note'
+import { IScribble } from '../../interfaces/notes'
 import { sortByTimestamp } from '../../utils/createNote'
 
 interface IInitialState {
-    newMessage?: IMessage,
-    allMessages?: IMessage[]
+    newScribble?: IScribble,
+    allScribbles?: IScribble[]
 }
 
 const initialState = {
@@ -15,8 +15,8 @@ const initialState = {
     // For recording data related to the note itself
     title: '',
     videoUrl: '',
-    newMessage: { uuid: '', timestamp: '', text: '' },
-    allMessages: []
+    newScribble: { scribble_id: '', timestamp: '', text: '' },
+    allScribbles: []
 } as IInitialState      // Necessary format to include properties not defined in IInitialState
 
 export default function (state = initialState, action: any) {
@@ -48,12 +48,12 @@ export default function (state = initialState, action: any) {
                 ...state,
                 videoUrl: action.payload
             }
-        case createNote.CREATE_MESSAGE:
+        case createNote.CREATE_SCRIBBLE:
             return {
                 ...state,
-                newMessage: action.payload,
-                allMessages: [...state.allMessages!, action.payload]
-                    .sort((m1: IMessage, m2: IMessage) => sortByTimestamp(m1.timestamp, m2.timestamp))
+                newScribble: action.payload,
+                allScribbles: [...state.allScribbles!, action.payload]
+                    .sort((m1: IScribble, m2: IScribble) => sortByTimestamp(m1.timestamp, m2.timestamp))
             }
         default:
             return state

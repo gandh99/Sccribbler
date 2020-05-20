@@ -1,0 +1,10 @@
+export {}   // Needed otherwise transpiler will complain about 'cannot redeclare variable'
+const express = require("express");
+const router = express.Router();
+const { checkAuthenticated } = require('../middleware/authentication')
+const notesController = require('../controllers/notes');
+
+router.post('/save', checkAuthenticated, notesController.save);
+router.get('/get-all-notes', checkAuthenticated, notesController.getAllNotes);
+
+module.exports = router;

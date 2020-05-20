@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useSelector } from 'react-redux'
-import { IMessage } from '../../utils/note'
-import Message from './Message'
+import { IScribble } from '../../interfaces/notes'
+import Scribble from './Scribble'
 import { Divider } from '@material-ui/core'
 
-export default function MessageDisplayArea() {
+export default function ScribbleDisplayArea() {
     const classes = useStyles()
-    const [allMessages, setAllMessages] = useState<IMessage[]>([])
-    const allMessagesStore: IMessage[] = useSelector((state: any) => state.createNote.allMessages)
+    const [allScribbles, setAllScribbles] = useState<IScribble[]>([])
+    const allScribblesStore: IScribble[] = useSelector((state: any) => state.createNote.allScribbles)
 
     useEffect(() => {
-        setAllMessages(allMessagesStore)
-    }, [allMessagesStore])
+        setAllScribbles(allScribblesStore)
+    }, [allScribblesStore])
 
-    // const allMessages = [
+    // const allScribbles = [
     //     { uuid: '1', timestamp: '0:00:10', text: 'helloooooooloasldoalsodlasodlsaodlaosdoasldoalsdoasldoasld' },
     //     { uuid: '1', timestamp: '0:00:10', text: 'helloooooooloasldoa lsodlasodlsaodlaos doasldoalsdoaasdi jsafjsojsao1111 ifjoasfsldoasld' },
     //     { uuid: '1', timestamp: '0:00:10', text: 'helloooooooksdifjisdjfiasjodjas ojdoasjdoasjidsaojdloasld  oalsodlasodlsaodlaosdoas ldoalsdoasldoasld' },
@@ -22,10 +22,10 @@ export default function MessageDisplayArea() {
 
     return (
         <div className={classes.root}>
-            {allMessages.map((message: IMessage, index: number) => {
+            {allScribbles.map((scribble: IScribble, index: number) => {
                 return <>
-                    <Message message={message} />
-                    {index < allMessages.length - 1 && <Divider variant="middle" />}
+                    <Scribble scribble={scribble} />
+                    {index < allScribbles.length - 1 && <Divider variant="middle" />}
                 </>
             })}
         </div>

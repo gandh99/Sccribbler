@@ -1,7 +1,7 @@
 import { createNote } from '../actionTypes'
 import axios from '../../config/axiosConfig'
 import { returnErrors } from './errorActions'
-import { IMessage } from '../../utils/note'
+import { IScribble } from '../../interfaces/notes'
 
 export const initiateTimestampRequestAction = () => (dispatch: any) => {
     dispatch({
@@ -36,33 +36,32 @@ export const createVideoUrlAction = (videoUrl: string) => (dispatch: any) => {
     })
 }
 
-export const createMessageAction = (message: IMessage) => (dispatch: any) => {
+export const createScribbleAction = (scribble: IScribble) => (dispatch: any) => {
     dispatch({
-        type: createNote.CREATE_MESSAGE,
-        payload: message
+        type: createNote.CREATE_SCRIBBLE,
+        payload: scribble
     })
 }
 
 export const saveNoteToDatabaseAction = (
     title: string,
     videoUrl: string,
-    allMessages: IMessage[]
+    allScribbles: IScribble[]
 ) => (dispatch: any) => {
-    // axios
-    //     .post('/authentication/register', { username, password })
-    //     .then(res => {
-    //         dispatch({
-    //             type: authentication.REGISTER_SUCCESS,
-    //             payload: res
-    //         })
-    //         success()
-    //     })
-    //     .catch(err => {
-    //         dispatch({
-    //             type: authentication.REGISTER_FAIL,
-    //             payload: err
-    //         })
-    //         dispatch(returnErrors(err))
-    //         error()
-    //     })
+    axios
+        .post('/notes/save', { title, videoUrl, allScribbles })
+        .then(res => {
+            console.log(res.data)
+            // dispatch({
+            //     type: authentication.REGISTER_SUCCESS,
+            //     payload: res
+            // })
+        })
+        .catch(err => {
+            // dispatch({
+            //     type: authentication.REGISTER_FAIL,
+            //     payload: err
+            // })
+            // dispatch(returnErrors(err))
+        })
 }

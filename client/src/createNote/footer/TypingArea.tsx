@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-autosize-textarea'
 import CreateIcon from '@material-ui/icons/Create'
 import Timestamp from './Timestamp'
 import { useDispatch, useSelector } from 'react-redux'
-import { initiateTimestampRequestAction, resetTimestampAction, createMessageAction } from '../../redux/actions/createNoteActions'
+import { initiateTimestampRequestAction, resetTimestampAction, createScribbleAction } from '../../redux/actions/createNoteActions'
 import { v4 as uuidv4 } from 'uuid'
 import { Tooltip } from '@material-ui/core'
 
@@ -13,7 +13,7 @@ export default function TypingArea() {
     const dispatch = useDispatch()
     const currentTimestamp = useSelector((state: any) => state.createNote.timestamp)
     const [timestamp, setTimestamp] = useState('')
-    const [message, setMessage] = useState('')
+    const [scribble, setScribble] = useState('')
 
     // Get, set, and then reset the timestamp from the store
     useEffect(() => {
@@ -23,32 +23,32 @@ export default function TypingArea() {
         }
     }, [currentTimestamp])
 
-    // Get timestamp only if user is typing a "new" message
-    const shouldGetTimestamp = (prevMessage: string, timestamp: string): boolean => {
-        return prevMessage === '' && timestamp === ''
+    // Get timestamp only if user is typing a "new" scribble
+    const shouldGetTimestamp = (prevScribble: string, timestamp: string): boolean => {
+        return prevScribble === '' && timestamp === ''
     }
 
     const onTextareaChange = (value: string): void => {
-        if (shouldGetTimestamp(message, timestamp)) {
+        if (shouldGetTimestamp(scribble, timestamp)) {
             dispatch(initiateTimestampRequestAction())
         }
-        setMessage(value)
+        setScribble(value)
     }
 
-    const onSubmit = (event: MouseEvent, message: string): void => {
+    const onSubmit = (event: MouseEvent, scribble: string): void => {
         event.preventDefault()
 
-        // Only dispatch the message to the store if it is not empty
-        if (message !== '') {
-            dispatch(createMessageAction({
-                uuid: uuidv4(),
+        // Only dispatch the scribble to the store if it is not empty
+        if (scribble !== '') {
+            dispatch(createScribbleAction({
+                scribble_id: uuidv4(),
                 timestamp,
-                text: message.trim(),
+                text: scribble.trim(),
             }))
         }
 
-        // Reset the message and the timestamps
-        setMessage('')
+        // Reset the scribble and the timestamps
+        setScribble('')
         setTimestamp('')
         dispatch(resetTimestampAction())
     }
@@ -58,17 +58,17 @@ export default function TypingArea() {
             <div className={classes.timestampArea}>
                 <Timestamp timestamp={timestamp} />
             </div>
-            <form onSubmit={(e: any) => { onSubmit(e, message) }} className={classes.root}>
+            <form onSubmit={(e: any) => { onSubmit(e, scribble) }} className={classes.root}>
                 <TextareaAutosize
-                    value={message}
-                    className={classes.messageArea}
+                    value={scribble}
+                    className={classes.scribbleArea}
                     placeholder='Scribble some notes ...'
                     rows={1}
                     onChange={(e: any) => { onTextareaChange(e.target.value) }}
                 />
                 <Tooltip title={'Submit'}>
                     <CreateIcon
-                        onClick={(e: any) => onSubmit(e, message)}
+                        onClick={(e: any) => onSubmit(e, scribble)}
                         className={classes.createIcon}
                     />
                 </Tooltip>
@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '0.5rem',
         marginBottom: '0.5rem'
     },
-    messageArea: {
+    scribbleArea: {
         border: 'none',
         backgroundColor: 'transparent',
         width: '100%',

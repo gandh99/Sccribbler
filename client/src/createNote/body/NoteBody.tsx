@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import VideoPlayer from './VideoPlayer'
-import MessageDisplayArea from './MessageDisplayArea'
+import ScribbleDisplayArea from './ScribbleDisplayArea'
 
 export default function NoteBody() {
     const classes = useStyles()
@@ -13,7 +13,7 @@ export default function NoteBody() {
                 <VideoPlayer />
             </div>
             <Card className={classes.writingCard} variant='elevation'>
-                <MessageDisplayArea />
+                <ScribbleDisplayArea />
             </Card>
         </div >
     )

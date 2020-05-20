@@ -1,11 +1,11 @@
-export interface IMessage {
-    uuid: string,
+export interface IScribble {
+    scribble_id: string | number,
     timestamp: string,
     text: string
 }
 
 export interface INote {
     title: string,
-    messages: IMessage[],
+    scribbles: IScribble[],
     lastUpdated?: Date
 }

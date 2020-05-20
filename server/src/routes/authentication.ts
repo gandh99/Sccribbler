@@ -1,3 +1,4 @@
+export {} // Needed otherwise transpiler will complain about 'cannot redeclare variable'
 const express = require("express");
 const router = express.Router();
 const authenticationController = require('../controllers/authentication');
