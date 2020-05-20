@@ -36,10 +36,11 @@ export default function (state = initialState, action: any) {
                 timestamp: ''
             }
         case createNote.CREATE_MESSAGE:
+            console.log(action.payload)
             return {
                 ...state,
                 newMessage: action.payload,
-                allMessage: state.allMessages!.push(action.payload)
+                allMessages: [...state.allMessages!, action.payload]
             }
         default:
             return state
