@@ -22,6 +22,20 @@ export const resetTimestampAction = () => (dispatch: any) => {
     })
 }
 
+export const createTitleAction = (title: string) => (dispatch: any) => {
+    dispatch({
+        type: createNote.CREATE_TITLE,
+        payload: title
+    })
+}
+
+export const createVideoUrlAction = (videoUrl: string) => (dispatch: any) => {
+    dispatch({
+        type: createNote.CREATE_VIDEO_URL,
+        payload: videoUrl
+    })
+}
+
 export const createMessageAction = (message: IMessage) => (dispatch: any) => {
     dispatch({
         type: createNote.CREATE_MESSAGE,

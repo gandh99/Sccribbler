@@ -1,28 +1,16 @@
-import React, { useState } from 'react'
-import { Card, CardContent, InputBase, Divider, Tooltip } from '@material-ui/core'
+import React from 'react'
+import { Card, CardContent, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import SaveButton from './SaveButton'
-import CreateIcon from '@material-ui/icons/Create'
+import Title from './Title'
 
 export default function NoteHeader() {
     const classes = useStyles()
-    const [title, setTitle] = useState('')
 
     return (
         <Card variant='elevation'>
             <CardContent className={classes.cardContent}>
-                <InputBase
-                    className={classes.textInput}
-                    onChange={event => setTitle(event.target.value)}
-                    required
-                    placeholder={'Add a Title...'}
-                    value={title}
-                />
-                <Tooltip title={'Submit Title'}>
-                    <CreateIcon
-                        className={classes.createIcon}
-                    />
-                </Tooltip>
+                <Title />
                 <Divider className={classes.divider} orientation="vertical" flexItem />
                 <SaveButton />
             </CardContent>
@@ -42,15 +30,6 @@ const useStyles = makeStyles((theme) => ({
         "&:last-child": {
             paddingBottom: '0.5rem'
         }
-    },
-    textInput: {
-        width: '100%',
-    },
-    createIcon: {
-        marginLeft: '1rem',
-        padding: '0 0.8rem',
-        color: theme.palette.primary.dark,
-        cursor: 'pointer'
     },
     divider: {
         margin: '0 1rem'

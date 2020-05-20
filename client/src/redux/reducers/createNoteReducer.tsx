@@ -12,7 +12,9 @@ const initialState = {
     isRequestingTimestamp: false,
     timestamp: '',
 
-    // For recording the messages written by the user
+    // For recording data related to the note itself
+    title: '',
+    videoUrl: '',
     newMessage: { uuid: '', timestamp: '', text: '' },
     allMessages: []
 } as IInitialState      // Necessary format to include properties not defined in IInitialState
@@ -35,6 +37,16 @@ export default function (state = initialState, action: any) {
                 ...state,
                 isRequestingTimestamp: false,
                 timestamp: ''
+            }
+        case createNote.CREATE_TITLE:
+            return {
+                ...state,
+                title: action.payload
+            }
+        case createNote.CREATE_VIDEO_URL:
+            return {
+                ...state,
+                videoUrl: action.payload
             }
         case createNote.CREATE_MESSAGE:
             return {

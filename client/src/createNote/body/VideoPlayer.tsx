@@ -7,14 +7,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { showSnackbarAction } from '../../redux/actions/globalNotificationActions'
 import YouTube from 'react-youtube'
 import Tooltip from '@material-ui/core/Tooltip'
-import { fulfillTimestampRequestAction } from '../../redux/actions/createNoteActions'
+import { fulfillTimestampRequestAction, createVideoUrlAction } from '../../redux/actions/createNoteActions'
 import { formatTimestamp } from '../../utils/createNote'
 
 export default function VideoPlayer() {
     const classes = useStyles()
     const dispatch = useDispatch()
     const isRequestingTimestamp = useSelector((state: any) => state.createNote.isRequestingTimestamp)
-    const [urlInput, setUrlInput] = useState('')
+    const [rawUrlInput, setRawUrlInput] = useState('')
+    
+    // Used for the video player only
     const [videoSrc, setVideoSrc] = useState('')
     const [timeElapsed, setTimeElapsed] = useState(0)
 
@@ -33,12 +35,14 @@ export default function VideoPlayer() {
 
         if (!isValidUrl(url)) {
             dispatch(showSnackbarAction('Invalid video url. Only YouTube links are allowed.', 'error'))
-            setUrlInput('')
+            setRawUrlInput('')
             return
         }
 
-        setVideoSrc(getYTVideoId(urlInput))
+        // Set the video in the player and send the url to the store
+        setVideoSrc(getYTVideoId(rawUrlInput))
         setTimeElapsed(0)
+        dispatch(createVideoUrlAction(rawUrlInput))
     }
 
     return (
@@ -47,14 +51,14 @@ export default function VideoPlayer() {
                 <CardContent className={classes.toolbarContent}>
                     <InputBase
                         className={classes.urlInput}
-                        onChange={event => setUrlInput(event.target.value)}
+                        onChange={event => setRawUrlInput(event.target.value)}
                         required
                         placeholder={'Enter video url...'}
-                        value={urlInput}
+                        value={rawUrlInput}
                     />
                     <Tooltip title='Get video'>
                         <GetAppIcon
-                            onClick={(event: any) => retrieveVideo(event, urlInput)}
+                            onClick={(event: any) => retrieveVideo(event, rawUrlInput)}
                             className={classes.getIcon}
                         />
                     </Tooltip>
