@@ -26,7 +26,7 @@ export const getTimeElapsedInSeconds = (timestamp: string): number => {
 
 export const sortByTimestamp = (timestamp1: string, timestamp2: string): number => {
     if (!timestamp1.match(/\d+:\d{2}:\d{2}/) || !timestamp2.match(/\d+:\d{2}:\d{2}/)) {
-        throw new Error('Improper timestamp format. Timestamp format should be H:MM:SS')
+        return 0
     }
 
     const timeElapsed1 = getTimeElapsedInSeconds(timestamp1)

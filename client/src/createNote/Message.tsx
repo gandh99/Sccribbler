@@ -10,12 +10,14 @@ export default function Message(props: { message: IMessage }) {
     return (
         <div className={classes.root}>
             <span className={classes.message}>
-                <Chip
-                    className={classes.chip}
-                    label={timestamp}
-                    size='small'
-                    color="secondary"
-                />
+                {timestamp !== '' &&
+                    <Chip
+                        className={classes.chip}
+                        label={timestamp}
+                        size='small'
+                        color="secondary"
+                    />
+                }
                 {text}
             </span>
         </div>

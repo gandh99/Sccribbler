@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
         resize: 'none',
         overflowY: 'hidden',
         fontFamily: 'inherit',
-        fontSize: 16
+        fontSize: 16,
     },
     createIcon: {
         marginLeft: '1rem',
