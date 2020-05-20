@@ -6,6 +6,7 @@ module.exports.save = async (req: Request, res: Response, next: NextFunction) =>
     const { userData } = req.body.tokenData
 
     const savedNote = await Notes.upsert(userData.user_id, title, videoUrl)
+    res.locals.note_id = savedNote.note_id  // correct way to pass a variable to the next middleware function
     next()
 }
 

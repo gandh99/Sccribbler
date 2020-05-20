@@ -1,13 +1,17 @@
 import { Request, Response, NextFunction } from 'express'
+import { IScribble } from '../interfaces/notes'
 const Scribbles = require('../models/Scribbles')
 
 module.exports.save = async (req: Request, res: Response, next: NextFunction) => {
     const { allScribbles } = req.body
-    const { userData } = req.body.tokenData
+    const note_id = res.locals.note_id
 
-    // const savedScribble = await Scribbles.upsert(userData.user_id, allScribbles)
+    const savedScribble = await Promise.all(
+        allScribbles.map(async (scribble: IScribble) => await Scribbles.upsert(note_id, scribble))
+    )
+
     res.status(200).json({
-        message: 'ok'
+        message: 'Successfully saved note.'
     })
 }
 

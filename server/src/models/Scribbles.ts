@@ -1,14 +1,15 @@
-export {}
+export { }
 import { IScribble } from "../interfaces/notes"
 const client = require('../config/db')
 
-// module.exports.upsert = async (x: IScribble[]) => {
-//     const query: string = `INSERT INTO scribbles (title, video_url) VALUES ($1, $2) RETURNING *`
+module.exports.upsert = async (note_id: number, scribble: IScribble) => {
+    const { timestamp, text } = scribble
+    const query: string = `INSERT INTO scribbles (note_id, timestamp, text) VALUES ($1, $2, $3) RETURNING *`
 
-//     try {
-//         const note = await client.query(query, [title, videoUrl])
-//         return note.rows[0]
-//     } catch (error) {
-//         console.error(error)
-//     }
-// }
+    try {
+        const note = await client.query(query, [note_id, timestamp, text])
+        return note.rows[0]
+    } catch (error) {
+        console.error(error)
+    }
+}
