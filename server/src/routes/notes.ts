@@ -2,9 +2,10 @@ export {}   // Needed otherwise transpiler will complain about 'cannot redeclare
 const express = require("express");
 const router = express.Router();
 const { checkAuthenticated } = require('../middleware/authentication')
-const notesController = require('../controllers/notes');
+const notesController = require('../controllers/notes')
+const scribblesController = require('../controllers/scribbles')
 
-router.post('/save', checkAuthenticated, notesController.save);
+router.post('/save', checkAuthenticated, notesController.save, scribblesController.save);
 router.get('/get-all-notes', checkAuthenticated, notesController.getAllNotes);
 
 module.exports = router;

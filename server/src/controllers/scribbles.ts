@@ -1,12 +1,14 @@
 import { Request, Response, NextFunction } from 'express'
-const Notes = require('../models/Notes')
+const Scribbles = require('../models/Scribbles')
 
 module.exports.save = async (req: Request, res: Response, next: NextFunction) => {
-    const { title, videoUrl } = req.body
+    const { allScribbles } = req.body
     const { userData } = req.body.tokenData
 
-    const savedNote = await Notes.upsert(userData.user_id, title, videoUrl)
-    next()
+    // const savedScribble = await Scribbles.upsert(userData.user_id, allScribbles)
+    res.status(200).json({
+        message: 'ok'
+    })
 }
 
 module.exports.getAllNotes = () => { }
