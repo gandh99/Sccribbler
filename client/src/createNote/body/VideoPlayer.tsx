@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { CardContent, Card, InputBase } from '@material-ui/core'
 import GetAppIcon from '@material-ui/icons/GetApp'
-import { isValidUrl, getYTVideoId } from '../utils/videoPlayer.tsx'
+import { isValidUrl, getYTVideoId } from '../../utils/videoPlayer.tsx'
 import { useDispatch, useSelector } from 'react-redux'
-import { showSnackbarAction } from '../redux/actions/globalNotificationActions'
+import { showSnackbarAction } from '../../redux/actions/globalNotificationActions'
 import YouTube from 'react-youtube'
 import Tooltip from '@material-ui/core/Tooltip'
-import { fulfillTimestampRequestAction } from '../redux/actions/createNoteActions'
-import { formatTimestamp } from '../utils/createNote'
+import { fulfillTimestampRequestAction } from '../../redux/actions/createNoteActions'
+import { formatTimestamp } from '../../utils/createNote'
 
 export default function VideoPlayer() {
     const classes = useStyles()

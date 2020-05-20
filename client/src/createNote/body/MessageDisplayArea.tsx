@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useSelector } from 'react-redux'
-import { IMessage } from '../utils/note'
+import { IMessage } from '../../utils/note'
 import Message from './Message'
 import { Divider } from '@material-ui/core'
 

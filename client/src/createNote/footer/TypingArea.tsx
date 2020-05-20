@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-autosize-textarea'
 import CreateIcon from '@material-ui/icons/Create'
 import Timestamp from './Timestamp'
 import { useDispatch, useSelector } from 'react-redux'
-import { initiateTimestampRequestAction, resetTimestampAction, createMessageAction } from '../redux/actions/createNoteActions'
+import { initiateTimestampRequestAction, resetTimestampAction, createMessageAction } from '../../redux/actions/createNoteActions'
 import { v4 as uuidv4 } from 'uuid'
 import { Tooltip } from '@material-ui/core'
 

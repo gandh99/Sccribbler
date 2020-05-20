@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import NoteHeader from './NoteHeader'
-import NoteBody from './NoteBody'
-import TypingArea from './TypingArea'
+import NoteHeader from './header/NoteHeader'
+import NoteBody from './body/NoteBody'
+import TypingArea from './footer/TypingArea'
 
 export default function CreateNote() {
     const classes = useStyles()
