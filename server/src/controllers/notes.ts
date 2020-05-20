@@ -5,8 +5,8 @@ module.exports.save = async (req: Request, res: Response, next: NextFunction) =>
     const { title, videoUrl, allScribbles } = req.body
     const { userData } = req.body.tokenData
 
-    const addedNote = await Notes.upsert(title, videoUrl, allScribbles)
-
+    const savedNote = await Notes.upsert(title, videoUrl, allScribbles)
+    console.log(savedNote)
     res.status(200).json({
         message: 'ok'
     })
