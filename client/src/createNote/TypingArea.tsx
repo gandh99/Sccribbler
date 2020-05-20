@@ -6,6 +6,7 @@ import Timestamp from './Timestamp'
 import { useDispatch, useSelector } from 'react-redux'
 import { initiateTimestampRequestAction, resetTimestampAction, createMessageAction } from '../redux/actions/createNoteActions'
 import { v4 as uuidv4 } from 'uuid'
+import { Tooltip } from '@material-ui/core'
 
 export default function TypingArea() {
     const classes = useStyles()
@@ -65,10 +66,12 @@ export default function TypingArea() {
                     rows={1}
                     onChange={(e: any) => { onTextareaChange(e.target.value) }}
                 />
-                <CreateIcon
-                    onClick={(e: any) => onSubmit(e, message)}
-                    className={classes.createIcon}
-                />
+                <Tooltip title={'Submit'}>
+                    <CreateIcon
+                        onClick={(e: any) => onSubmit(e, message)}
+                        className={classes.createIcon}
+                    />
+                </Tooltip>
             </form>
         </>
     )
