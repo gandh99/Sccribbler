@@ -4,7 +4,8 @@ import TextareaAutosize from 'react-autosize-textarea'
 import CreateIcon from '@material-ui/icons/Create'
 import Timestamp from './Timestamp'
 import { useDispatch, useSelector } from 'react-redux'
-import { initiateTimestampRequestAction, resetTimestampAction } from '../redux/actions/createNoteActions'
+import { initiateTimestampRequestAction, resetTimestampAction, createMessageAction } from '../redux/actions/createNoteActions'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function TypingArea() {
     const classes = useStyles()
@@ -35,6 +36,15 @@ export default function TypingArea() {
 
     const onSubmit = (event: MouseEvent, message: string): void => {
         event.preventDefault()
+
+        // Only dispatch the message to the store if it is not empty
+        if (message !== '') {
+            dispatch(createMessageAction({
+                uuid: uuidv4(),
+                timestamp,
+                text: message.trim(),
+            }))
+        }
 
         // Reset the message and the timestamps
         setMessage('')

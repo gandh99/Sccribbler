@@ -1,6 +1,7 @@
 import { createNote } from '../actionTypes'
 import axios from '../../config/axiosConfig'
 import { returnErrors } from './errorActions'
+import { IMessage } from '../../utils/note'
 
 export const initiateTimestampRequestAction = () => (dispatch: any) => {
     dispatch({
@@ -18,5 +19,12 @@ export const fulfillTimestampRequestAction = (timestamp: string) => (dispatch: a
 export const resetTimestampAction = () => (dispatch: any) => {
     dispatch({
         type: createNote.RESET_TIMESTAMP
+    })
+}
+
+export const createMessageAction = (message: IMessage) => (dispatch: any) => {
+    dispatch({
+        type: createNote.CREATE_MESSAGE,
+        payload: message
     })
 }
