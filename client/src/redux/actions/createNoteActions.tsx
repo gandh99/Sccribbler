@@ -42,3 +42,27 @@ export const createMessageAction = (message: IMessage) => (dispatch: any) => {
         payload: message
     })
 }
+
+export const saveNoteToDatabaseAction = (
+    title: string,
+    videoUrl: string,
+    allMessages: IMessage[]
+) => (dispatch: any) => {
+    // axios
+    //     .post('/authentication/register', { username, password })
+    //     .then(res => {
+    //         dispatch({
+    //             type: authentication.REGISTER_SUCCESS,
+    //             payload: res
+    //         })
+    //         success()
+    //     })
+    //     .catch(err => {
+    //         dispatch({
+    //             type: authentication.REGISTER_FAIL,
+    //             payload: err
+    //         })
+    //         dispatch(returnErrors(err))
+    //         error()
+    //     })
+}
