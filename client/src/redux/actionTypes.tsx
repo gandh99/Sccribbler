@@ -23,7 +23,9 @@ export const error = {
     CLEAR_ERRORS: 'CLEAR_ERRORS'
 }
 
-export const globalNotification = {
+export const globalDisplay = {
     SHOW_SNACKBAR: 'SHOW_SNACKBAR',
     HIDE_SNACKBAR: 'HIDE_SNACKBAR',
+    SHOW_LOADING_BACKGROUND: 'SHOW_LOADING_BACKGROUND',
+    HIDE_LOADING_BACKGROUND: 'HIDE_LOADING_BACKGROUND',
 }

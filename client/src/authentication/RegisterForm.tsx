@@ -6,7 +6,7 @@ import Message from './Message'
 import { AuthenticationForm } from './AuthenticationPage'
 import { useDispatch } from 'react-redux'
 import { registerUserAction } from '../redux/actions/authenticationActions'
-import { showSnackbarAction } from '../redux/actions/globalNotificationActions'
+import { showSnackbarAction } from '../redux/actions/globalDisplayActions'
 
 export default function RegisterForm(props: { setForm: any }) {
     const classes = useStyles()

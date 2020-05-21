@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import CreateIcon from '@material-ui/icons/Create'
 import { useDispatch } from 'react-redux'
 import { createTitleAction } from '../../redux/actions/createNoteActions'
-import { showSnackbarAction } from '../../redux/actions/globalNotificationActions'
+import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 
 export default function NoteHeader() {
     const classes = useStyles()

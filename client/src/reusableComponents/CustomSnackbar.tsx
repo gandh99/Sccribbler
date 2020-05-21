@@ -2,13 +2,13 @@ import React from 'react'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { hideSnackbarAction } from '../redux/actions/globalNotificationActions'
+import { hideSnackbarAction } from '../redux/actions/globalDisplayActions'
 
 export default function CustomSnackbar() {
     const dispatch = useDispatch()
-    const show = useSelector((state: any) => state.globalNotification.snackbar.show)
-    const message = useSelector((state: any) => state.globalNotification.snackbar.message)
-    const severity = useSelector((state: any) => state.globalNotification.snackbar.severity)
+    const show = useSelector((state: any) => state.globalDisplay.snackbar.show)
+    const message = useSelector((state: any) => state.globalDisplay.snackbar.message)
+    const severity = useSelector((state: any) => state.globalDisplay.snackbar.severity)
 
     return (
         <Snackbar

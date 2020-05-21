@@ -6,7 +6,7 @@ import Message from './Message'
 import { AuthenticationForm } from './AuthenticationPage'
 import { loginUserAction } from '../redux/actions/authenticationActions'
 import { useDispatch } from 'react-redux'
-import { showSnackbarAction } from '../redux/actions/globalNotificationActions'
+import { showSnackbarAction } from '../redux/actions/globalDisplayActions'
 import { history } from '../config/history'
 
 export default function LoginForm(props: { setForm: any }) {

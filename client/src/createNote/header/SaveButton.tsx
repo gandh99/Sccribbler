@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import SaveIcon from '@material-ui/icons/Save'
 import { useSelector, useDispatch } from 'react-redux'
 import { IScribble } from '../../interfaces/notes'
-import { showSnackbarAction } from '../../redux/actions/globalNotificationActions'
+import { showSnackbarAction, showLoadingBackgroundAction, hideLoadingBackgroundAction } from '../../redux/actions/globalDisplayActions'
 import { saveNoteToDatabaseAction } from '../../redux/actions/createNoteActions'
 import { history } from '../../config/history'
 
@@ -24,11 +24,14 @@ export default function NoteHeader() {
             return
         }
 
+        // Save the note to the database
+        dispatch(showLoadingBackgroundAction('Saving Note...'))
         dispatch(saveNoteToDatabaseAction(
             title,
             videoUrl,
             allScribbles,
             () => {
+                dispatch(hideLoadingBackgroundAction())
                 history.push('/all-notes')
                 dispatch(showSnackbarAction('Successfully saved note.', 'success'))
             },

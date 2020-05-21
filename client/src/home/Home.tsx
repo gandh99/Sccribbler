@@ -13,6 +13,7 @@ import AllNotes from '../allNotes/AllNotes'
 import CreateNote from '../createNote/CreateNote'
 import Background from './Background'
 import CustomSnackbar from '../reusableComponents/CustomSnackbar'
+import LoadingBackground from '../reusableComponents/LoadingBackground'
 
 export default function Home() {
     const classes = useStyles()
@@ -41,6 +42,7 @@ export default function Home() {
                     </div>
                 </div>
                 <CustomSnackbar />
+                <LoadingBackground />
             </div>
         </Router>
     )
@@ -66,5 +68,5 @@ const useStyles = makeStyles((theme) => ({
     headerArea: {
     },
     pageArea: {
-    }
+    },
 }))
