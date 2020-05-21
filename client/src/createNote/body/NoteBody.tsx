@@ -10,12 +10,6 @@ export default function NoteBody() {
     const classes = useStyles()
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        return () => {
-            dispatch(clearNoteDataAction())
-        }
-    }, [])
-
     return (
         <div className={classes.root}>
             <div className={classes.videoContent}>

@@ -48,13 +48,15 @@ export default function DrawerList(props: any) {
         <List>
             {drawerListItems.map((drawerListItem: IDrawerListItem) => {
                 return (
-                    <Link to={drawerListItem.link} style={{ textDecoration: 'none' }} className={classes.link}>
-                        <DrawerListItem
-                            item={drawerListItem}
-                            setActiveLink={setActiveLink}
-                            activeLink={activeLink}
-                        />
-                    </Link>
+                    <div key={drawerListItem.drawerLinkType}>
+                        <Link to={drawerListItem.link} style={{ textDecoration: 'none' }} className={classes.link}>
+                            <DrawerListItem
+                                item={drawerListItem}
+                                setActiveLink={setActiveLink}
+                                activeLink={activeLink}
+                            />
+                        </Link>
+                    </div>
                 )
             })}
         </List>

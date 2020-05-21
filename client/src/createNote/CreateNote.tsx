@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import NoteHeader from './header/NoteHeader'
 import NoteBody from './body/NoteBody'
 import TypingArea from './footer/TypingArea'
+import { useDispatch } from 'react-redux'
+import { resetTimestampAction, resetDurationAction, clearNoteDataAction } from '../redux/actions/createNoteActions'
 
 export default function CreateNote() {
     const classes = useStyles()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        return () => {
+            dispatch(resetTimestampAction())
+            dispatch(resetDurationAction())
+            dispatch(clearNoteDataAction())
+        }
+    }, [])
 
     return (
         <div className={classes.root}>

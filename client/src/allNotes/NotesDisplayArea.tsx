@@ -19,7 +19,7 @@ export default function NotesDisplayArea() {
             justify="flex-start"
             alignItems="center" >
             {allNotes && allNotes.map((note: INote) => {
-                return <NoteCard note={note} />
+                return <NoteCard key={note.note_id} note={note} />
             })}
         </Grid>
     )

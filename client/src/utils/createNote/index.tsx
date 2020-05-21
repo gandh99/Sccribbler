@@ -33,3 +33,35 @@ export const sortByTimestamp = (timestamp1: string, timestamp2: string): number 
     const timeElapsed2 = getTimeElapsedInSeconds(timestamp2)
     return timeElapsed1 - timeElapsed2
 }
+
+export const getRandomColorFromTimestamp = (timestamp: string, duration: number): string => {
+    const timeElapsedInSeconds = getTimeElapsedInSeconds(timestamp)
+    const fractionElapsed = timeElapsedInSeconds / duration
+    let red: number = 0
+    let green: number = 0
+    let blue: number = 0
+    
+    if (fractionElapsed <= 0.2) {
+        red = 255
+        green = Math.round(255 * fractionElapsed * 5)
+        blue = 0
+    } else if (fractionElapsed <= 0.4) {
+        red = Math.round(255 - ((fractionElapsed - 0.2) / 0.2))
+        green = 255
+        blue = 0
+    } else if (fractionElapsed <= 0.6) {
+        red = 0
+        green = 255
+        blue = Math.round(255 * (fractionElapsed - 0.4) / 0.2)
+    } else if (fractionElapsed <= 0.8) {
+        red = 0
+        green = Math.round(255 - ((fractionElapsed - 0.6) / 0.2))
+        blue = 255
+    } else {
+        red = Math.round(255 * (fractionElapsed - 0.8) / 0.2)
+        green = 0
+        blue = 255
+    }
+
+    return `rgb(${red}, ${green}, ${blue})`
+}

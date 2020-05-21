@@ -9,9 +9,10 @@ interface IInitialState {
 }
 
 const initialState = {
-    // For exchanging timestamps
+    // For exchanging timestamps and recording the video's metadata
     isRequestingTimestamp: false,
     timestamp: '',
+    duration: 0,
 
     // For recording data related to the note itself
     title: '',
@@ -41,6 +42,16 @@ export default function (state = initialState, action: any) {
                 ...state,
                 isRequestingTimestamp: false,
                 timestamp: ''
+            }
+        case createNote.SET_DURATION:
+            return {
+                ...state,
+                duration: action.payload
+            }
+        case createNote.RESET_DURATION:
+            return {
+                ...state,
+                duration: 0
             }
         case createNote.CREATE_TITLE:
             return {

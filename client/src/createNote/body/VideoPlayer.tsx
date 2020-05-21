@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 import YouTube from 'react-youtube'
 import Tooltip from '@material-ui/core/Tooltip'
-import { fulfillTimestampRequestAction, createVideoUrlAction } from '../../redux/actions/createNoteActions'
+import { fulfillTimestampRequestAction, createVideoUrlAction, setDurationAction, resetDurationAction, resetTimestampAction } from '../../redux/actions/createNoteActions'
 import { formatTimestamp } from '../../utils/createNote'
 
 export default function VideoPlayer() {
@@ -15,10 +15,11 @@ export default function VideoPlayer() {
     const dispatch = useDispatch()
     const isRequestingTimestamp = useSelector((state: any) => state.createNote.isRequestingTimestamp)
     const [rawUrlInput, setRawUrlInput] = useState('')
-    
+
     // Used for the video player only
     const [videoSrc, setVideoSrc] = useState('')
     const [timeElapsed, setTimeElapsed] = useState(0)
+    const [duration, setDuration] = useState(0)
 
     // Send the video's current timestamp to the store
     useEffect(() => {
@@ -26,7 +27,18 @@ export default function VideoPlayer() {
             const formattedTimestamp = formatTimestamp(timeElapsed)
             dispatch(fulfillTimestampRequestAction(formattedTimestamp))
         }
+        return () => {
+            dispatch(resetTimestampAction())
+        }
     }, [isRequestingTimestamp])
+
+    // Send the video's duration to the store
+    useEffect(() => {
+        dispatch(setDurationAction(duration))
+        return () => {
+            dispatch(resetDurationAction())
+        }
+    }, [duration])
 
     const retrieveVideo = (event: MouseEvent, url: string): void => {
         event.preventDefault()
@@ -42,6 +54,7 @@ export default function VideoPlayer() {
         // Set the video in the player and send the url to the store
         setVideoSrc(getYTVideoId(rawUrlInput))
         setTimeElapsed(0)
+        setDuration(0)
         dispatch(createVideoUrlAction(rawUrlInput))
     }
 
@@ -72,7 +85,10 @@ export default function VideoPlayer() {
                         width: '100%',
                         height: '250px'
                     }}
-                    onStateChange={(event) => setTimeElapsed(event.target.getCurrentTime())}
+                    onStateChange={(event) => {
+                        setTimeElapsed(event.target.getCurrentTime())
+                        setDuration(event.target.getDuration())
+                    }}
                 />
             }
         </div>

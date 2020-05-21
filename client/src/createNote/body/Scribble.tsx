@@ -2,10 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { IScribble } from '../../interfaces/notes'
 import { Chip } from '@material-ui/core'
+import { useSelector } from 'react-redux'
+import { getRandomColorFromTimestamp } from '../../utils/createNote'
 
 export default function Scribble(props: { scribble: IScribble }) {
     const classes = useStyles()
     const { scribble_id, timestamp, text } = props.scribble
+    const [color, setColor] = useState('rgb(255, 255, 255)')
+    const duration: number = useSelector((state: any) => state.createNote.duration)
+
+    useEffect(() => {
+        setColor(getRandomColorFromTimestamp(timestamp, duration))
+    }, [duration])
 
     return (
         <div className={classes.root}>
@@ -15,7 +23,7 @@ export default function Scribble(props: { scribble: IScribble }) {
                         className={classes.chip}
                         label={timestamp}
                         size='small'
-                        color="secondary"
+                        style={{ backgroundColor: color }}
                     />
                 }
                 {text}
@@ -43,5 +51,5 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: theme.palette.secondary.dark
         }
-    }
+    },
 }))

@@ -14,19 +14,15 @@ export default function ScribbleDisplayArea() {
         setAllScribbles(allScribblesStore)
     }, [allScribblesStore])
 
-    // const allScribbles = [
-    //     { uuid: '1', timestamp: '0:00:10', text: 'helloooooooloasldoalsodlasodlsaodlaosdoasldoalsdoasldoasld' },
-    //     { uuid: '1', timestamp: '0:00:10', text: 'helloooooooloasldoa lsodlasodlsaodlaos doasldoalsdoaasdi jsafjsojsao1111 ifjoasfsldoasld' },
-    //     { uuid: '1', timestamp: '0:00:10', text: 'helloooooooksdifjisdjfiasjodjas ojdoasjdoasjidsaojdloasld  oalsodlasodlsaodlaosdoas ldoalsdoasldoasld' },
-    // ]
-
     return (
         <div className={classes.root}>
             {allScribbles.map((scribble: IScribble, index: number) => {
-                return <>
-                    <Scribble scribble={scribble} />
-                    {index < allScribbles.length - 1 && <Divider variant="middle" />}
-                </>
+                return (
+                    <div key={scribble.scribble_id}>
+                        <Scribble scribble={scribble} />
+                        {index < allScribbles.length - 1 && <Divider variant="middle" />}
+                    </div>
+                )
             })}
         </div>
     )

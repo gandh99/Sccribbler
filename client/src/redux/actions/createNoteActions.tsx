@@ -22,6 +22,19 @@ export const resetTimestampAction = () => (dispatch: any) => {
     })
 }
 
+export const setDurationAction = (duration: number) => (dispatch: any) => {
+    dispatch({
+        type: createNote.SET_DURATION,
+        payload: duration
+    })
+}
+
+export const resetDurationAction = () => (dispatch: any) => {
+    dispatch({
+        type: createNote.RESET_DURATION
+    })
+}
+
 export const createTitleAction = (title: string) => (dispatch: any) => {
     dispatch({
         type: createNote.CREATE_TITLE,
