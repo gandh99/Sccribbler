@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { IScribble } from '../../interfaces/notes'
 import { showSnackbarAction } from '../../redux/actions/globalNotificationActions'
 import { saveNoteToDatabaseAction } from '../../redux/actions/createNoteActions'
+import { history } from '../../config/history'
 
 export default function NoteHeader() {
     const classes = useStyles()
@@ -23,7 +24,16 @@ export default function NoteHeader() {
             return
         }
 
-        dispatch(saveNoteToDatabaseAction(title, videoUrl, allScribbles))
+        dispatch(saveNoteToDatabaseAction(
+            title,
+            videoUrl,
+            allScribbles,
+            () => {
+                history.push('/all-notes')
+                dispatch(showSnackbarAction('Successfully saved note.', 'success'))
+            },
+            () => dispatch(showSnackbarAction('Error saving note to database. Please try again later.', 'error'))
+        ))
     }
 
     return (

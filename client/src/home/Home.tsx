@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
+    Redirect,
 } from "react-router-dom"
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import DrawerMenu from './DrawerMenu'
 import { PrivateRoute } from '../reusableComponents/PrivateRoute'
 import Header from './Header'
+import AllNotes from '../allNotes/AllNotes'
 import CreateNote from '../createNote/CreateNote'
 import Background from './Background'
 import CustomSnackbar from '../reusableComponents/CustomSnackbar'
@@ -32,7 +34,9 @@ export default function Home() {
                     <div className={classes.pageArea}>
                         <Background />
                         <Switch>
-                            <PrivateRoute path='/create' component={CreateNote} />
+                            <PrivateRoute path='/all-notes' component={AllNotes} />
+                            <PrivateRoute path='/create-note' component={CreateNote} />
+                            <Redirect from='*' to='/all-notes' />
                         </Switch>
                     </div>
                 </div>

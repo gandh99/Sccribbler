@@ -26,7 +26,7 @@ export default function DrawerList(props: any) {
     const drawerListItems: IDrawerListItem[] = [
         {
             drawerLinkType: DrawerLinkType.ALL_NOTES,
-            link: '/',
+            link: '/all-notes',
             icon: <ListAltIcon />,
             text: 'All Notes'
         },
@@ -38,7 +38,7 @@ export default function DrawerList(props: any) {
         },
         {
             drawerLinkType: DrawerLinkType.CREATE_NOTE,
-            link: '/create',
+            link: '/create-note',
             icon: <CreateIcon />,
             text: 'Create Note'
         },

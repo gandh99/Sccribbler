@@ -46,7 +46,9 @@ export const createScribbleAction = (scribble: IScribble) => (dispatch: any) => 
 export const saveNoteToDatabaseAction = (
     title: string,
     videoUrl: string,
-    allScribbles: IScribble[]
+    allScribbles: IScribble[],
+    success: Function,
+    error: Function
 ) => (dispatch: any) => {
     axios
         .post('/notes/save', { title, videoUrl, allScribbles })
@@ -56,6 +58,7 @@ export const saveNoteToDatabaseAction = (
                 type: createNote.SAVE_NOTE_TO_DATABASE_SUCCESS,
                 payload: savedNote
             })
+            success()
         })
         .catch(err => {
             dispatch({
@@ -63,5 +66,6 @@ export const saveNoteToDatabaseAction = (
                 payload: err
             })
             dispatch(returnErrors(err))
+            error()
         })
 }
