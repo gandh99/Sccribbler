@@ -2,7 +2,7 @@ import { getNote } from '../actionTypes'
 import axios from '../../config/axiosConfig'
 import { returnErrors } from './errorActions'
 
-export const getAllNotesAction = () => (dispatch: any) => {
+export const getAllNotesAction = (success: Function, error: Function) => (dispatch: any) => {
     axios
         .get('/notes/get-all-notes')
         .then(res => {
@@ -10,6 +10,7 @@ export const getAllNotesAction = () => (dispatch: any) => {
                 type: getNote.GET_ALL_NOTES_SUCCESS,
                 payload: res.data.data
             })
+            success()
         })
         .catch(err => {
             dispatch({
@@ -17,5 +18,6 @@ export const getAllNotesAction = () => (dispatch: any) => {
                 payload: err
             })
             dispatch(returnErrors(err))
+            error()
         })
 }
