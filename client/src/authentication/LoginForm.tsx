@@ -6,7 +6,7 @@ import Message from './Message'
 import { AuthenticationForm } from './AuthenticationPage'
 import { loginUserAction } from '../redux/actions/authenticationActions'
 import { useDispatch } from 'react-redux'
-import { showSnackbarAction } from '../redux/actions/globalDisplayActions'
+import { showSnackbarAction, showLoadingBackgroundAction, hideLoadingBackgroundAction } from '../redux/actions/globalDisplayActions'
 import { history } from '../config/history'
 
 export default function LoginForm(props: { setForm: any }) {
@@ -19,10 +19,14 @@ export default function LoginForm(props: { setForm: any }) {
         event.preventDefault()
 
         if (usernameIsValid(username.trim()) && passwordIsValid(password.trim())) {
+            dispatch(showLoadingBackgroundAction('Authenticating...'))
             dispatch(loginUserAction(
                 username,
                 password,
-                () => history.push('/'),
+                () => {
+                    dispatch(hideLoadingBackgroundAction())
+                    history.push('/')
+                },
                 () => dispatch(showSnackbarAction('Invalid username/password.', 'error'))
             ))
         }

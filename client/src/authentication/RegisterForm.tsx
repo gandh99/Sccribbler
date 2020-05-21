@@ -6,7 +6,7 @@ import Message from './Message'
 import { AuthenticationForm } from './AuthenticationPage'
 import { useDispatch } from 'react-redux'
 import { registerUserAction } from '../redux/actions/authenticationActions'
-import { showSnackbarAction } from '../redux/actions/globalDisplayActions'
+import { showSnackbarAction, showLoadingBackgroundAction, hideLoadingBackgroundAction } from '../redux/actions/globalDisplayActions'
 
 export default function RegisterForm(props: { setForm: any }) {
     const classes = useStyles()
@@ -18,10 +18,14 @@ export default function RegisterForm(props: { setForm: any }) {
         event.preventDefault()
 
         if (usernameIsValid(username.trim()) && passwordIsValid(password.trim())) {
+            dispatch(showLoadingBackgroundAction('Processing registration...'))
             dispatch(registerUserAction(
                 username,
                 password,
-                () => dispatch(showSnackbarAction('Registration successful.', 'success')),
+                () => {
+                    dispatch(hideLoadingBackgroundAction())
+                    dispatch(showSnackbarAction('Registration successful.', 'success'))
+                },
                 () => dispatch(showSnackbarAction('Registration failure.', 'error'))
             ))
         }

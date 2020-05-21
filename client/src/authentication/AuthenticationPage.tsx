@@ -5,6 +5,7 @@ import RegisterForm from './RegisterForm'
 import Logo from './Logo'
 import Background from './Background'
 import CustomSnackbar from '../reusableComponents/CustomSnackbar'
+import LoadingBackground from '../reusableComponents/LoadingBackground'
 
 export enum AuthenticationForm {
     LOGIN,
@@ -23,6 +24,7 @@ export default function AuthenticationPage() {
                 ? <LoginForm setForm={setForm} />
                 : <RegisterForm setForm={setForm} />}
             <CustomSnackbar />
+            <LoadingBackground />
         </div>
     )
 }
