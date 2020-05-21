@@ -3,11 +3,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch } from 'react-redux'
 import { INote } from '../interfaces/notes'
 import { Card, Typography, CardContent, Divider, Grid } from '@material-ui/core'
-import { formatScribble } from '../utils/allNotes'
+import { formatScribble, formatTimestamp } from '../utils/allNotes'
+import Timestamp from './Timestamp'
 
 export default function NoteCard(props: { note: INote }) {
     const classes = useStyles()
-    const { title, videoUrl, allScribbles } = props.note
+    const { title, videoUrl, updated_at, allScribbles } = props.note
 
     return (
         <Grid item xs={12} sm={12} md={6} lg={4}>
@@ -21,6 +22,9 @@ export default function NoteCard(props: { note: INote }) {
                         {allScribbles[0] && <p>{formatScribble(allScribbles[0].text)}</p>}
                         {allScribbles[1] && <p>{formatScribble(allScribbles[1].text)}</p>}
                         {allScribbles[2] && <p>{formatScribble(allScribbles[2].text)}</p>}
+                    </div>
+                    <div className={classes.footer}>
+                        <Timestamp timestamp={updated_at} />
                     </div>
                 </CardContent>
             </Card>
@@ -45,5 +49,12 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         color: theme.palette.grey[600],
         fontSize: 14
-    }
+    },
+    footer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        fontSize: 12,
+        fontStyle: 'italic'
+    },
 }))

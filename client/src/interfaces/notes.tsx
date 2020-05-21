@@ -9,5 +9,5 @@ export interface INote {
     title: string,
     videoUrl: string,
     allScribbles: IScribble[],
-    lastUpdated?: Date
+    updated_at?: Date
 }

@@ -26,12 +26,13 @@ module.exports.getByUserId = async (userId: number) => {
         queryResult.rows.forEach((result: any) => {
             if (result.note_id !== noteId) {
                 // Start of a new note
-                const { note_id, title, video_url } = result
+                const { note_id, title, video_url, updated_at } = result
                 noteId = note_id
                 notes.push({
                     note_id: note_id,
                     title,
                     videoUrl: video_url,
+                    updated_at,
                     allScribbles: []
                 })
             }
