@@ -12,7 +12,7 @@ module.exports.save = async (req: Request, res: Response, next: NextFunction) =>
     )
 
     const result: INote = {
-        noteId: savedNote.note_id,
+        note_id: savedNote.note_id,
         title: savedNote.title,
         videoUrl: savedNote.video_url,
         allScribbles: savedAllScribbles

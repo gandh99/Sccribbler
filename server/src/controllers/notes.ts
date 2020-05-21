@@ -10,4 +10,11 @@ module.exports.save = async (req: Request, res: Response, next: NextFunction) =>
     next()
 }
 
-module.exports.getAllNotes = () => { }
+module.exports.getAllNotes = async (req: Request, res: Response, next: NextFunction) => {
+    const { userData } = req.body.tokenData
+
+    const allNotes = await Notes.getByUserId(userData.user_id)
+    res.status(200).json({
+        data: allNotes
+    })
+ }
