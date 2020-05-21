@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import VideoPlayer from './VideoPlayer'
 import ScribbleDisplayArea from './ScribbleDisplayArea'
+import { useDispatch } from 'react-redux'
+import { clearNoteDataAction } from '../../redux/actions/createNoteActions'
 
 export default function NoteBody() {
     const classes = useStyles()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        return () => {
+            dispatch(clearNoteDataAction())
+        }
+    }, [])
 
     return (
         <div className={classes.root}>

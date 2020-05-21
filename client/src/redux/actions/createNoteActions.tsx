@@ -69,3 +69,9 @@ export const saveNoteToDatabaseAction = (
             error()
         })
 }
+
+export const clearNoteDataAction = () => (dispatch: any) => {
+    dispatch({
+        type: createNote.CLEAR_NOTE_DATA,
+    })
+}

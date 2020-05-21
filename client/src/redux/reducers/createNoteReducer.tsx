@@ -69,6 +69,14 @@ export default function (state = initialState, action: any) {
                 ...state,
                 savedNote: {}
             }
+        case createNote.CLEAR_NOTE_DATA:
+            return {
+                ...state,
+                title: '',
+                videoUrl: '',
+                newScribble: { scribble_id: '', timestamp: '', text: '' },
+                allScribbles: [],
+            }
         default:
             return state
     }
