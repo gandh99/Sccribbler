@@ -4,6 +4,7 @@ const initialState = {
     isRequestingTimeElapsed: false,
     timeElapsed: 0,
     duration: 0,    
+    seekTime: -1
 } 
 
 export default function (state = initialState, action: any) {
@@ -34,6 +35,16 @@ export default function (state = initialState, action: any) {
             return {
                 ...state,
                 duration: 0
+            }
+        case videoPlayer.SET_SEEK_TIME:
+            return {
+                ...state,
+                seekTime: action.payload
+            }
+        case videoPlayer.RESET_SEEK_TIME:
+            return {
+                ...state,
+                seekTime: -1
             }
         default:
             return state

@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { IScribble } from '../../interfaces/notes'
 import { Chip } from '@material-ui/core'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getColorFromTimeElapsed, formatTimestamp } from '../../utils/createNote'
+import { setSeekTimeAction } from '../../redux/actions/videoPlayerActions'
 
 export default function Scribble(props: { scribble: IScribble }) {
     const classes = useStyles()
+    const dispatch = useDispatch()
     const { scribbleId, timeElapsed, text } = props.scribble
     const [color, setColor] = useState('rgb(255, 255, 255)')
     const duration: number = useSelector((state: any) => state.videoPlayer.duration)
@@ -20,6 +22,7 @@ export default function Scribble(props: { scribble: IScribble }) {
             <span className={classes.scribble}>
                 {timeElapsed !== 0 &&
                     <Chip
+                        onClick={() => dispatch(setSeekTimeAction(timeElapsed))}
                         className={classes.chip}
                         label={formatTimestamp(timeElapsed)}
                         size='small'

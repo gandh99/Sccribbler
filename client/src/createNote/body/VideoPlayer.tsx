@@ -8,18 +8,18 @@ import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 import YouTube from 'react-youtube'
 import Tooltip from '@material-ui/core/Tooltip'
 import { saveVideoUrlAction } from '../../redux/actions/saveNoteActions'
-import { respondWithTimesElapsedAction, resetTimeElapsedAction, setDurationAction, resetDurationAction } from '../../redux/actions/videoPlayerActions'
+import { respondWithTimesElapsedAction, resetTimeElapsedAction, setDurationAction, resetDurationAction, resetSeekTimeAction } from '../../redux/actions/videoPlayerActions'
 
 export default function VideoPlayer() {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const isRequestingTimeElapsed = useSelector((state: any) => state.videoPlayer.isRequestingTimeElapsed)
     const [rawUrlInput, setRawUrlInput] = useState('')
-
-    // Used for the video player component only
     const [videoSrc, setVideoSrc] = useState('')
+    const isRequestingTimeElapsed = useSelector((state: any) => state.videoPlayer.isRequestingTimeElapsed)    
     const [timeElapsed, setTimeElapsed] = useState(0)
     const [duration, setDuration] = useState(0)
+    const seekTime = useSelector((state: any) => state.videoPlayer.seekTime)    
+    const [videoPlayer, setVideoPlayer] = useState<any>(null)
 
     // Send the video's current time elapsed to the store
     useEffect(() => {
@@ -38,6 +38,17 @@ export default function VideoPlayer() {
             dispatch(resetDurationAction())
         }
     }, [duration])
+
+    // Seek the video player to the stipulated time and then reset the seek time in the store
+    useEffect(() => {
+        if (seekTime && seekTime >= 0) {
+            videoPlayer!.seekTo(seekTime)
+            dispatch(resetSeekTimeAction())
+        }
+        return () => {
+            dispatch(resetSeekTimeAction())
+        }
+    }, [seekTime])
 
     const retrieveVideo = (event: MouseEvent, url: string): void => {
         event.preventDefault()
@@ -87,6 +98,9 @@ export default function VideoPlayer() {
                     opts={{
                         width: '100%',
                         height: '250px'
+                    }}
+                    onReady={(event) => {
+                        setVideoPlayer(event.target)
                     }}
                     onStateChange={(event) => {
                         setTimeElapsed(Math.round(event.target.getCurrentTime()))

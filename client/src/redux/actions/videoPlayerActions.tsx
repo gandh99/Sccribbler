@@ -31,3 +31,16 @@ export const resetDurationAction = () => (dispatch: any) => {
         type: videoPlayer.RESET_DURATION
     })
 }
+
+export const setSeekTimeAction = (timeElapsed: number) => (dispatch: any) => {
+    dispatch({
+        type: videoPlayer.SET_SEEK_TIME,
+        payload: timeElapsed
+    })
+}
+
+export const resetSeekTimeAction = () => (dispatch: any) => {
+    dispatch({
+        type: videoPlayer.RESET_SEEK_TIME
+    })
+}

@@ -13,6 +13,8 @@ export const videoPlayer = {
     RESET_TIME_ELAPSED: 'RESET_TIME_ELAPSED',
     SET_DURATION: 'SET_DURATION',
     RESET_DURATION: 'RESET_DURATION',
+    SET_SEEK_TIME: 'SET_SEEK_TIME',
+    RESET_SEEK_TIME: 'RESET_SEEK_TIME',
 }
 
 export const saveNote = {
