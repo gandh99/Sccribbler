@@ -2,6 +2,7 @@ import axios from 'axios'
 import store from '../redux/store'
 import { authentication } from '../redux/actionTypes'
 import { history } from './history'
+import { hideLoadingBackgroundAction } from '../redux/actions/globalDisplayActions'
 
 const refreshTokenAction = (error: any) => {
     const originalRequest = error.config
@@ -9,7 +10,7 @@ const refreshTokenAction = (error: any) => {
 
     if (error.response.status === 401 && originalRequest.url ===
         'http://localhost:5000/authentication/refresh') {
-        history.push('/login')
+        history.push('/authentication/login')
         return Promise.reject(error)
     }
 
@@ -32,6 +33,10 @@ const refreshTokenAction = (error: any) => {
                     originalRequest.headers['authorization'] = newAccessToken
                     return axios(originalRequest)
                 }
+            })
+            .catch(err => {
+                dispatch(hideLoadingBackgroundAction())
+                history.push('/authentication/login')
             })
     }
     return Promise.reject(error)
