@@ -7,7 +7,7 @@ import { getColorFromTimeElapsed, formatTimestamp } from '../../utils/createNote
 
 export default function Scribble(props: { scribble: IScribble }) {
     const classes = useStyles()
-    const { scribble_id, timeElapsed, text } = props.scribble
+    const { scribbleId, timeElapsed, text } = props.scribble
     const [color, setColor] = useState('rgb(255, 255, 255)')
     const duration: number = useSelector((state: any) => state.createNote.duration)
 

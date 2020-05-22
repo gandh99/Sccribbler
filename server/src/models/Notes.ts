@@ -29,20 +29,20 @@ module.exports.getByUserId = async (userId: number) => {
                 const { note_id, title, video_url, updated_at } = result
                 noteId = note_id
                 notes.push({
-                    note_id: note_id,
+                    noteId: note_id,
                     title,
                     videoUrl: video_url,
-                    updated_at,
+                    updatedAt: updated_at,
                     allScribbles: []
                 })
             }
 
             // Add scribble to the last note
-            const { scribble_id, timeElapsed, text } = result
+            const { scribble_id, time_elapsed, text } = result
             let lastNote = notes[notes.length - 1]
             lastNote.allScribbles!.push({
-                scribble_id,
-                timeElapsed,
+                scribbleId: scribble_id,
+                timeElapsed: time_elapsed,
                 text
             })
         })

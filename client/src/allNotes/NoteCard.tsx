@@ -8,7 +8,7 @@ import Timestamp from './Timestamp'
 
 export default function NoteCard(props: { note: INote }) {
     const classes = useStyles()
-    const { title, videoUrl, updated_at, allScribbles } = props.note
+    const { title, videoUrl, updatedAt, allScribbles } = props.note
 
     return (
         <Grid item xs={12} sm={12} md={6} lg={4}>
@@ -24,7 +24,7 @@ export default function NoteCard(props: { note: INote }) {
                         {allScribbles[2] && <p>{formatScribble(allScribbles[2].text)}</p>}
                     </div>
                     <div className={classes.footer}>
-                        <Timestamp timestamp={updated_at} />
+                        <Timestamp timestamp={updatedAt} />
                     </div>
                 </CardContent>
             </Card>

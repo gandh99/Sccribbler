@@ -1,13 +1,13 @@
 export interface IScribble {
-    scribble_id: string | number,
+    scribbleId: string | number,
     timeElapsed: string,
     text: string
 }
 
 export interface INote {
-    note_id: string | number,
+    noteId: string | number,
     title: string,
     videoUrl: string,
     allScribbles?: IScribble[],
-    updated_at?: Date
+    updatedAt?: Date
 }

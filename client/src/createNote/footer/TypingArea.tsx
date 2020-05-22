@@ -44,7 +44,7 @@ export default function TypingArea() {
         // Only dispatch the scribble to the store if it is not empty
         if (scribble !== '') {
             dispatch(createScribbleAction({
-                scribble_id: uuidv4(),
+                scribbleId: uuidv4(),
                 timeElapsed,
                 text: scribble.trim(),
             }))

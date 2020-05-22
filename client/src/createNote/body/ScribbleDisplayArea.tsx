@@ -18,7 +18,7 @@ export default function ScribbleDisplayArea() {
         <div className={classes.root}>
             {allScribbles.map((scribble: IScribble, index: number) => {
                 return (
-                    <div key={scribble.scribble_id}>
+                    <div key={scribble.scribbleId}>
                         <Scribble scribble={scribble} />
                         {index < allScribbles.length - 1 && <Divider variant="middle" />}
                     </div>

@@ -17,11 +17,11 @@ const initialState = {
     // For recording data related to the note itself
     title: '',
     videoUrl: '',
-    newScribble: { scribble_id: '', timeElapsed: 0, text: '' },
+    newScribble: { scribbleId: '', timeElapsed: 0, text: '' },
     allScribbles: [],
 
     // For checking if the note was saved to the database
-    savedNote: { note_id: '', title: '', videoUrl: '', allScribbles: [] }
+    savedNote: { noteId: '', title: '', videoUrl: '', allScribbles: [] }
 } as IInitialState      // Necessary format to include properties not defined in IInitialState
 
 export default function (state = initialState, action: any) {
