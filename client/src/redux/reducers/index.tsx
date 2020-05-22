@@ -3,7 +3,7 @@ import authentication from './authenticationReducer'
 import error from './errorReducer'
 import globalDisplay from './globalDisplayReducer'
 import videoPlayer from './videoPlayerReducer'
-import createNote from './createNoteReducer'
+import saveNote from './saveNoteReducer'
 import getNote from './getNoteReducer'
 
 export default combineReducers({
@@ -11,6 +11,6 @@ export default combineReducers({
     error,
     globalDisplay,
     videoPlayer,
-    createNote,
+    saveNote,
     getNote
 })

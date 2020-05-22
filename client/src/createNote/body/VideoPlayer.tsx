@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 import YouTube from 'react-youtube'
 import Tooltip from '@material-ui/core/Tooltip'
-import { saveVideoUrlAction } from '../../redux/actions/createNoteActions'
+import { saveVideoUrlAction } from '../../redux/actions/saveNoteActions'
 import { respondWithTimesElapsedAction, resetTimeElapsedAction, setDurationAction, resetDurationAction } from '../../redux/actions/videoPlayerActions'
 
 export default function VideoPlayer() {

@@ -5,15 +5,15 @@ import SaveIcon from '@material-ui/icons/Save'
 import { useSelector, useDispatch } from 'react-redux'
 import { IScribble } from '../../interfaces/notes'
 import { showSnackbarAction, showLoadingBackgroundAction, hideLoadingBackgroundAction } from '../../redux/actions/globalDisplayActions'
-import { saveNoteToDatabaseAction } from '../../redux/actions/createNoteActions'
+import { saveNoteToDatabaseAction } from '../../redux/actions/saveNoteActions'
 import { history } from '../../config/history'
 
-export default function NoteHeader() {
+export default function SaveButton() {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const title: string = useSelector((state: any) => state.createNote.title)
-    const videoUrl: string = useSelector((state: any) => state.createNote.videoUrl)
-    const allScribbles: IScribble[] = useSelector((state: any) => state.createNote.allScribbles)
+    const title: string = useSelector((state: any) => state.saveNote.title)
+    const videoUrl: string = useSelector((state: any) => state.saveNote.videoUrl)
+    const allScribbles: IScribble[] = useSelector((state: any) => state.saveNote.allScribbles)
 
     const onSubmit = (event: MouseEvent, title: string, videoUrl: string, allScribbles: IScribble[]): void => {
         event.preventDefault()

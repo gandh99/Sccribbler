@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import VideoPlayer from './VideoPlayer'
 import ScribbleDisplayArea from './ScribbleDisplayArea'
 import { useDispatch } from 'react-redux'
-import { clearNoteDataAction } from '../../redux/actions/createNoteActions'
+import { clearNoteDataAction } from '../../redux/actions/saveNoteActions'
 
 export default function NoteBody() {
     const classes = useStyles()

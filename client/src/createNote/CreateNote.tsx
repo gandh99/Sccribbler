@@ -4,7 +4,7 @@ import NoteHeader from './header/NoteHeader'
 import NoteBody from './body/NoteBody'
 import TypingArea from './footer/TypingArea'
 import { useDispatch } from 'react-redux'
-import { clearNoteDataAction } from '../redux/actions/createNoteActions'
+import { clearNoteDataAction } from '../redux/actions/saveNoteActions'
 import { resetTimeElapsedAction, resetDurationAction } from '../redux/actions/videoPlayerActions'
 
 export default function CreateNote() {

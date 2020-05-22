@@ -8,7 +8,7 @@ import { Divider } from '@material-ui/core'
 export default function ScribbleDisplayArea() {
     const classes = useStyles()
     const [allScribbles, setAllScribbles] = useState<IScribble[]>([])
-    const allScribblesStore: IScribble[] = useSelector((state: any) => state.createNote.allScribbles)
+    const allScribblesStore: IScribble[] = useSelector((state: any) => state.saveNote.allScribbles)
 
     useEffect(() => {
         setAllScribbles(allScribblesStore)
