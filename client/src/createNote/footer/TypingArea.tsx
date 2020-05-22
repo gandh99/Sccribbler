@@ -14,25 +14,22 @@ export default function TypingArea() {
     const dispatch = useDispatch()
     const currentTimeElapsed = useSelector((state: any) => state.createNote.timeElapsed)
     const [timeElapsed, setTimeElapsed] = useState(0)
-    const [timestamp, setTimestamp] = useState('')
     const [scribble, setScribble] = useState('')
 
     // Get, set, and then reset the time elapsed from the store
     useEffect(() => {
         if (currentTimeElapsed !== 0) {
             setTimeElapsed(currentTimeElapsed)
-            setTimestamp(formatTimestamp(currentTimeElapsed))
             dispatch(resetTimeElapsedAction())
         }
     }, [currentTimeElapsed])
 
-    // Get time elapsed only if user is typing a "new" scribble
-    const shouldGetTimeElapsed = (prevScribble: string, timeElapsed: number): boolean => {
+    const isNewScribble = (prevScribble: string, timeElapsed: number): boolean => {
         return prevScribble === '' && timeElapsed === 0
     }
 
     const onTextareaChange = (value: string): void => {
-        if (shouldGetTimeElapsed(scribble, timeElapsed)) {
+        if (isNewScribble(scribble, timeElapsed)) {
             dispatch(requestForTimeElapsedAction())
         }
         setScribble(value)
@@ -50,17 +47,16 @@ export default function TypingArea() {
             }))
         }
 
-        // Reset the scribble and the timestamps
+        // Reset the scribble and the time elapsed
         setScribble('')
         setTimeElapsed(0)
-        setTimestamp('')
         dispatch(resetTimeElapsedAction())
     }
 
     return (
         <>
             <div className={classes.timestampArea}>
-                <Timestamp timestamp={timestamp} />
+                <Timestamp timestamp={formatTimestamp(timeElapsed)} />
             </div>
             <form onSubmit={(e: any) => { onSubmit(e, scribble) }} className={classes.root}>
                 <TextareaAutosize
