@@ -9,22 +9,22 @@ import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 export default function CategoryButton() {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const [text, setText] = useState('')
+    const [name, setName] = useState('')
 
-    const onSubmit = (event: MouseEvent, text: string): void => {
+    const onSubmit = (event: MouseEvent, name: string): void => {
         event.preventDefault()
 
-        if (text.length > 10) {
+        if (name.length > 10) {
             dispatch(showSnackbarAction('Category name must not exceed 10 characters.', 'error'))
             return
         }
 
-        if (text !== '') {
+        if (name !== '') {
             dispatch(createCategoryAction(
-                text,
+                name,
                 () => {
                     dispatch(showSnackbarAction('Success!', 'success'))
-                    setText('')
+                    setName('')
                 },
                 () => dispatch(showSnackbarAction('Unable to create category. Please try again later.', 'error')),
             ))
@@ -35,11 +35,11 @@ export default function CategoryButton() {
         <div className={classes.root}>
             <InputBase
                 className={classes.input}
-                value={text}
-                onChange={(event: any) => setText(event.target.value)}
+                value={name}
+                onChange={(event: any) => setName(event.target.value)}
                 placeholder={'Add New Category'}
             />
-            <EditIcon onClick={(event: any) => onSubmit(event, text)} className={classes.editIcon} />
+            <EditIcon onClick={(event: any) => onSubmit(event, name)} className={classes.editIcon} />
         </div>
     )
 }

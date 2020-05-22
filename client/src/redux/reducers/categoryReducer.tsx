@@ -1,7 +1,7 @@
 import { category } from '../actionTypes'
 
 const initialState = {
-    newCategory: '',
+    newCategory: {},
     allCategories: []
 }
 
@@ -15,7 +15,7 @@ export default function (state = initialState, action: any) {
         case category.CREATE_CATEGORY_FAIL:
             return {
                 ...state,
-                newCategory: ''
+                newCategory: {}
             }
         default:
             return state
