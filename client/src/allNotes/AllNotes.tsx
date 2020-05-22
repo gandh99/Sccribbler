@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { getAllNotesAction } from '../redux/actions/getNoteActions'
 import NotesDisplayArea from './body/NotesDisplayArea'
 import { showLoadingBackgroundAction, hideLoadingBackgroundAction, showSnackbarAction } from '../redux/actions/globalDisplayActions'
+import Header from './header/Header'
 
 export default function NoteHeader() {
     const classes = useStyles()
@@ -19,6 +20,9 @@ export default function NoteHeader() {
 
     return (
         <div className={classes.root}>
+            <div className={classes.header}>
+                <Header />
+            </div>
             <div className={classes.contentArea}>
                 <NotesDisplayArea />
             </div>
@@ -30,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
         height: '100%',
         width: '100%',
+    },
+    header: {
+        margin: '1rem 2rem',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
     },
     contentArea: {
         margin: '1rem'
