@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useSelector, useDispatch } from 'react-redux'
-import { INote } from '../interfaces/notes'
+import { INote } from '../../interfaces/notes'
 import NoteCard from './NoteCard'
 import { Grid } from '@material-ui/core'
 

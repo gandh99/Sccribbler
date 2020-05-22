@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch } from 'react-redux'
 import { getAllNotesAction } from '../redux/actions/getNoteActions'
-import NotesDisplayArea from './NotesDisplayArea'
+import NotesDisplayArea from './body/NotesDisplayArea'
 import { showLoadingBackgroundAction, hideLoadingBackgroundAction, showSnackbarAction } from '../redux/actions/globalDisplayActions'
 
 export default function NoteHeader() {

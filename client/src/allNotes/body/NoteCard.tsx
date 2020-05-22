@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch } from 'react-redux'
-import { INote } from '../interfaces/notes'
+import { INote } from '../../interfaces/notes'
 import { Card, Typography, CardContent, Divider, Grid } from '@material-ui/core'
-import { formatScribble, formatTimestamp } from '../utils/allNotes'
+import { formatScribble, formatTimestamp } from '../../utils/allNotes'
 import Timestamp from './Timestamp'
 
 export default function NoteCard(props: { note: INote }) {

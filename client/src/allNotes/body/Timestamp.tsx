@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { formatTimestamp } from '../utils/allNotes'
+import { formatTimestamp } from '../../utils/allNotes'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import { Tooltip } from '@material-ui/core'
 
