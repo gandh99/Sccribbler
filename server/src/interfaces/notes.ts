@@ -1,6 +1,6 @@
 export interface IScribble {
     scribble_id: string | number,
-    timestamp: string,
+    timeElapsed: string,
     text: string
 }
 

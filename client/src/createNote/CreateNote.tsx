@@ -4,7 +4,7 @@ import NoteHeader from './header/NoteHeader'
 import NoteBody from './body/NoteBody'
 import TypingArea from './footer/TypingArea'
 import { useDispatch } from 'react-redux'
-import { resetTimestampAction, resetDurationAction, clearNoteDataAction } from '../redux/actions/createNoteActions'
+import { resetTimeElapsedAction, resetDurationAction, clearNoteDataAction } from '../redux/actions/createNoteActions'
 
 export default function CreateNote() {
     const classes = useStyles()
@@ -12,7 +12,7 @@ export default function CreateNote() {
 
     useEffect(() => {
         return () => {
-            dispatch(resetTimestampAction())
+            dispatch(resetTimeElapsedAction())
             dispatch(resetDurationAction())
             dispatch(clearNoteDataAction())
         }

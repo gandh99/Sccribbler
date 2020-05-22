@@ -38,11 +38,11 @@ module.exports.getByUserId = async (userId: number) => {
             }
 
             // Add scribble to the last note
-            const { scribble_id, timestamp, text } = result
+            const { scribble_id, timeElapsed, text } = result
             let lastNote = notes[notes.length - 1]
             lastNote.allScribbles!.push({
                 scribble_id,
-                timestamp,
+                timeElapsed,
                 text
             })
         })

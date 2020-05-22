@@ -7,30 +7,28 @@ import { useDispatch, useSelector } from 'react-redux'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 import YouTube from 'react-youtube'
 import Tooltip from '@material-ui/core/Tooltip'
-import { fulfillTimestampRequestAction, createVideoUrlAction, setDurationAction, resetDurationAction, resetTimestampAction } from '../../redux/actions/createNoteActions'
-import { formatTimestamp } from '../../utils/createNote'
+import { respondWithTimesElapsedAction, createVideoUrlAction, setDurationAction, resetDurationAction, resetTimeElapsedAction } from '../../redux/actions/createNoteActions'
 
 export default function VideoPlayer() {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const isRequestingTimestamp = useSelector((state: any) => state.createNote.isRequestingTimestamp)
+    const isRequestingTimeElapsed = useSelector((state: any) => state.createNote.isRequestingTimeElapsed)
     const [rawUrlInput, setRawUrlInput] = useState('')
 
-    // Used for the video player only
+    // Used for the video player component only
     const [videoSrc, setVideoSrc] = useState('')
     const [timeElapsed, setTimeElapsed] = useState(0)
     const [duration, setDuration] = useState(0)
 
-    // Send the video's current timestamp to the store
+    // Send the video's current time elapsed to the store
     useEffect(() => {
-        if (isRequestingTimestamp && timeElapsed !== 0) {
-            const formattedTimestamp = formatTimestamp(timeElapsed)
-            dispatch(fulfillTimestampRequestAction(formattedTimestamp))
+        if (isRequestingTimeElapsed && timeElapsed !== 0) {
+            dispatch(respondWithTimesElapsedAction(timeElapsed))
         }
         return () => {
-            dispatch(resetTimestampAction())
+            dispatch(resetTimeElapsedAction())
         }
-    }, [isRequestingTimestamp])
+    }, [isRequestingTimeElapsed])
 
     // Send the video's duration to the store
     useEffect(() => {
@@ -86,7 +84,7 @@ export default function VideoPlayer() {
                         height: '250px'
                     }}
                     onStateChange={(event) => {
-                        setTimeElapsed(event.target.getCurrentTime())
+                        setTimeElapsed(Math.round(event.target.getCurrentTime()))
                         setDuration(event.target.getDuration())
                     }}
                 />

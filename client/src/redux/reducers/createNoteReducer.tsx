@@ -1,6 +1,6 @@
 import { createNote } from '../actionTypes'
 import { IScribble, INote } from '../../interfaces/notes'
-import { sortByTimestamp } from '../../utils/createNote'
+import { sortByTimeElapsed } from '../../utils/createNote'
 
 interface IInitialState {
     newScribble?: IScribble,
@@ -9,15 +9,15 @@ interface IInitialState {
 }
 
 const initialState = {
-    // For exchanging timestamps and recording the video's metadata
-    isRequestingTimestamp: false,
-    timestamp: '',
+    // For exchanging time elapsed and recording the video's metadata
+    isRequestingTimeElapsed: false,
+    timeElapsed: 0,
     duration: 0,
 
     // For recording data related to the note itself
     title: '',
     videoUrl: '',
-    newScribble: { scribble_id: '', timestamp: '', text: '' },
+    newScribble: { scribble_id: '', timeElapsed: 0, text: '' },
     allScribbles: [],
 
     // For checking if the note was saved to the database
@@ -26,22 +26,22 @@ const initialState = {
 
 export default function (state = initialState, action: any) {
     switch (action.type) {
-        case createNote.INITIATE_TIMESTAMP_REQUEST:
+        case createNote.REQUEST_FOR_TIME_ELAPSED:
             return {
                 ...state,
-                isRequestingTimestamp: true
+                isRequestingTimeElapsed: true
             }
-        case createNote.FULFILL_TIMESTAMP_REQUEST:
+        case createNote.RESPOND_WITH_TIME_ELAPSED:
             return {
                 ...state,
-                isRequestingTimestamp: false,
-                timestamp: action.payload
+                isRequestingTimeElapsed: false,
+                timeElapsed: action.payload
             }
-        case createNote.RESET_TIMESTAMP:
+        case createNote.RESET_TIME_ELAPSED:
             return {
                 ...state,
-                isRequestingTimestamp: false,
-                timestamp: ''
+                isRequestingTimeElapsed: false,
+                timeElapsed: 0
             }
         case createNote.SET_DURATION:
             return {
@@ -68,7 +68,7 @@ export default function (state = initialState, action: any) {
                 ...state,
                 newScribble: action.payload,
                 allScribbles: [...state.allScribbles!, action.payload]
-                    .sort((m1: IScribble, m2: IScribble) => sortByTimestamp(m1.timestamp, m2.timestamp))
+                    .sort((s1: IScribble, s2: IScribble) => sortByTimeElapsed(s1.timeElapsed, s2.timeElapsed))
             }
         case createNote.SAVE_NOTE_TO_DATABASE_SUCCESS:
             return {
@@ -85,7 +85,7 @@ export default function (state = initialState, action: any) {
                 ...state,
                 title: '',
                 videoUrl: '',
-                newScribble: { scribble_id: '', timestamp: '', text: '' },
+                newScribble: { scribble_id: '', timeElapsed: '', text: '' },
                 allScribbles: [],
             }
         default:

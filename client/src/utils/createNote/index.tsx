@@ -24,19 +24,12 @@ export const getTimeElapsedInSeconds = (timestamp: string): number => {
     return Number(timeUnits[0]) * 3600 + Number(timeUnits[1]) * 60 + Number(timestamp[0])
 }
 
-export const sortByTimestamp = (timestamp1: string, timestamp2: string): number => {
-    if (!timestamp1.match(/\d+:\d{2}:\d{2}/) || !timestamp2.match(/\d+:\d{2}:\d{2}/)) {
-        return 0
-    }
-
-    const timeElapsed1 = getTimeElapsedInSeconds(timestamp1)
-    const timeElapsed2 = getTimeElapsedInSeconds(timestamp2)
+export const sortByTimeElapsed = (timeElapsed1: number, timeElapsed2: number): number => {
     return timeElapsed1 - timeElapsed2
 }
 
-export const getRandomColorFromTimestamp = (timestamp: string, duration: number): string => {
-    const timeElapsedInSeconds = getTimeElapsedInSeconds(timestamp)
-    const fractionElapsed = timeElapsedInSeconds / duration
+export const getColorFromTimeElapsed = (timeElapsed: number, duration: number): string => {
+    const fractionElapsed = timeElapsed / duration
     let red: number = 0
     let green: number = 0
     let blue: number = 0

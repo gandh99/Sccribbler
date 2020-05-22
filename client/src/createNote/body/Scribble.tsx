@@ -3,25 +3,25 @@ import { makeStyles } from '@material-ui/core/styles'
 import { IScribble } from '../../interfaces/notes'
 import { Chip } from '@material-ui/core'
 import { useSelector } from 'react-redux'
-import { getRandomColorFromTimestamp } from '../../utils/createNote'
+import { getColorFromTimeElapsed, formatTimestamp } from '../../utils/createNote'
 
 export default function Scribble(props: { scribble: IScribble }) {
     const classes = useStyles()
-    const { scribble_id, timestamp, text } = props.scribble
+    const { scribble_id, timeElapsed, text } = props.scribble
     const [color, setColor] = useState('rgb(255, 255, 255)')
     const duration: number = useSelector((state: any) => state.createNote.duration)
 
     useEffect(() => {
-        setColor(getRandomColorFromTimestamp(timestamp, duration))
+        setColor(getColorFromTimeElapsed(timeElapsed, duration))
     }, [duration])
 
     return (
         <div className={classes.root}>
             <span className={classes.scribble}>
-                {timestamp !== '' &&
+                {timeElapsed !== 0 &&
                     <Chip
                         className={classes.chip}
-                        label={timestamp}
+                        label={formatTimestamp(timeElapsed)}
                         size='small'
                         style={{ backgroundColor: color }}
                     />

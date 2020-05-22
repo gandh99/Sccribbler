@@ -4,33 +4,36 @@ import TextareaAutosize from 'react-autosize-textarea'
 import CreateIcon from '@material-ui/icons/Create'
 import Timestamp from './Timestamp'
 import { useDispatch, useSelector } from 'react-redux'
-import { initiateTimestampRequestAction, resetTimestampAction, createScribbleAction } from '../../redux/actions/createNoteActions'
+import { requestForTimeElapsedAction, resetTimeElapsedAction, createScribbleAction } from '../../redux/actions/createNoteActions'
 import { v4 as uuidv4 } from 'uuid'
 import { Tooltip } from '@material-ui/core'
+import { formatTimestamp } from '../../utils/createNote'
 
 export default function TypingArea() {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const currentTimestamp = useSelector((state: any) => state.createNote.timestamp)
+    const currentTimeElapsed = useSelector((state: any) => state.createNote.timeElapsed)
+    const [timeElapsed, setTimeElapsed] = useState(0)
     const [timestamp, setTimestamp] = useState('')
     const [scribble, setScribble] = useState('')
 
-    // Get, set, and then reset the timestamp from the store
+    // Get, set, and then reset the time elapsed from the store
     useEffect(() => {
-        if (currentTimestamp !== '') {
-            setTimestamp(currentTimestamp)
-            dispatch(resetTimestampAction())
+        if (currentTimeElapsed !== 0) {
+            setTimeElapsed(currentTimeElapsed)
+            setTimestamp(formatTimestamp(currentTimeElapsed))
+            dispatch(resetTimeElapsedAction())
         }
-    }, [currentTimestamp])
+    }, [currentTimeElapsed])
 
-    // Get timestamp only if user is typing a "new" scribble
-    const shouldGetTimestamp = (prevScribble: string, timestamp: string): boolean => {
-        return prevScribble === '' && timestamp === ''
+    // Get time elapsed only if user is typing a "new" scribble
+    const shouldGetTimeElapsed = (prevScribble: string, timeElapsed: number): boolean => {
+        return prevScribble === '' && timeElapsed === 0
     }
 
     const onTextareaChange = (value: string): void => {
-        if (shouldGetTimestamp(scribble, timestamp)) {
-            dispatch(initiateTimestampRequestAction())
+        if (shouldGetTimeElapsed(scribble, timeElapsed)) {
+            dispatch(requestForTimeElapsedAction())
         }
         setScribble(value)
     }
@@ -42,15 +45,16 @@ export default function TypingArea() {
         if (scribble !== '') {
             dispatch(createScribbleAction({
                 scribble_id: uuidv4(),
-                timestamp,
+                timeElapsed,
                 text: scribble.trim(),
             }))
         }
 
         // Reset the scribble and the timestamps
         setScribble('')
+        setTimeElapsed(0)
         setTimestamp('')
-        dispatch(resetTimestampAction())
+        dispatch(resetTimeElapsedAction())
     }
 
     return (

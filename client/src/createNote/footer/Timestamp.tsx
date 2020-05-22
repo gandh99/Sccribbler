@@ -4,7 +4,7 @@ import { Chip } from '@material-ui/core'
 import UpdateIcon from '@material-ui/icons/Update'
 import Tooltip from '@material-ui/core/Tooltip'
 import { useDispatch } from 'react-redux'
-import { initiateTimestampRequestAction } from '../../redux/actions/createNoteActions'
+import { requestForTimeElapsedAction } from '../../redux/actions/createNoteActions'
 
 export default function Timestamp(props: { timestamp: string }) {
     const classes = useStyles()
@@ -12,7 +12,7 @@ export default function Timestamp(props: { timestamp: string }) {
     const icon =
         <Tooltip title='Update timestamp'>
             <UpdateIcon
-                onClick={() => dispatch(initiateTimestampRequestAction())}
+                onClick={() => dispatch(requestForTimeElapsedAction())}
                 className={classes.icon}
             />
         </Tooltip>

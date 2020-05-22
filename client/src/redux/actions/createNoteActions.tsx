@@ -3,22 +3,22 @@ import axios from '../../config/axiosConfig'
 import { returnErrors } from './errorActions'
 import { IScribble } from '../../interfaces/notes'
 
-export const initiateTimestampRequestAction = () => (dispatch: any) => {
+export const requestForTimeElapsedAction = () => (dispatch: any) => {
     dispatch({
-        type: createNote.INITIATE_TIMESTAMP_REQUEST
+        type: createNote.REQUEST_FOR_TIME_ELAPSED
     })
 }
 
-export const fulfillTimestampRequestAction = (timestamp: string) => (dispatch: any) => {
+export const respondWithTimesElapsedAction = (timeElapsed: number) => (dispatch: any) => {
     dispatch({
-        type: createNote.FULFILL_TIMESTAMP_REQUEST,
-        payload: timestamp
+        type: createNote.RESPOND_WITH_TIME_ELAPSED,
+        payload: timeElapsed
     })
 }
 
-export const resetTimestampAction = () => (dispatch: any) => {
+export const resetTimeElapsedAction = () => (dispatch: any) => {
     dispatch({
-        type: createNote.RESET_TIMESTAMP
+        type: createNote.RESET_TIME_ELAPSED
     })
 }
 
