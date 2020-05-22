@@ -4,7 +4,7 @@ import { Chip } from '@material-ui/core'
 import UpdateIcon from '@material-ui/icons/Update'
 import Tooltip from '@material-ui/core/Tooltip'
 import { useDispatch } from 'react-redux'
-import { requestForTimeElapsedAction } from '../../redux/actions/createNoteActions'
+import { requestForTimeElapsedAction } from '../../redux/actions/videoPlayerActions'
 
 export default function Timestamp(props: { timestamp: string }) {
     const classes = useStyles()

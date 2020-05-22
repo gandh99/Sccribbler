@@ -4,15 +4,16 @@ import TextareaAutosize from 'react-autosize-textarea'
 import CreateIcon from '@material-ui/icons/Create'
 import Timestamp from './Timestamp'
 import { useDispatch, useSelector } from 'react-redux'
-import { requestForTimeElapsedAction, resetTimeElapsedAction, createScribbleAction } from '../../redux/actions/createNoteActions'
+import { saveScribbleAction } from '../../redux/actions/createNoteActions'
 import { v4 as uuidv4 } from 'uuid'
 import { Tooltip } from '@material-ui/core'
 import { formatTimestamp } from '../../utils/createNote'
+import { resetTimeElapsedAction, requestForTimeElapsedAction } from '../../redux/actions/videoPlayerActions'
 
 export default function TypingArea() {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const currentTimeElapsed = useSelector((state: any) => state.createNote.timeElapsed)
+    const currentTimeElapsed = useSelector((state: any) => state.videoPlayer.timeElapsed)
     const [timeElapsed, setTimeElapsed] = useState(0)
     const [scribble, setScribble] = useState('')
 
@@ -40,13 +41,17 @@ export default function TypingArea() {
 
         // Only dispatch the scribble to the store if it is not empty
         if (scribble !== '') {
-            dispatch(createScribbleAction({
+            dispatch(saveScribbleAction({
                 scribbleId: uuidv4(),
                 timeElapsed,
                 text: scribble.trim(),
             }))
         }
 
+        reset()
+    }
+
+    const reset = (): void => {
         // Reset the scribble and the time elapsed
         setScribble('')
         setTimeElapsed(0)

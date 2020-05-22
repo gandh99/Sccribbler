@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 import YouTube from 'react-youtube'
 import Tooltip from '@material-ui/core/Tooltip'
-import { respondWithTimesElapsedAction, createVideoUrlAction, setDurationAction, resetDurationAction, resetTimeElapsedAction } from '../../redux/actions/createNoteActions'
+import { saveVideoUrlAction } from '../../redux/actions/createNoteActions'
+import { respondWithTimesElapsedAction, resetTimeElapsedAction, setDurationAction, resetDurationAction } from '../../redux/actions/videoPlayerActions'
 
 export default function VideoPlayer() {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const isRequestingTimeElapsed = useSelector((state: any) => state.createNote.isRequestingTimeElapsed)
+    const isRequestingTimeElapsed = useSelector((state: any) => state.videoPlayer.isRequestingTimeElapsed)
     const [rawUrlInput, setRawUrlInput] = useState('')
 
     // Used for the video player component only
@@ -49,11 +50,15 @@ export default function VideoPlayer() {
             return
         }
 
+        reset()
+    }
+    
+    const reset = (): void => {
         // Set the video in the player and send the url to the store
         setVideoSrc(getYTVideoId(rawUrlInput))
         setTimeElapsed(0)
         setDuration(0)
-        dispatch(createVideoUrlAction(rawUrlInput))
+        dispatch(saveVideoUrlAction(rawUrlInput))    
     }
 
     return (

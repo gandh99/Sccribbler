@@ -9,7 +9,7 @@ export default function Scribble(props: { scribble: IScribble }) {
     const classes = useStyles()
     const { scribbleId, timeElapsed, text } = props.scribble
     const [color, setColor] = useState('rgb(255, 255, 255)')
-    const duration: number = useSelector((state: any) => state.createNote.duration)
+    const duration: number = useSelector((state: any) => state.videoPlayer.duration)
 
     useEffect(() => {
         setColor(getColorFromTimeElapsed(timeElapsed, duration))

@@ -3,7 +3,7 @@ import { InputBase, Tooltip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import CreateIcon from '@material-ui/icons/Create'
 import { useDispatch } from 'react-redux'
-import { createTitleAction } from '../../redux/actions/createNoteActions'
+import { saveTitleAction } from '../../redux/actions/createNoteActions'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 
 export default function NoteHeader() {
@@ -15,7 +15,7 @@ export default function NoteHeader() {
         event.preventDefault()
 
         if (title !== '') {
-            dispatch(createTitleAction(title))
+            dispatch(saveTitleAction(title))
             dispatch(showSnackbarAction('Saved title.', 'success'))
         }
     }
