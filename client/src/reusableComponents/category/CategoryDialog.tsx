@@ -1,14 +1,21 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { useDispatch, useSelector } from 'react-redux'
-import { Dialog, DialogTitle, DialogContent, InputBase, Divider } from '@material-ui/core'
+import { useSelector } from 'react-redux'
+import { Dialog, DialogTitle, DialogContent, Divider } from '@material-ui/core'
 import CategoryItem from './CategoryItem'
 import CategoryInput from './CategoryInput'
+import { OnCategoryItemSelected, Category } from './Interface'
 
-export default function CategoryButton(props: { open: boolean, setOpen: Function }) {
+export default function CategoryDialog(props: {
+    open: boolean,
+    setOpen: Function,
+    onCategoryItemSelected: OnCategoryItemSelected
+}) {
     const classes = useStyles()
-    const dispatch = useDispatch()
     const allCategories = useSelector((state: any) => state.category.allCategories)
+
+    // 'All' option
+    const allOption: Category = { categoryId: -1, name: 'All', ownerId: -1 }
 
     const handleClose = () => {
         props.setOpen(false)
@@ -23,9 +30,18 @@ export default function CategoryButton(props: { open: boolean, setOpen: Function
             aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">View by Category</DialogTitle>
             <DialogContent className={classes.content}>
-                <CategoryItem text={'All'} deletable={false} />
+                <CategoryItem
+                    category={allOption}
+                    onCategoryItemSelected={props.onCategoryItemSelected}
+                    deletable={false}
+                />
                 {allCategories.map((category: any, index: number) =>
-                    <CategoryItem key={index} text={category.name} deletable={true} />
+                    <CategoryItem
+                        key={index}
+                        category={category}
+                        onCategoryItemSelected={props.onCategoryItemSelected}
+                        deletable={true}
+                    />
                 )}
             </DialogContent>
             <Divider variant='middle' />

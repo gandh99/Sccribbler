@@ -3,6 +3,7 @@ import { Tooltip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import CategoryIcon from '@material-ui/icons/Category'
 import CategoryDialog from '../../reusableComponents/category/CategoryDialog'
+import { OnCategoryItemSelected, Category } from '../../reusableComponents/category/Interface'
 
 export default function CategoryButton() {
     const classes = useStyles()
@@ -10,6 +11,10 @@ export default function CategoryButton() {
 
     const handleClickOpen = () => {
         setOpen(true);
+    }
+
+    const onCategoryItemSelected: OnCategoryItemSelected = {
+        onSelected: (category: Category) => { }
     }
 
     return (
@@ -20,7 +25,11 @@ export default function CategoryButton() {
                     className={classes.icon}
                 />
             </Tooltip>
-            <CategoryDialog open={open} setOpen={setOpen} />
+            <CategoryDialog
+                open={open}
+                setOpen={setOpen}
+                onCategoryItemSelected={onCategoryItemSelected}
+            />
         </>
     )
 }

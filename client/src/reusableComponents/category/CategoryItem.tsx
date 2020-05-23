@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { useDispatch } from 'react-redux'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { OnCategoryItemSelected, Category } from './Interface'
 
-export default function CategoryItem(props: { text: string, deletable: boolean }) {
+export default function CategoryItem(props: {
+    category: Category,
+    onCategoryItemSelected: OnCategoryItemSelected,
+    deletable: boolean
+}) {
     const classes = useStyles()
-    const dispatch = useDispatch()
+    const { category, onCategoryItemSelected, deletable } = props
 
     return (
         <div className={classes.root}>
-            <div className={classes.content}>
-                <span>{props.text}</span>
-                {props.deletable && <DeleteIcon className={classes.deleteIcon} />}
+            <div
+                onClick={() => onCategoryItemSelected.onSelected(category)}
+                className={classes.content}>
+                <span>{category.name}</span>
+                {deletable && <DeleteIcon className={classes.deleteIcon} />}
             </div>
         </div>
     )

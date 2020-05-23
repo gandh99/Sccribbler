@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Button } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import CategoryDialog from '../../reusableComponents/category/CategoryDialog'
+import { OnCategoryItemSelected, Category } from '../../reusableComponents/category/Interface'
 
 export default function CategoryButton() {
 	const classes = useStyles()
@@ -12,6 +13,10 @@ export default function CategoryButton() {
 
 	const handleClickOpen = () => {
 		setOpen(true);
+	}
+
+	const onCategoryItemSelected: OnCategoryItemSelected = {
+		onSelected: (category: Category) => {console.log(category)}
 	}
 
 	return (
@@ -24,7 +29,7 @@ export default function CategoryButton() {
 				color="secondary">
 				All Notes
       		</Button>
-			<CategoryDialog open={open} setOpen={setOpen} />
+			<CategoryDialog open={open} setOpen={setOpen} onCategoryItemSelected={onCategoryItemSelected} />
 		</div>
 	)
 }
