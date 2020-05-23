@@ -3,7 +3,7 @@ import { Card, CardContent, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import SaveButton from './SaveButton'
 import Title from './Title'
-import SelectCategoryButton from './SelectCategoryButton'
+import CategoryButton from './CategoryButton'
 
 export default function NoteHeader() {
     const classes = useStyles()
@@ -13,7 +13,7 @@ export default function NoteHeader() {
             <CardContent className={classes.cardContent}>
                 <Title />
                 <Divider className={classes.divider} orientation="vertical" flexItem />
-                <SelectCategoryButton />
+                <CategoryButton />
                 <SaveButton />
             </CardContent>
         </Card>
