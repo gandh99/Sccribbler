@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch } from 'react-redux'
 import DeleteIcon from '@material-ui/icons/Delete'
 
-export default function CategoryButton(props: { text: string, deletable: boolean }) {
+export default function CategoryItem(props: { text: string, deletable: boolean }) {
     const classes = useStyles()
     const dispatch = useDispatch()
 
