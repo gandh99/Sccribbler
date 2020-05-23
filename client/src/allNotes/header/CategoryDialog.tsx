@@ -27,11 +27,11 @@ export default function CategoryButton(props: { open: boolean, setOpen: Function
                 {allCategories.map((category: any, index: number) =>
                     <CategoryItem key={index} text={category.name} deletable={true} />
                 )}
-                <Divider variant='middle' />
             </DialogContent>
-                <div className={classes.addCategory}>
-                    <CategoryInput />
-                </div>
+            <Divider variant='middle' />
+            <div className={classes.addCategory}>
+                <CategoryInput />
+            </div>
         </Dialog>
     )
 }
