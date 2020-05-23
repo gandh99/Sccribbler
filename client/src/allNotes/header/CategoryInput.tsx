@@ -19,6 +19,11 @@ export default function CategoryInput() {
             return
         }
 
+        if (name === 'All') {
+            dispatch(showSnackbarAction('Invalid name.', 'error'))
+            return
+        }
+
         if (name !== '') {
             dispatch(createCategoryAction(
                 name,
