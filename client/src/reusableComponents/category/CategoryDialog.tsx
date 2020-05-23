@@ -13,9 +13,7 @@ export default function CategoryDialog(props: {
 }) {
     const classes = useStyles()
     const allCategories = useSelector((state: any) => state.category.allCategories)
-
-    // 'All' option
-    const allOption: Category = { categoryId: -1, name: 'All', ownerId: -1 }
+    const allCategoriesOption: Category = { categoryId: -1, name: 'All', ownerId: -1 }
 
     const handleClose = () => {
         props.setOpen(false)
@@ -28,10 +26,10 @@ export default function CategoryDialog(props: {
             open={props.open}
             onClose={handleClose}
             aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">View by Category</DialogTitle>
+            <DialogTitle id="form-dialog-title">Select Category</DialogTitle>
             <DialogContent className={classes.content}>
                 <CategoryItem
-                    category={allOption}
+                    category={allCategoriesOption}
                     onCategoryItemSelected={props.onCategoryItemSelected}
                     deletable={false}
                 />

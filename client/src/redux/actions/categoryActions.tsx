@@ -1,6 +1,7 @@
 import { category } from '../actionTypes'
 import axios from '../../config/axiosConfig'
 import { returnErrors } from './errorActions'
+import { Category } from '../../reusableComponents/category/Interface'
 
 export const createCategoryAction = (name: string, success: Function, error: Function) => (dispatch: any) => {
     axios
@@ -39,4 +40,17 @@ export const getCategoriesAction = (error: Function) => (dispatch: any) => {
             dispatch(returnErrors(err))
             error()
         })
+}
+
+export const selectCategoryAction = (selectedCategory: Category) => (dispatch: any) => {
+    dispatch({
+        type: category.SET_ACTIVE_CATEGORY,
+        payload: selectedCategory
+    })
+}
+
+export const resetSelectedCategoryAction = () => (dispatch: any) => {
+    dispatch({
+        type: category.RESET_ACTIVE_CATEGORY,
+    })
 }

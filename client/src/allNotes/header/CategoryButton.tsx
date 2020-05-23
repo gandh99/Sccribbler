@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import CategoryDialog from '../../reusableComponents/category/CategoryDialog'
 import { OnCategoryItemSelected, Category } from '../../reusableComponents/category/Interface'
+import { selectCategoryAction } from '../../redux/actions/categoryActions'
 
 export default function CategoryButton() {
 	const classes = useStyles()
@@ -16,7 +17,9 @@ export default function CategoryButton() {
 	}
 
 	const onCategoryItemSelected: OnCategoryItemSelected = {
-		onSelected: (category: Category) => {console.log(category)}
+		onSelected: (category: Category) => {
+            dispatch(selectCategoryAction(category))
+        }
 	}
 
 	return (
