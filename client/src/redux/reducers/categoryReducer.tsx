@@ -1,7 +1,7 @@
 import { category } from '../actionTypes'
 import { Category } from '../../reusableComponents/category/Interface'
 
-const defaultActiveCategory: Category = {
+export const allOption: Category = {
     categoryId: -1,
     name: 'All',
     ownerId: -1
@@ -10,7 +10,7 @@ const defaultActiveCategory: Category = {
 const initialState = {
     newCategory: {},
     allCategories: [],
-    activeCategory: defaultActiveCategory
+    activeCategory: allOption
 }
 
 export default function (state = initialState, action: any) {
@@ -44,7 +44,7 @@ export default function (state = initialState, action: any) {
         case category.RESET_ACTIVE_CATEGORY:
             return {
                 ...state,
-                activeCategory: defaultActiveCategory
+                activeCategory: allOption
             }
         default:
             return state

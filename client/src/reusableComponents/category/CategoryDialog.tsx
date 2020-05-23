@@ -5,6 +5,7 @@ import { Dialog, DialogTitle, DialogContent, Divider } from '@material-ui/core'
 import CategoryItem from './CategoryItem'
 import CategoryInput from './CategoryInput'
 import { OnCategoryItemSelected, Category } from './Interface'
+import { allOption } from '../../redux/reducers/categoryReducer'
 
 export default function CategoryDialog(props: {
     open: boolean,
@@ -13,7 +14,7 @@ export default function CategoryDialog(props: {
 }) {
     const classes = useStyles()
     const allCategories = useSelector((state: any) => state.category.allCategories)
-    const allCategoriesOption: Category = { categoryId: -1, name: 'All', ownerId: -1 }
+    const allCategoriesOption: Category = allOption
 
     const handleClose = () => {
         props.setOpen(false)
