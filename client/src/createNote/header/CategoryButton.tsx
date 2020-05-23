@@ -25,6 +25,7 @@ export default function CategoryButton() {
     const onCategoryItemSelected: OnCategoryItemSelected = {
         onSelected: (category: Category) => {
             dispatch(selectCategoryAction(category))
+			setOpen(false)
         }
     }
 
