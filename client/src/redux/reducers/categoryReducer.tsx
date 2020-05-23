@@ -41,8 +41,7 @@ export default function (state = initialState, action: any) {
             return {
                 ...state,
                 deletedCategory: action.payload,
-                allCategories: state.allCategories
-                    .filter((category: ICategory) => category.categoryId !== action.payload.categoryId)
+                allCategories: state.allCategories.filter((category: ICategory) => category.categoryId !== action.payload.categoryId)
             }
         case category.DELETE_CATEGORY_FAIL:
             return {
