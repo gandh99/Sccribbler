@@ -1,7 +1,7 @@
 import { category } from '../actionTypes'
-import { Category } from '../../interfaces/category'
+import { ICategory } from '../../interfaces/category'
 
-export const allOption: Category = {
+export const allOption: ICategory = {
     categoryId: -1,
     name: 'All',
     ownerId: -1

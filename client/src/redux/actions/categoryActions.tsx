@@ -1,7 +1,7 @@
 import { category } from '../actionTypes'
 import axios from '../../config/axiosConfig'
 import { returnErrors } from './errorActions'
-import { Category } from '../../interfaces/category'
+import { ICategory } from '../../interfaces/category'
 
 export const createCategoryAction = (name: string, success: Function, error: Function) => (dispatch: any) => {
     axios
@@ -42,7 +42,7 @@ export const getCategoriesAction = (error: Function) => (dispatch: any) => {
         })
 }
 
-export const selectCategoryAction = (selectedCategory: Category) => (dispatch: any) => {
+export const selectCategoryAction = (selectedCategory: ICategory) => (dispatch: any) => {
     dispatch({
         type: category.SET_ACTIVE_CATEGORY,
         payload: selectedCategory

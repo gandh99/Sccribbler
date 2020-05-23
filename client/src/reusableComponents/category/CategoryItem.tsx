@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
-import { OnCategoryItemSelected, Category } from '../../interfaces/category'
+import { OnCategoryItemSelected, ICategory } from '../../interfaces/category'
 import { useSelector } from 'react-redux'
 import clsx from 'clsx'
 
 export default function CategoryItem(props: {
-    category: Category,
+    category: ICategory,
     onCategoryItemSelected: OnCategoryItemSelected,
     deletable: boolean
 }) {
@@ -14,7 +14,7 @@ export default function CategoryItem(props: {
     const { category, onCategoryItemSelected, deletable } = props
     const activeCategory = useSelector((state: any) => state.category.activeCategory)
 
-    const isActiveCategory = (thisCategory: Category, activeCategory: Category): boolean => {
+    const isActiveCategory = (thisCategory: ICategory, activeCategory: ICategory): boolean => {
         return activeCategory && thisCategory.categoryId === activeCategory.categoryId
     }
 

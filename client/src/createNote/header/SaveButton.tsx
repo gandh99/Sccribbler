@@ -7,21 +7,21 @@ import { IScribble } from '../../interfaces/notes'
 import { showSnackbarAction, showLoadingBackgroundAction, hideLoadingBackgroundAction } from '../../redux/actions/globalDisplayActions'
 import { saveNoteToDatabaseAction } from '../../redux/actions/saveNoteActions'
 import { history } from '../../config/history'
-import { Category } from '../../interfaces/category'
+import { ICategory } from '../../interfaces/category'
 
 export default function SaveButton() {
     const classes = useStyles()
     const dispatch = useDispatch()
     const title: string = useSelector((state: any) => state.saveNote.title)
     const videoUrl: string = useSelector((state: any) => state.saveNote.videoUrl)
-    const category: Category = useSelector((state: any) => state.category.activeCategory)
+    const category: ICategory = useSelector((state: any) => state.category.activeCategory)
     const allScribbles: IScribble[] = useSelector((state: any) => state.saveNote.allScribbles)
 
     const onSubmit = (
         event: MouseEvent,
         title: string,
         videoUrl: string,
-        category: Category,
+        category: ICategory,
         allScribbles: IScribble[]
     ): void => {
         event.preventDefault()

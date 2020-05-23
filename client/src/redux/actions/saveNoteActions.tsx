@@ -2,7 +2,7 @@ import { saveNote } from '../actionTypes'
 import axios from '../../config/axiosConfig'
 import { returnErrors } from './errorActions'
 import { IScribble } from '../../interfaces/notes'
-import { Category } from '../../interfaces/category'
+import { ICategory } from '../../interfaces/category'
 
 export const saveTitleAction = (title: string) => (dispatch: any) => {
     dispatch({
@@ -28,7 +28,7 @@ export const saveScribbleAction = (scribble: IScribble) => (dispatch: any) => {
 export const saveNoteToDatabaseAction = (
     title: string,
     videoUrl: string,
-    category: Category,
+    category: ICategory,
     allScribbles: IScribble[],
     success: Function,
     error: Function

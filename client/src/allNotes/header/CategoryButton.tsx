@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Button } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import CategoryDialog from '../../reusableComponents/category/CategoryDialog'
-import { OnCategoryItemSelected, Category } from '../../interfaces/category'
+import { OnCategoryItemSelected, ICategory } from '../../interfaces/category'
 import { selectCategoryAction, resetSelectedCategoryAction } from '../../redux/actions/categoryActions'
 
 export default function CategoryButton() {
@@ -23,7 +23,7 @@ export default function CategoryButton() {
 	}
 
 	const onCategoryItemSelected: OnCategoryItemSelected = {
-		onSelected: (category: Category) => {
+		onSelected: (category: ICategory) => {
 			dispatch(selectCategoryAction(category))
 			setOpen(false)
         }

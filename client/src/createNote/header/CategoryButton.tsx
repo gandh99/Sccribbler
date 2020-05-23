@@ -3,7 +3,7 @@ import { Tooltip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import CategoryIcon from '@material-ui/icons/Category'
 import CategoryDialog from '../../reusableComponents/category/CategoryDialog'
-import { OnCategoryItemSelected, Category } from '../../interfaces/category'
+import { OnCategoryItemSelected, ICategory } from '../../interfaces/category'
 import { useDispatch } from 'react-redux'
 import { selectCategoryAction, resetSelectedCategoryAction } from '../../redux/actions/categoryActions'
 
@@ -23,7 +23,7 @@ export default function CategoryButton() {
     }
 
     const onCategoryItemSelected: OnCategoryItemSelected = {
-        onSelected: (category: Category) => {
+        onSelected: (category: ICategory) => {
             dispatch(selectCategoryAction(category))
 			setOpen(false)
         }

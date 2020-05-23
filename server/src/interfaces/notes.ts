@@ -1,4 +1,4 @@
-import { Category } from "./category";
+import { ICategory } from "./category";
 
 export interface IScribble {
     scribbleId: string | number,
@@ -10,7 +10,7 @@ export interface INote {
     noteId: string | number,
     title: string,
     videoUrl: string,
-    category?: Category
+    category?: ICategory
     allScribbles?: IScribble[],
     updatedAt?: Date
 }

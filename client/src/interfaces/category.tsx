@@ -1,9 +1,9 @@
-export interface Category {
+export interface ICategory {
     categoryId: number,
     name: string,
     ownerId: number
 }
 
 export interface OnCategoryItemSelected {
-    onSelected: ((category: Category) => void)
+    onSelected: ((category: ICategory) => void)
 }

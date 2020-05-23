@@ -1,11 +1,12 @@
 import { INote } from "../interfaces/notes"
-import { Category } from "../interfaces/category"
-
+import { ICategory } from "../interfaces/category"
 export { }
 const client = require('../config/db')
+const Category = require('./Category')
 
-module.exports.upsert = async (userId: number, title: string, videoUrl: string, category: Category) => {
-    const query: string = `INSERT INTO notes (owner_id, title, video_url, category_id) VALUES ($1, $2, $3, $4) RETURNING *`
+module.exports.upsert = async (userId: number, title: string, videoUrl: string, category: ICategory) => {
+    const query: string = 
+        `INSERT INTO notes (owner_id, title, video_url, category_id) VALUES ($1, $2, $3, $4) RETURNING *`
     const categoryValue: number | null = category.categoryId > 0 ? category.categoryId : null
 
     try {
@@ -17,7 +18,12 @@ module.exports.upsert = async (userId: number, title: string, videoUrl: string, 
 }
 
 module.exports.getByUserId = async (userId: number) => {
-    const query: string = `SELECT * FROM notes NATURAL LEFT JOIN scribbles WHERE owner_id = ($1) ORDER BY note_id`
+    const query: string =
+        `SELECT * FROM notes 
+        NATURAL LEFT JOIN scribbles 
+        NATURAL LEFT JOIN category 
+        WHERE owner_id = ($1) 
+        ORDER BY note_id`
     let notes: INote[] = []
 
     try {
@@ -28,12 +34,17 @@ module.exports.getByUserId = async (userId: number) => {
         queryResult.rows.forEach((result: any) => {
             if (result.note_id !== noteId) {
                 // Start of a new note
-                const { note_id, title, video_url, category_id, updated_at } = result
+                const { note_id, title, video_url, category_id, name, updated_at } = result
                 noteId = note_id
                 notes.push({
                     noteId: note_id,
                     title,
                     videoUrl: video_url,
+                    category: {
+                        categoryId: category_id,
+                        name,
+                        ownerId: userId
+                    },
                     updatedAt: updated_at,
                     allScribbles: []
                 })
