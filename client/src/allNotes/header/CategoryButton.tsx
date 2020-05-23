@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import CategoryDialog from '../../reusableComponents/category/CategoryDialog'
@@ -10,7 +10,8 @@ import { selectCategoryAction, resetSelectedCategoryAction } from '../../redux/a
 export default function CategoryButton() {
 	const classes = useStyles()
 	const dispatch = useDispatch()
-	const [open, setOpen] = React.useState(false);
+	const activeCategory: ICategory = useSelector((state: any) => state.category.activeCategory)
+	const [open, setOpen] = React.useState(false)
 
 	useEffect(() => {
 		return () => {
@@ -37,7 +38,7 @@ export default function CategoryButton() {
 				endIcon={<ExpandMoreIcon />}
 				variant="contained"
 				color="secondary">
-				All Notes
+				{activeCategory.name}
       		</Button>
 			<CategoryDialog open={open} setOpen={setOpen} onCategoryItemSelected={onCategoryItemSelected} />
 		</div>
