@@ -5,12 +5,18 @@ import { Button } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import CategoryDialog from '../../reusableComponents/category/CategoryDialog'
 import { OnCategoryItemSelected, Category } from '../../reusableComponents/category/Interface'
-import { selectCategoryAction } from '../../redux/actions/categoryActions'
+import { selectCategoryAction, resetSelectedCategoryAction } from '../../redux/actions/categoryActions'
 
 export default function CategoryButton() {
 	const classes = useStyles()
 	const dispatch = useDispatch()
 	const [open, setOpen] = React.useState(false);
+
+	useEffect(() => {
+		return () => {
+			dispatch(resetSelectedCategoryAction())
+		}
+	}, [])
 
 	const handleClickOpen = () => {
 		setOpen(true);

@@ -1,17 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Tooltip } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import CategoryIcon from '@material-ui/icons/Category'
 import CategoryDialog from '../../reusableComponents/category/CategoryDialog'
 import { OnCategoryItemSelected, Category } from '../../reusableComponents/category/Interface'
 import { useDispatch } from 'react-redux'
-import { selectCategoryAction } from '../../redux/actions/categoryActions'
+import { selectCategoryAction, resetSelectedCategoryAction } from '../../redux/actions/categoryActions'
 
 export default function CategoryButton() {
     const classes = useStyles()
     const dispatch = useDispatch()
     const [open, setOpen] = React.useState(false);
 
+    useEffect(() => {
+		return () => {
+			dispatch(resetSelectedCategoryAction())
+		}
+    }, [])
+    
     const handleClickOpen = () => {
         setOpen(true);
     }
