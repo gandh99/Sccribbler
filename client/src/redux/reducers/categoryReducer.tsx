@@ -1,5 +1,5 @@
 import { category } from '../actionTypes'
-import { Category } from '../../reusableComponents/category/Interface'
+import { Category } from '../../interfaces/category'
 
 export const allOption: Category = {
     categoryId: -1,

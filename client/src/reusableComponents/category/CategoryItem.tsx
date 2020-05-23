@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
-import { OnCategoryItemSelected, Category } from './Interface'
+import { OnCategoryItemSelected, Category } from '../../interfaces/category'
 import { useSelector } from 'react-redux'
 import clsx from 'clsx'
 

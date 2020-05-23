@@ -2,6 +2,7 @@ import { saveNote } from '../actionTypes'
 import axios from '../../config/axiosConfig'
 import { returnErrors } from './errorActions'
 import { IScribble } from '../../interfaces/notes'
+import { Category } from '../../interfaces/category'
 
 export const saveTitleAction = (title: string) => (dispatch: any) => {
     dispatch({
@@ -27,12 +28,13 @@ export const saveScribbleAction = (scribble: IScribble) => (dispatch: any) => {
 export const saveNoteToDatabaseAction = (
     title: string,
     videoUrl: string,
+    category: Category,
     allScribbles: IScribble[],
     success: Function,
     error: Function
 ) => (dispatch: any) => {
     axios
-        .post('/notes/save', { title, videoUrl, allScribbles })
+        .post('/notes/save', { title, videoUrl, category, allScribbles })
         .then(res => {
             const savedNote = res.data.data
             dispatch({

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Dialog, DialogTitle, DialogContent, Divider } from '@material-ui/core'
 import CategoryItem from './CategoryItem'
 import CategoryInput from './CategoryInput'
-import { OnCategoryItemSelected, Category } from './Interface'
+import { OnCategoryItemSelected, Category } from '../../interfaces/category'
 import { allOption } from '../../redux/reducers/categoryReducer'
 
 export default function CategoryDialog(props: {

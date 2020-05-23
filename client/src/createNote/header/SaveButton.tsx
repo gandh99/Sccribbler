@@ -7,15 +7,23 @@ import { IScribble } from '../../interfaces/notes'
 import { showSnackbarAction, showLoadingBackgroundAction, hideLoadingBackgroundAction } from '../../redux/actions/globalDisplayActions'
 import { saveNoteToDatabaseAction } from '../../redux/actions/saveNoteActions'
 import { history } from '../../config/history'
+import { Category } from '../../interfaces/category'
 
 export default function SaveButton() {
     const classes = useStyles()
     const dispatch = useDispatch()
     const title: string = useSelector((state: any) => state.saveNote.title)
     const videoUrl: string = useSelector((state: any) => state.saveNote.videoUrl)
+    const category: Category = useSelector((state: any) => state.category.activeCategory)
     const allScribbles: IScribble[] = useSelector((state: any) => state.saveNote.allScribbles)
 
-    const onSubmit = (event: MouseEvent, title: string, videoUrl: string, allScribbles: IScribble[]): void => {
+    const onSubmit = (
+        event: MouseEvent,
+        title: string,
+        videoUrl: string,
+        category: Category,
+        allScribbles: IScribble[]
+    ): void => {
         event.preventDefault()
 
         // Check for blank inputs. It is ok for videoUrl to be blank
@@ -29,6 +37,7 @@ export default function SaveButton() {
         dispatch(saveNoteToDatabaseAction(
             title,
             videoUrl,
+            category,
             allScribbles,
             () => {
                 dispatch(hideLoadingBackgroundAction())
@@ -42,7 +51,7 @@ export default function SaveButton() {
     return (
         <Tooltip title={'Save Note'}>
             <SaveIcon
-                onClick={(e: any) => onSubmit(e, title, videoUrl, allScribbles)}
+                onClick={(e: any) => onSubmit(e, title, videoUrl, category, allScribbles)}
                 className={classes.icon}
             />
         </Tooltip>

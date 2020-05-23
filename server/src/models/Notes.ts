@@ -1,13 +1,15 @@
 import { INote } from "../interfaces/notes"
+import { Category } from "../interfaces/category"
 
 export { }
 const client = require('../config/db')
 
-module.exports.upsert = async (userId: number, title: string, videoUrl: string) => {
-    const query: string = `INSERT INTO notes (owner_id, title, video_url) VALUES ($1, $2, $3) RETURNING *`
+module.exports.upsert = async (userId: number, title: string, videoUrl: string, category: Category) => {
+    const query: string = `INSERT INTO notes (owner_id, title, video_url, category_id) VALUES ($1, $2, $3, $4) RETURNING *`
+    const categoryValue: number | null = category.categoryId > 0 ? category.categoryId : null
 
     try {
-        const note = await client.query(query, [userId, title, videoUrl])
+        const note = await client.query(query, [userId, title, videoUrl, categoryValue])
         return note.rows[0]
     } catch (error) {
         console.error(error)
@@ -26,7 +28,7 @@ module.exports.getByUserId = async (userId: number) => {
         queryResult.rows.forEach((result: any) => {
             if (result.note_id !== noteId) {
                 // Start of a new note
-                const { note_id, title, video_url, updated_at } = result
+                const { note_id, title, video_url, category_id, updated_at } = result
                 noteId = note_id
                 notes.push({
                     noteId: note_id,
@@ -37,7 +39,7 @@ module.exports.getByUserId = async (userId: number) => {
                 })
             }
 
-            // Add scribble to the last note
+            // Add scribble to the note
             const { scribble_id, time_elapsed, text } = result
             let lastNote = notes[notes.length - 1]
             lastNote.allScribbles!.push({

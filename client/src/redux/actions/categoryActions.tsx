@@ -1,7 +1,7 @@
 import { category } from '../actionTypes'
 import axios from '../../config/axiosConfig'
 import { returnErrors } from './errorActions'
-import { Category } from '../../reusableComponents/category/Interface'
+import { Category } from '../../interfaces/category'
 
 export const createCategoryAction = (name: string, success: Function, error: Function) => (dispatch: any) => {
     axios
