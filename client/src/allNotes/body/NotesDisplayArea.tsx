@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { INote } from '../../interfaces/notes'
 import NoteCard from './NoteCard'
 import { Grid } from '@material-ui/core'
+import { ICategory } from '../../interfaces/category'
 
 export default function NotesDisplayArea() {
     const classes = useStyles()
+    const activeCategory: ICategory = useSelector((state: any) => state.category.activeCategory)
     const allNotes: INote[] = useSelector((state: any) => state.getNote.allNotes)
 
     return (
@@ -17,9 +19,13 @@ export default function NotesDisplayArea() {
             direction="row"
             justify="flex-start"
             alignItems="center" >
-            {allNotes && allNotes.map((note: INote) => {
-                return <NoteCard key={note.noteId} note={note} />
-            })}
+            {allNotes &&
+                allNotes
+                    .filter((note: INote) => activeCategory.categoryId < 0 ||
+                        note.category?.categoryId === activeCategory.categoryId)
+                    .map((note: INote) => {
+                        return <NoteCard key={note.noteId} note={note} />
+                    })}
         </Grid>
     )
 }
