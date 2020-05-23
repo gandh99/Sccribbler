@@ -42,6 +42,26 @@ export const getCategoriesAction = (error: Function) => (dispatch: any) => {
         })
 }
 
+export const deleteCategoryAction = (categoryToDelete: ICategory, success: Function, error: Function) => (dispatch: any) => {
+    axios
+        .delete(`/category/delete/${categoryToDelete.categoryId}`)
+        .then(res => {
+            dispatch({
+                type: category.DELETE_CATEGORY_SUCCESS,
+                payload: res.data
+            })
+            success()
+        })
+        .catch(err => {
+            dispatch({
+                type: category.DELETE_CATEGORY_FAIL,
+                payload: err
+            })
+            dispatch(returnErrors(err))
+            error()
+        })
+}
+
 export const selectCategoryAction = (selectedCategory: ICategory) => (dispatch: any) => {
     dispatch({
         type: category.SET_ACTIVE_CATEGORY,

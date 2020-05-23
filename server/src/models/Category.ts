@@ -25,3 +25,17 @@ module.exports.get = async (userId: number) => {
         console.error(error)
     }
 }
+
+module.exports.delete = async (userId: number, categoryId: number) => {
+    const query: string = 
+        `DELETE FROM category 
+        WHERE owner_id = ($1) AND category_id = ($2)
+        RETURNING *`
+
+    try {
+        const deletedCategory = await client.query(query, [userId, categoryId])
+        return deletedCategory.rows[0]
+    } catch (error) {
+        console.error(error)
+    }
+}

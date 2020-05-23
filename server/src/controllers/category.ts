@@ -15,3 +15,11 @@ module.exports.get = async (req: Request, res: Response, next: NextFunction) => 
     const allCategories = await Category.get(userData.user_id)
     res.status(200).send(allCategories)
 }
+
+module.exports.delete = async (req: Request, res: Response, next: NextFunction) => {
+    const { categoryId } = req.params
+    const { userData } = req.body.tokenData
+
+    const deletedCategory = await Category.delete(userData.user_id, categoryId)
+    res.status(200).send(deletedCategory)
+}

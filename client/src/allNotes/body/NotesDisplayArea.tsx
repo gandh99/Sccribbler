@@ -25,7 +25,8 @@ export default function NotesDisplayArea() {
                         note.category?.categoryId === activeCategory.categoryId)
                     .map((note: INote) => {
                         return <NoteCard key={note.noteId} note={note} />
-                    })}
+                    })
+            }
         </Grid>
     )
 }

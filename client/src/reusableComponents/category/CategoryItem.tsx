@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
+import { history } from '../../config/history'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { OnCategoryItemSelected, ICategory } from '../../interfaces/category'
-import { useSelector } from 'react-redux'
-import clsx from 'clsx'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteCategoryAction } from '../../redux/actions/categoryActions'
+import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
+import { Tooltip } from '@material-ui/core'
 
 export default function CategoryItem(props: {
     category: ICategory,
@@ -11,11 +15,20 @@ export default function CategoryItem(props: {
     deletable: boolean
 }) {
     const classes = useStyles()
+    const dispatch = useDispatch()
     const { category, onCategoryItemSelected, deletable } = props
     const activeCategory = useSelector((state: any) => state.category.activeCategory)
 
     const isActiveCategory = (thisCategory: ICategory, activeCategory: ICategory): boolean => {
         return activeCategory && thisCategory.categoryId === activeCategory.categoryId
+    }
+
+    const onDelete = (category: ICategory): void => {
+        dispatch(deleteCategoryAction(
+            category,
+            () => history.push('/'),
+            () => dispatch(showSnackbarAction('Unable to delete category.', 'error'))
+        ))
     }
 
     return (
@@ -29,7 +42,11 @@ export default function CategoryItem(props: {
                 )}>
                     {category.name}
                 </span>
-                {deletable && <DeleteIcon className={classes.deleteIcon} />}
+                {deletable &&
+                    <Tooltip title='Delete Category'>
+                        <DeleteIcon onClick={() => onDelete(category)} className={classes.deleteIcon} />
+                    </Tooltip>
+                }
             </div>
         </div >
     )
