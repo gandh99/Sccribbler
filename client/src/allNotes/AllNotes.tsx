@@ -5,6 +5,7 @@ import { getAllNotesAction } from '../redux/actions/getNoteActions'
 import NotesDisplayArea from './body/NotesDisplayArea'
 import { showLoadingBackgroundAction, hideLoadingBackgroundAction, showSnackbarAction } from '../redux/actions/globalDisplayActions'
 import Header from './header/Header'
+import { getCategoriesAction } from '../redux/actions/categoryActions'
 
 export default function NoteHeader() {
     const classes = useStyles()
@@ -12,6 +13,9 @@ export default function NoteHeader() {
 
     useEffect(() => {
         dispatch(showLoadingBackgroundAction('Retrieving notes...'))
+        dispatch(getCategoriesAction(
+            () => showSnackbarAction('Error retrieving categories.', 'error')
+        ))
         dispatch(getAllNotesAction(
             () => dispatch(hideLoadingBackgroundAction()),
             () => showSnackbarAction('Error retrieving notes. Please try again later.', 'error')

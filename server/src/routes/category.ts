@@ -5,5 +5,6 @@ const { checkAuthenticated } = require('../middleware/authentication')
 const categoryController = require('../controllers/category')
 
 router.post('/create', checkAuthenticated, categoryController.create);
+router.get('/get', checkAuthenticated, categoryController.get);
 
 module.exports = router;

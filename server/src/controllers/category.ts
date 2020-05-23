@@ -8,3 +8,10 @@ module.exports.create = async (req: Request, res: Response, next: NextFunction) 
     const newCategory = await Category.create(userData.user_id, name)
     res.status(200).send(newCategory)
 }
+
+module.exports.get = async (req: Request, res: Response, next: NextFunction) => {
+    const { userData } = req.body.tokenData
+
+    const allCategories = await Category.get(userData.user_id)
+    res.status(200).send(allCategories)
+}

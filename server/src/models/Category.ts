@@ -11,3 +11,14 @@ module.exports.create = async (userId: number, name: string) => {
         console.error(error)
     }
 }
+
+module.exports.get = async (userId: number) => {
+    const query: string = `SELECT owner_id AS "ownerId", name, category_id AS "categoryId" FROM category WHERE owner_id = ($1)`
+
+    try {
+        const allCategories = await client.query(query, [userId])
+        return allCategories.rows
+    } catch (error) {
+        console.error(error)
+    }
+}

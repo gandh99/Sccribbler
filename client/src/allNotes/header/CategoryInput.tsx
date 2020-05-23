@@ -6,7 +6,7 @@ import EditIcon from '@material-ui/icons/Edit'
 import { createCategoryAction } from '../../redux/actions/categoryActions'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 
-export default function CategoryButton() {
+export default function CategoryInput() {
     const classes = useStyles()
     const dispatch = useDispatch()
     const [name, setName] = useState('')

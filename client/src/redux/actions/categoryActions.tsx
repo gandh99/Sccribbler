@@ -21,3 +21,22 @@ export const createCategoryAction = (name: string, success: Function, error: Fun
             error()
         })
 }
+
+export const getCategoriesAction = (error: Function) => (dispatch: any) => {
+    axios
+        .get('/category/get')
+        .then(res => {
+            dispatch({
+                type: category.GET_CATEGORIES_SUCCESS,
+                payload: res.data
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: category.GET_CATEGORIES_FAIL,
+                payload: err
+            })
+            dispatch(returnErrors(err))
+            error()
+        })
+}
