@@ -28,10 +28,10 @@ export default function CategoryButton(props: { open: boolean, setOpen: Function
                     <CategoryItem key={index} text={category.name} deletable={true} />
                 )}
                 <Divider variant='middle' />
+            </DialogContent>
                 <div className={classes.addCategory}>
                     <CategoryInput />
                 </div>
-            </DialogContent>
         </Dialog>
     )
 }
