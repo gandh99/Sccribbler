@@ -6,16 +6,21 @@ import TypingArea from './footer/TypingArea'
 import { useDispatch } from 'react-redux'
 import { clearNoteDataAction } from '../redux/actions/saveNoteActions'
 import { resetTimeElapsedAction, resetDurationAction } from '../redux/actions/videoPlayerActions'
+import { resetActiveCategoryAction } from '../redux/actions/categoryActions'
 
-export default function CreateNote() {
+export default function CreateNote({ resetActiveCategory = true }) {
     const classes = useStyles()
     const dispatch = useDispatch()
 
     useEffect(() => {
+        if (resetActiveCategory) {
+            dispatch(resetActiveCategoryAction())
+        }
         return () => {
             dispatch(resetTimeElapsedAction())
             dispatch(resetDurationAction())
             dispatch(clearNoteDataAction())
+            dispatch(resetActiveCategoryAction())
         }
     }, [])
 
@@ -67,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
         right: 0,
         minHeight: '3.5rem',
         overflow: 'hidden',
-       
+
         [theme.breakpoints.down('xs')]: {
             position: 'fixed'
         },

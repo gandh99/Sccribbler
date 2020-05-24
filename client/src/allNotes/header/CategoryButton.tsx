@@ -13,12 +13,6 @@ export default function CategoryButton() {
 	const activeCategory: ICategory = useSelector((state: any) => state.category.activeCategory)
 	const [open, setOpen] = React.useState(false)
 
-	useEffect(() => {
-		return () => {
-			dispatch(resetActiveCategoryAction())
-		}
-	}, [])
-
 	const handleClickOpen = () => {
 		setOpen(true);
 	}
