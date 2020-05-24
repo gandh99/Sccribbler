@@ -1,41 +1,26 @@
-import React, { useState } from 'react'
-import { InputBase, Tooltip } from '@material-ui/core'
+import React from 'react'
+import { InputBase } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import CreateIcon from '@material-ui/icons/Create'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { saveTitleAction } from '../../redux/actions/saveNoteActions'
-import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 
 export default function Title() {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const [title, setTitle] = useState('')
+    const title = useSelector((state: any) => state.saveNote.title)
 
-    const onSubmit = (event: MouseEvent, title: string): void => {
-        event.preventDefault()
-
-        if (title !== '') {
-            dispatch(saveTitleAction(title))
-            dispatch(showSnackbarAction('Saved title.', 'success'))
-        }
+    const autoSave = (title: string): void => {
+        dispatch(saveTitleAction(title))
     }
 
     return (
-        <>
-            <InputBase
-                className={classes.textInput}
-                onChange={event => setTitle(event.target.value)}
-                required
-                placeholder={'Add a Title...'}
-                value={title}
-            />
-            <Tooltip title={'Submit Title'}>
-                <CreateIcon
-                    onClick={(e: any) => onSubmit(e, title)}
-                    className={classes.createIcon}
-                />
-            </Tooltip>
-        </>
+        <InputBase
+            className={classes.textInput}
+            onChange={event => autoSave(event.target.value)}
+            required
+            placeholder={'Add a Title...'}
+            value={title}
+        />
     )
 }
 
