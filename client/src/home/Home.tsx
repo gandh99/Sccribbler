@@ -12,8 +12,8 @@ import Header from './Header'
 import AllNotes from '../allNotes/AllNotes'
 import CreateNote from '../createNote/CreateNote'
 import Background from './Background'
-import CustomSnackbar from '../reusableComponents/CustomSnackbar'
-import LoadingBackground from '../reusableComponents/LoadingBackground'
+import CustomSnackbar from '../reusableComponents/globalDisplay/CustomSnackbar'
+import LoadingBackground from '../reusableComponents/globalDisplay/LoadingBackground'
 
 export default function Home() {
     const classes = useStyles()

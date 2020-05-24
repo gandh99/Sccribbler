@@ -4,7 +4,7 @@ import { formatTimestamp } from '../../utils/allNotes'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import { Tooltip } from '@material-ui/core'
 
-export default function NoteCard(props: { timestamp: Date | undefined }) {
+export default function Footer(props: { timestamp: Date | undefined }) {
     const classes = useStyles()
 
     return (

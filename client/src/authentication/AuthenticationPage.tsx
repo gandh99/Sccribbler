@@ -4,8 +4,8 @@ import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import Logo from './Logo'
 import Background from './Background'
-import CustomSnackbar from '../reusableComponents/CustomSnackbar'
-import LoadingBackground from '../reusableComponents/LoadingBackground'
+import CustomSnackbar from '../reusableComponents/globalDisplay/CustomSnackbar'
+import LoadingBackground from '../reusableComponents/globalDisplay/LoadingBackground'
 
 export enum AuthenticationForm {
     LOGIN,

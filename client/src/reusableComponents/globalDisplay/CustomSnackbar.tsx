@@ -2,7 +2,7 @@ import React from 'react'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { hideSnackbarAction } from '../redux/actions/globalDisplayActions'
+import { hideSnackbarAction } from '../../redux/actions/globalDisplayActions'
 
 export default function CustomSnackbar() {
     const dispatch = useDispatch()
