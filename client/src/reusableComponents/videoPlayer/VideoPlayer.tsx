@@ -66,6 +66,7 @@ export default function VideoPlayer() {
                     }}
                     onReady={(event) => {
                         setVideoPlayer(event.target)
+                        setDuration(event.target.getDuration())
                     }}
                     onStateChange={(event) => {
                         setTimeElapsed(Math.round(event.target.getCurrentTime()))
