@@ -1,8 +1,8 @@
 import React from 'react'
 import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { DrawerLinkType, IDrawerListItem } from './DrawerList'
 import clsx from 'clsx'
+import { IDrawerListItem, DrawerLinkType } from '../interfaces/drawer'
 
 export default function DrawerListItem(props: {
     item: IDrawerListItem,

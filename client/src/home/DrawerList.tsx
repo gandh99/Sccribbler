@@ -6,19 +6,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt'
 import DrawerListItem from './DrawerListItem'
 import StarBorderIcon from '@material-ui/icons/StarBorder'
 import CreateIcon from '@material-ui/icons/Create'
-
-export enum DrawerLinkType {
-    ALL_NOTES,
-    STARRED_NOTES,
-    CREATE_NOTE,
-}
-
-export interface IDrawerListItem {
-    drawerLinkType: DrawerLinkType,
-    link: string,
-    icon: any,
-    text: string
-}
+import { DrawerLinkType, IDrawerListItem } from '../interfaces/drawer';
 
 export default function DrawerList(props: any) {
     const classes = useStyles()

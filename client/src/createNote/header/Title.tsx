@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { saveTitleAction } from '../../redux/actions/saveNoteActions'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 
-export default function NoteHeader() {
+export default function Title() {
     const classes = useStyles()
     const dispatch = useDispatch()
     const [title, setTitle] = useState('')

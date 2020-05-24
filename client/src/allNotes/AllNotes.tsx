@@ -7,7 +7,7 @@ import { showLoadingBackgroundAction, hideLoadingBackgroundAction, showSnackbarA
 import Header from './header/Header'
 import { getCategoriesAction } from '../redux/actions/categoryActions'
 
-export default function NoteHeader() {
+export default function AllNotes() {
     const classes = useStyles()
     const dispatch = useDispatch()
 

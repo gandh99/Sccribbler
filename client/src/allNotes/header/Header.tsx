@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import CategoryButton from './CategoryButton'
 
-export default function NoteHeader() {
+export default function Header() {
     const classes = useStyles()
 
     return (
