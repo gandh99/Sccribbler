@@ -2,17 +2,18 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import MenuDisplay from './MenuDisplay'
+import { INote } from '../../interfaces/notes'
 
-export default function Header(props: { title: string }) {
+export default function Header(props: { note: INote }) {
     const classes = useStyles()
-    const { title } = props
+    const { note } = props
 
     return (
         <div className={classes.root}>
             <Typography className={classes.title} variant="h5" component="h2">
-                {title}
+                {note.title}
             </Typography>
-            <MenuDisplay />
+            <MenuDisplay note={note} />
         </div>
     )
 }

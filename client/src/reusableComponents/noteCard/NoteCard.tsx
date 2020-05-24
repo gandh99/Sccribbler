@@ -8,13 +8,13 @@ import Footer from './Footer'
 
 export default function NoteCard(props: { note: INote }) {
     const classes = useStyles()
-    const { title, category, updatedAt, allScribbles } = props.note
+    const { category, updatedAt, allScribbles } = props.note
 
     return (
         <Grid item xs={12} sm={12} md={6} lg={4}>
             <Card className={classes.root}>
                 <CardContent className={classes.cardContent}>
-                    <Header title={title} />
+                    <Header note={props.note} />
                     <Divider className={classes.divider} />
                     <Body allScribbles={allScribbles} />
                     <Footer

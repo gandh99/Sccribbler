@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { deleteCategoryAction } from '../../redux/actions/categoryActions'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 import { Tooltip } from '@material-ui/core'
-import { getAllNotesAction } from '../../redux/actions/getNoteActions'
+import { getAllNotesAction } from '../../redux/actions/getOrDeleteNoteActions'
 
 export default function CategoryItem(props: {
     category: ICategory,

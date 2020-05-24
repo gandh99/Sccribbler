@@ -4,7 +4,7 @@ import error from './errorReducer'
 import globalDisplay from './globalDisplayReducer'
 import videoPlayer from './videoPlayerReducer'
 import saveNote from './saveNoteReducer'
-import getNote from './getNoteReducer'
+import getOrDeleteNote from './getOrDeleteNoteReducer'
 import category from './categoryReducer'
 
 export default combineReducers({
@@ -13,6 +13,6 @@ export default combineReducers({
     globalDisplay,
     videoPlayer,
     saveNote,
-    getNote,
+    getOrDeleteNote,
     category
 })

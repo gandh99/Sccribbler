@@ -26,9 +26,11 @@ export const saveNote = {
     CLEAR_NOTE_DATA: 'CLEAR_NOTE_DATA'
 }
 
-export const getNote = {
+export const getOrDeleteNote = {
     GET_ALL_NOTES_SUCCESS: 'GET_ALL_NOTES_SUCCESS',
     GET_ALL_NOTES_FAIL: 'GET_ALL_NOTES_FAIL',
+    DELETE_NOTE_SUCCESS: 'DELETE_NOTE_SUCCESS',
+    DELETE_NOTE_FAIL: 'DELETE_NOTE_FAIL',
 }
 
 export const category = {
