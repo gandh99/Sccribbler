@@ -14,19 +14,13 @@ export default function NoteCard(props: { note: INote }) {
         <Grid item xs={12} sm={12} md={6} lg={4}>
             <Card className={classes.root}>
                 <CardContent className={classes.cardContent}>
-                    <div className={classes.header}>
-                        <Header title={title} />
-                    </div>
+                    <Header title={title} />
                     <Divider className={classes.divider} />
-                    <div className={classes.body}>
-                        <Body allScribbles={allScribbles} />
-                    </div>
-                    <div className={classes.footer}>
-                        <Footer
-                            timestamp={updatedAt}
-                            category={category}
-                        />
-                    </div>
+                    <Body allScribbles={allScribbles} />
+                    <Footer
+                        timestamp={updatedAt}
+                        category={category}
+                    />
                 </CardContent>
             </Card>
         </Grid>
@@ -43,13 +37,7 @@ const useStyles = makeStyles((theme) => ({
             paddingBottom: '0.5rem'
         }
     },
-    header: {
-    },
     divider: {
         margin: '0.5rem 0'
-    },
-    body: {
-    },
-    footer: {
     },
 }))

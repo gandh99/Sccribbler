@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+import MenuDisplay from './MenuDisplay'
 
 export default function Header(props: { title: string }) {
     const classes = useStyles()
@@ -12,7 +12,7 @@ export default function Header(props: { title: string }) {
             <Typography className={classes.title} variant="h5" component="h2">
                 {title}
             </Typography>
-            <MoreVertIcon className={classes.moreVertIcon} />
+            <MenuDisplay />
         </div>
     )
 }
@@ -26,11 +26,5 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'left'
-    },
-    moreVertIcon: {
-        width: '1rem',
-        marginLeft: 'auto',
-        marginBottom: '0.5rem',
-        color: theme.palette.grey[900],
     },
 }))
