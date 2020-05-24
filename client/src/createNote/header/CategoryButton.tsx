@@ -5,7 +5,7 @@ import CategoryIcon from '@material-ui/icons/Category'
 import CategoryDialog from '../../reusableComponents/category/CategoryDialog'
 import { OnCategoryItemSelected, ICategory } from '../../interfaces/category'
 import { useDispatch } from 'react-redux'
-import { selectCategoryAction, resetSelectedCategoryAction } from '../../redux/actions/categoryActions'
+import { setActiveCategoryAction, resetActiveCategoryAction } from '../../redux/actions/categoryActions'
 
 export default function CategoryButton() {
     const classes = useStyles()
@@ -14,7 +14,7 @@ export default function CategoryButton() {
 
     useEffect(() => {
 		return () => {
-			dispatch(resetSelectedCategoryAction())
+			dispatch(resetActiveCategoryAction())
 		}
     }, [])
     
@@ -24,7 +24,7 @@ export default function CategoryButton() {
 
     const onCategoryItemSelected: OnCategoryItemSelected = {
         onSelected: (category: ICategory) => {
-            dispatch(selectCategoryAction(category))
+            dispatch(setActiveCategoryAction(category))
 			setOpen(false)
         }
     }

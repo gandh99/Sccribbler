@@ -62,14 +62,14 @@ export const deleteCategoryAction = (categoryToDelete: ICategory, success: Funct
         })
 }
 
-export const selectCategoryAction = (selectedCategory: ICategory) => (dispatch: any) => {
+export const setActiveCategoryAction = (selectedCategory: ICategory) => (dispatch: any) => {
     dispatch({
         type: category.SET_ACTIVE_CATEGORY,
         payload: selectedCategory
     })
 }
 
-export const resetSelectedCategoryAction = () => (dispatch: any) => {
+export const resetActiveCategoryAction = () => (dispatch: any) => {
     dispatch({
         type: category.RESET_ACTIVE_CATEGORY,
     })
