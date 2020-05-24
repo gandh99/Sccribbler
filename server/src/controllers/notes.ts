@@ -8,6 +8,7 @@ module.exports.save = async (req: Request, res: Response, next: NextFunction) =>
     res.locals.savedNote = noteId > 0 ?     // if the note already exists
         await Notes.update(noteId, userData.user_id, title, videoUrl, category) :
         await Notes.insert(userData.user_id, title, videoUrl, category)
+    res.locals.isUpdateOperation = noteId > 0
     next()
 }
 

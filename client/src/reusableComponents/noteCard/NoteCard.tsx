@@ -32,7 +32,7 @@ export default function NoteCard({ note }: Props) {
         dispatch(saveVideoUrlAction(videoUrl))
         dispatch(saveAllScribblesAction(allScribbles))
 
-        if (category) {
+        if (category && category.categoryId) {
             dispatch(setActiveCategoryAction(category))
         }
     }

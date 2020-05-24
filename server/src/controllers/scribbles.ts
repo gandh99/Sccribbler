@@ -4,12 +4,12 @@ const Scribbles = require('../models/Scribbles')
 
 module.exports.save = async (req: Request, res: Response, next: NextFunction) => {
     const { allScribbles } = req.body
-    const savedNote = res.locals.savedNote
+    const { isUpdateOperation, savedNote } = res.locals
     const note_id = savedNote.note_id
 
     const savedAllScribbles: IScribble[] = await Promise.all(
         allScribbles.map(async (scribble: IScribble) => {
-            return note_id > 0 ?
+            return isUpdateOperation ?
                 await Scribbles.update(note_id, scribble) :
                 await Scribbles.insert(note_id, scribble)
         })
