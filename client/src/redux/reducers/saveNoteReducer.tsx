@@ -38,6 +38,11 @@ export default function (state = initialState, action: any) {
                 allScribbles: [...state.allScribbles!, action.payload]
                     .sort((s1: IScribble, s2: IScribble) => sortByTimeElapsed(s1.timeElapsed, s2.timeElapsed))
             }
+        case saveNote.SAVE_ALL_SCRIBBLES:
+            return {
+                ...state,
+                allScribbles: action.payload
+            }
         case saveNote.SAVE_NOTE_TO_DATABASE_SUCCESS:
             return {
                 ...state,

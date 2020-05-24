@@ -25,6 +25,13 @@ export const saveScribbleAction = (scribble: IScribble) => (dispatch: any) => {
     })
 }
 
+export const saveAllScribblesAction = (allScribbles: IScribble[]) => (dispatch: any) => {
+    dispatch({
+        type: saveNote.SAVE_ALL_SCRIBBLES,
+        payload: allScribbles
+    })
+}
+
 export const saveNoteToDatabaseAction = (
     title: string,
     videoUrl: string,
