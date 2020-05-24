@@ -17,7 +17,8 @@ export default function VideoPlayer() {
     useEffect(() => {
         try {
             setVideoSrc(getYTVideoId(videoUrl))
-        } catch (error) {            
+        } catch (error) {     
+            setVideoSrc('')     
         }
     }, [videoUrl])
 
