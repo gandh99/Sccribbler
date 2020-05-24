@@ -5,7 +5,7 @@ const client = require('../config/db')
 const Category = require('./Category')
 
 module.exports.upsert = async (userId: number, title: string, videoUrl: string, category: ICategory) => {
-    const query: string = 
+    const query: string =
         `INSERT INTO notes (owner_id, title, video_url, category_id) VALUES ($1, $2, $3, $4) RETURNING *`
     const categoryValue: number | null = category.categoryId > 0 ? category.categoryId : null
 
@@ -61,6 +61,21 @@ module.exports.getByUserId = async (userId: number) => {
         })
 
         return notes
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+module.exports.delete = async (noteId: number) => {
+    const query: string =
+        `DELETE FROM notes 
+        WHERE note_id = ($1) 
+        RETURNING note_id AS "noteId", title, video_url AS "videoUrl", owner_id AS "ownerId",
+            updated_at AS "updatedAt", category_id AS "categoryId"`
+
+    try {
+        const deletedNote = await client.query(query, [noteId])
+        return deletedNote.rows[0]
     } catch (error) {
         console.error(error)
     }

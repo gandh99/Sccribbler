@@ -17,4 +17,11 @@ module.exports.getAllNotes = async (req: Request, res: Response, next: NextFunct
     res.status(200).json({
         data: allNotes
     })
- }
+}
+
+module.exports.delete = async (req: Request, res: Response, next: NextFunction) => {
+    const { noteId } = req.params
+
+    const deletedNote = await Notes.delete(noteId)
+    res.status(200).send(deletedNote)
+}

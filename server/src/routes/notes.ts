@@ -7,5 +7,6 @@ const scribblesController = require('../controllers/scribbles')
 
 router.post('/save', checkAuthenticated, notesController.save, scribblesController.save);
 router.get('/get-all-notes', checkAuthenticated, notesController.getAllNotes);
+router.delete('/delete/:noteId', checkAuthenticated, notesController.delete);
 
 module.exports = router;

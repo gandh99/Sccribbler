@@ -32,7 +32,7 @@ export const getAllNotesAction = (success: Function, error: Function) => (dispat
 
 export const deleteNoteAction = (note: INote, success: Function, error: Function) => (dispatch: any) => {
     axios
-        .get(`/notes/delete/${note.noteId}`)
+        .delete(`/notes/delete/${note.noteId}`)
         .then(res => {
             dispatch({
                 type: getOrDeleteNote.DELETE_NOTE_SUCCESS,
