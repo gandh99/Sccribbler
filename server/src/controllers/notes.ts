@@ -2,11 +2,12 @@ import { Request, Response, NextFunction } from 'express'
 const Notes = require('../models/Notes')
 
 module.exports.save = async (req: Request, res: Response, next: NextFunction) => {
-    const { title, videoUrl, category } = req.body
+    const { noteId, title, videoUrl, category } = req.body
     const { userData } = req.body.tokenData
 
-    const savedNote = await Notes.upsert(userData.user_id, title, videoUrl, category)
-    res.locals.savedNote = savedNote  // correct way to pass a variable to the next middleware function
+    res.locals.savedNote = noteId > 0 ?     // if the note already exists
+        await Notes.update(noteId, userData.user_id, title, videoUrl, category) :
+        await Notes.insert(userData.user_id, title, videoUrl, category)
     next()
 }
 

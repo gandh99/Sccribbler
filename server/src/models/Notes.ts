@@ -2,15 +2,43 @@ import { INote } from "../interfaces/notes"
 import { ICategory } from "../interfaces/category"
 export { }
 const client = require('../config/db')
-const Category = require('./Category')
 
-module.exports.upsert = async (userId: number, title: string, videoUrl: string, category: ICategory) => {
+module.exports.insert = async (
+    userId: number,
+    title: string,
+    videoUrl: string,
+    category: ICategory
+) => {
     const query: string =
-        `INSERT INTO notes (owner_id, title, video_url, category_id) VALUES ($1, $2, $3, $4) RETURNING *`
+        `INSERT INTO notes (owner_id, title, video_url, category_id) 
+        VALUES ($1, $2, $3, $4)
+        RETURNING *`
     const categoryValue: number | null = category.categoryId > 0 ? category.categoryId : null
 
     try {
         const note = await client.query(query, [userId, title, videoUrl, categoryValue])
+        return note.rows[0]
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+module.exports.update = async (
+    noteId: number,
+    userId: number,
+    title: string,
+    videoUrl: string,
+    category: ICategory
+) => {
+    const query: string =
+        `UPDATE notes 
+        SET owner_id = ($1), title = ($2), video_url = ($3), category_id = ($4)
+        WHERE note_id = ($5)
+        RETURNING *`
+    const categoryValue: number | null = category.categoryId > 0 ? category.categoryId : null
+
+    try {
+        const note = await client.query(query, [userId, title, videoUrl, categoryValue, noteId])
         return note.rows[0]
     } catch (error) {
         console.error(error)

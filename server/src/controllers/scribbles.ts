@@ -8,7 +8,11 @@ module.exports.save = async (req: Request, res: Response, next: NextFunction) =>
     const note_id = savedNote.note_id
 
     const savedAllScribbles: IScribble[] = await Promise.all(
-        allScribbles.map(async (scribble: IScribble) => await Scribbles.upsert(note_id, scribble))
+        allScribbles.map(async (scribble: IScribble) => {
+            return note_id > 0 ?
+                await Scribbles.update(note_id, scribble) :
+                await Scribbles.insert(note_id, scribble)
+        })
     )
 
     const result: INote = {
