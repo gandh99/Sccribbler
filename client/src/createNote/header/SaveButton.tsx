@@ -12,6 +12,7 @@ import { ICategory } from '../../interfaces/category'
 export default function SaveButton() {
     const classes = useStyles()
     const dispatch = useDispatch()
+    const noteId: string | number = useSelector((state: any) => state.saveNote.noteId)
     const title: string = useSelector((state: any) => state.saveNote.title)
     const videoUrl: string = useSelector((state: any) => state.saveNote.videoUrl)
     const category: ICategory = useSelector((state: any) => state.category.activeCategory)
@@ -19,6 +20,7 @@ export default function SaveButton() {
 
     const onSubmit = (
         event: MouseEvent,
+        noteId: string | number,
         title: string,
         videoUrl: string,
         category: ICategory,
@@ -35,6 +37,7 @@ export default function SaveButton() {
         // Save the note to the database
         dispatch(showLoadingBackgroundAction('Saving Note...'))
         dispatch(saveNoteToDatabaseAction(
+            noteId,
             title,
             videoUrl,
             category,
@@ -51,7 +54,7 @@ export default function SaveButton() {
     return (
         <Tooltip title={'Save Note'}>
             <SaveIcon
-                onClick={(e: any) => onSubmit(e, title, videoUrl, category, allScribbles)}
+                onClick={(e: any) => onSubmit(e, noteId, title, videoUrl, category, allScribbles)}
                 className={classes.icon}
             />
         </Tooltip>

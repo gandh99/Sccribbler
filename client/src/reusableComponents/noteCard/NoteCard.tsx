@@ -7,7 +7,7 @@ import Body from './Body'
 import Footer from './Footer'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { saveTitleAction, saveVideoUrlAction, saveAllScribblesAction } from '../../redux/actions/saveNoteActions'
+import { saveTitleAction, saveVideoUrlAction, saveAllScribblesAction, saveNoteIdAction } from '../../redux/actions/saveNoteActions'
 import { setActiveCategoryAction } from '../../redux/actions/categoryActions'
 import { ICategory } from '../../interfaces/category'
 
@@ -18,14 +18,16 @@ type Props = {
 export default function NoteCard({ note }: Props) {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const { title, videoUrl, category, updatedAt, allScribbles } = note
+    const { noteId, title, videoUrl, category, updatedAt, allScribbles } = note
 
     const loadNoteData = (
+        noteId: string | number,
         title: string,
         videoUrl: string,
         category: ICategory | undefined,
         allScribbles: IScribble[]
     ): void => {
+        dispatch(saveNoteIdAction(noteId))
         dispatch(saveTitleAction(title))
         dispatch(saveVideoUrlAction(videoUrl))
         dispatch(saveAllScribblesAction(allScribbles))
@@ -42,7 +44,7 @@ export default function NoteCard({ note }: Props) {
                     <Header note={note} loadNoteData={loadNoteData} />
                     <Divider className={classes.divider} />
                     <Link
-                        onClick={() => loadNoteData(title, videoUrl, category, allScribbles)}
+                        onClick={() => loadNoteData(noteId, title, videoUrl, category, allScribbles)}
                         to={'/edit-note'}
                         style={{ textDecoration: 'none' }}
                         className={classes.link}>

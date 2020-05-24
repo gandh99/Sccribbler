@@ -10,6 +10,7 @@ interface IInitialState {
 
 const initialState = {
     // For recording data related to the note itself
+    noteId: -1,     // will only be positive if the note already exists
     title: '',
     videoUrl: '',
     newScribble: { scribbleId: '', timeElapsed: 0, text: '' },
@@ -21,6 +22,11 @@ const initialState = {
 
 export default function (state = initialState, action: any) {
     switch (action.type) {
+        case saveNote.SAVE_NOTEID:
+            return {
+                ...state,
+                noteId: action.payload
+            }
         case saveNote.SAVE_TITLE:
             return {
                 ...state,
@@ -56,6 +62,7 @@ export default function (state = initialState, action: any) {
         case saveNote.CLEAR_NOTE_DATA:
             return {
                 ...state,
+                noteId: -1,
                 title: '',
                 videoUrl: '',
                 newScribble: { scribble_id: '', timeElapsed: '', text: '' },

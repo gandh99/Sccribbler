@@ -16,7 +16,7 @@ export default function Header({ note, loadNoteData }: Props) {
     return (
         <div className={classes.root}>
             <Link
-                onClick={() => loadNoteData(note.title, note.videoUrl, note.category, note.allScribbles)}
+                onClick={() => loadNoteData(note.noteId, note.title, note.videoUrl, note.category, note.allScribbles)}
                 to={'/edit-note'}
                 style={{ textDecoration: 'none' }}
                 className={classes.link}>

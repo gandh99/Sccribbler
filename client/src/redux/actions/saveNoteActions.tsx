@@ -4,6 +4,13 @@ import { returnErrors } from './errorActions'
 import { IScribble } from '../../interfaces/notes'
 import { ICategory } from '../../interfaces/category'
 
+export const saveNoteIdAction = (id: string | number) => (dispatch: any) => {
+    dispatch({
+        type: saveNote.SAVE_NOTEID,
+        payload: id
+    })
+}
+
 export const saveTitleAction = (title: string) => (dispatch: any) => {
     dispatch({
         type: saveNote.SAVE_TITLE,
@@ -33,15 +40,16 @@ export const saveAllScribblesAction = (allScribbles: IScribble[]) => (dispatch: 
 }
 
 export const saveNoteToDatabaseAction = (
+    noteId: string | number,
     title: string,
     videoUrl: string,
     category: ICategory,
     allScribbles: IScribble[],
     success: Function,
-    error: Function
+    error: Function,
 ) => (dispatch: any) => {
     axios
-        .post('/notes/save', { title, videoUrl, category, allScribbles })
+        .post('/notes/save', { noteId, title, videoUrl, category, allScribbles })
         .then(res => {
             const savedNote = res.data.data
             dispatch({
