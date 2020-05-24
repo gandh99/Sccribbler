@@ -13,19 +13,19 @@ export default function NoteCard(props: { note: INote }) {
     return (
         <Grid item xs={12} sm={12} md={6} lg={4}>
             <Card className={classes.root}>
-                <CardContent>
+                <CardContent className={classes.cardContent}>
                     <div className={classes.header}>
-                        <Header 
-                            title={title}
-                            category={category}
-                        />
+                        <Header title={title} />
                     </div>
                     <Divider className={classes.divider} />
-                    <div className={classes.scribblesArea}>
+                    <div className={classes.body}>
                         <Body allScribbles={allScribbles} />
                     </div>
                     <div className={classes.footer}>
-                        <Footer timestamp={updatedAt} />
+                        <Footer
+                            timestamp={updatedAt}
+                            category={category}
+                        />
                     </div>
                 </CardContent>
             </Card>
@@ -36,46 +36,20 @@ export default function NoteCard(props: { note: INote }) {
 const useStyles = makeStyles((theme) => ({
     root: {
         margin: '1rem',
-        cursor: 'pointer'
-    },
-
-    // Header
-    header: {
-        display: 'flex',
-        flexDirection: 'row'
-    },
-    title: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        textAlign: 'left'
-    },
-    chip: {
-        marginLeft: 'auto',
         cursor: 'pointer',
-        fontWeight: 'bold',
-        fontSize: 14,
-        backgroundColor: theme.palette.secondary.main,
-        '&:hover': {
-            backgroundColor: theme.palette.secondary.dark
+    },
+    cardContent: {
+        '&:last-child': {
+            paddingBottom: '0.5rem'
         }
+    },
+    header: {
     },
     divider: {
         margin: '0.5rem 0'
     },
-
-    // Body
-    scribblesArea: {
-        textAlign: 'left',
-        color: theme.palette.grey[600],
-        fontSize: 14
+    body: {
     },
-
-    // Footer
     footer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        fontSize: 12,
-        fontStyle: 'italic'
     },
 }))

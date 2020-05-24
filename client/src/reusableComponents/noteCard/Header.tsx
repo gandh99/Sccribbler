@@ -1,24 +1,18 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography, Chip } from '@material-ui/core'
-import { ICategory } from '../../interfaces/category'
+import { Typography } from '@material-ui/core'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 
-export default function Header(props: { title: string, category: ICategory | undefined }) {
+export default function Header(props: { title: string }) {
     const classes = useStyles()
-    const { title, category } = props
+    const { title } = props
 
     return (
         <div className={classes.root}>
             <Typography className={classes.title} variant="h5" component="h2">
                 {title}
             </Typography>
-            {category?.categoryId &&
-                <Chip
-                    className={classes.chip}
-                    label={category.name}
-                    size='small'
-                />
-            }
+            <MoreVertIcon className={classes.moreVertIcon} />
         </div>
     )
 }
@@ -33,14 +27,10 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         textAlign: 'left'
     },
-    chip: {
+    moreVertIcon: {
+        width: '1rem',
         marginLeft: 'auto',
-        cursor: 'pointer',
-        fontWeight: 'bold',
-        fontSize: 14,
-        backgroundColor: theme.palette.secondary.main,
-        '&:hover': {
-            backgroundColor: theme.palette.secondary.dark
-        }
+        marginBottom: '0.5rem',
+        color: theme.palette.grey[900],
     },
 }))
