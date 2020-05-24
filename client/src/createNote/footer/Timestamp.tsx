@@ -6,7 +6,11 @@ import Tooltip from '@material-ui/core/Tooltip'
 import { useDispatch } from 'react-redux'
 import { requestForTimeElapsedAction } from '../../redux/actions/videoPlayerActions'
 
-export default function Timestamp(props: { timestamp: string }) {
+type Props = {
+    timestamp: string
+}
+
+export default function Timestamp({ timestamp }: Props) {
     const classes = useStyles()
     const dispatch = useDispatch()
     const icon =
@@ -19,11 +23,11 @@ export default function Timestamp(props: { timestamp: string }) {
 
     return (
         <>
-            {props.timestamp !== '' &&
+            {timestamp !== '' &&
                 <Chip
                     className={classes.root}
                     icon={icon}
-                    label={props.timestamp}
+                    label={timestamp}
                     color="secondary"
                 />
             }

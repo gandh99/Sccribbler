@@ -9,7 +9,11 @@ import { useDispatch } from 'react-redux'
 import { showSnackbarAction, showLoadingBackgroundAction, hideLoadingBackgroundAction } from '../redux/actions/globalDisplayActions'
 import { history } from '../config/history'
 
-export default function LoginForm(props: { setForm: any }) {
+type Props = {
+    setForm: any
+}
+
+export default function LoginForm({ setForm }: Props) {
     const classes = useStyles()
     const dispatch = useDispatch()
     const [username, setUsername] = useState('')
@@ -68,7 +72,7 @@ export default function LoginForm(props: { setForm: any }) {
             <Message
                 mainMessage={"Don't have an account?"}
                 linkMessage={'Register now!'}
-                setForm={props.setForm}
+                setForm={setForm}
                 link={AuthenticationForm.REGISTER}
             />
         </form>

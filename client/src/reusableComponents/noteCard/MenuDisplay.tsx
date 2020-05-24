@@ -7,7 +7,11 @@ import { useDispatch } from 'react-redux'
 import { deleteNoteAction } from '../../redux/actions/getOrDeleteNoteActions'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 
-export default function MenuDisplay(props: { note: INote }) {
+type Props = {
+    note: INote
+}
+
+export default function MenuDisplay({ note }: Props) {
     const classes = useStyles()
     const dispatch = useDispatch()
     const [anchorEl, setAnchorEl] = useState(null)
@@ -43,7 +47,7 @@ export default function MenuDisplay(props: { note: INote }) {
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
-                <MenuItem className={classes.menu} onClick={() => deleteNote(props.note)}>
+                <MenuItem className={classes.menu} onClick={() => deleteNote(note)}>
                     Delete Note
                 </MenuItem>
             </Menu>

@@ -11,10 +11,14 @@ import { saveTitleAction, saveVideoUrlAction, saveAllScribblesAction } from '../
 import { setActiveCategoryAction } from '../../redux/actions/categoryActions'
 import { ICategory } from '../../interfaces/category'
 
-export default function NoteCard(props: { note: INote }) {
+type Props = {
+    note: INote
+}
+
+export default function NoteCard({ note }: Props) {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const { title, videoUrl, category, updatedAt, allScribbles } = props.note
+    const { title, videoUrl, category, updatedAt, allScribbles } = note
 
     const loadNoteData = (
         title: string,
@@ -35,7 +39,7 @@ export default function NoteCard(props: { note: INote }) {
         <Grid item xs={12} sm={12} md={6} lg={4}>
             <Card className={classes.root}>
                 <CardContent className={classes.cardContent}>
-                    <Header note={props.note} loadNoteData={loadNoteData} />
+                    <Header note={note} loadNoteData={loadNoteData} />
                     <Divider className={classes.divider} />
                     <Link
                         onClick={() => loadNoteData(title, videoUrl, category, allScribbles)}

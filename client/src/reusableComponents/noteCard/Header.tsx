@@ -5,9 +5,13 @@ import MenuDisplay from './MenuDisplay'
 import { INote } from '../../interfaces/notes'
 import { Link } from 'react-router-dom'
 
-export default function Header(props: { note: INote, loadNoteData: Function }) {
+type Props = {
+    note: INote, 
+    loadNoteData: Function
+}
+
+export default function Header({ note, loadNoteData }: Props) {
     const classes = useStyles()
-    const { note, loadNoteData } = props
 
     return (
         <div className={classes.root}>

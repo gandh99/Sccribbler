@@ -3,14 +3,15 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import { AuthenticationForm } from './AuthenticationPage'
 
-export default function Message(props: {
+type Props = {
     mainMessage: string,
     linkMessage: string,
     setForm: any,
     link: AuthenticationForm
-}) {
+}
+
+export default function Message({mainMessage, linkMessage, setForm, link}: Props) {
     const classes = useStyles()
-    const { mainMessage, linkMessage, setForm, link } = props
 
     return (
         <div className={classes.root}>

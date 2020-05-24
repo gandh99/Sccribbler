@@ -9,14 +9,15 @@ import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 import { Tooltip } from '@material-ui/core'
 import { getAllNotesAction } from '../../redux/actions/getOrDeleteNoteActions'
 
-export default function CategoryItem(props: {
+type Props = {
     category: ICategory,
     onCategoryItemSelected: OnCategoryItemSelected,
     deletable: boolean
-}) {
+}
+
+export default function CategoryItem({ category, onCategoryItemSelected, deletable}: Props) {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const { category, onCategoryItemSelected, deletable } = props
     const activeCategory = useSelector((state: any) => state.category.activeCategory)
 
     const isActiveCategory = (thisCategory: ICategory, activeCategory: ICategory): boolean => {

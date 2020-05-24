@@ -28,10 +28,7 @@ export default function Home() {
                     [classes.contentShift]: drawerOpen,
                 })}>
                     <div className={classes.headerArea}>
-                        <Header
-                            drawerOpen={drawerOpen}
-                            setDrawerOpen={setDrawerOpen}
-                        />
+                        <Header setDrawerOpen={setDrawerOpen} />
                     </div>
                     <div className={classes.pageArea}>
                         <Background />

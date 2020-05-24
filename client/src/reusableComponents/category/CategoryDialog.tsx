@@ -7,38 +7,40 @@ import CategoryInput from './CategoryInput'
 import { OnCategoryItemSelected, ICategory } from '../../interfaces/category'
 import { allOption } from '../../redux/reducers/categoryReducer'
 
-export default function CategoryDialog(props: {
+type Props = {
     open: boolean,
     setOpen: Function,
     onCategoryItemSelected: OnCategoryItemSelected
-}) {
+}
+
+export default function CategoryDialog({ open, setOpen, onCategoryItemSelected}: Props) {
     const classes = useStyles()
     const allCategories = useSelector((state: any) => state.category.allCategories)
     const allCategoriesOption: ICategory = allOption
 
     const handleClose = () => {
-        props.setOpen(false)
+        setOpen(false)
     }
 
     return (
         <Dialog
             className={classes.root}
             fullWidth={true}
-            open={props.open}
+            open={open}
             onClose={handleClose}
             aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Select Category</DialogTitle>
             <DialogContent className={classes.content}>
                 <CategoryItem
                     category={allCategoriesOption}
-                    onCategoryItemSelected={props.onCategoryItemSelected}
+                    onCategoryItemSelected={onCategoryItemSelected}
                     deletable={false}
                 />
                 {allCategories.map((category: any, index: number) =>
                     <CategoryItem
                         key={index}
                         category={category}
-                        onCategoryItemSelected={props.onCategoryItemSelected}
+                        onCategoryItemSelected={onCategoryItemSelected}
                         deletable={true}
                     />
                 )}

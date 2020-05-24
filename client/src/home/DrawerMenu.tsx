@@ -5,13 +5,17 @@ import Drawer from '@material-ui/core/Drawer'
 import LogoImage from '../images/logo.png'
 import DrawerList from './DrawerList'
 
-export default function DrawerMenu(props: any) {
-    const { container } = props
+type Props = {
+    drawerOpen: boolean,
+    setDrawerOpen: Function,
+}
+
+export default function DrawerMenu({ drawerOpen, setDrawerOpen}: Props) {
     const classes = useStyles()
     const theme = useTheme()
 
     const handleDrawerToggle = () => {
-        props.setDrawerOpen(!props.drawerOpen);
+        setDrawerOpen(!drawerOpen);
     };
 
     const drawer = (
@@ -31,10 +35,9 @@ export default function DrawerMenu(props: any) {
             {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
             <Hidden smUp implementation="css">
                 <Drawer
-                    container={container}
                     variant="temporary"
                     anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                    open={props.drawerOpen}
+                    open={drawerOpen}
                     onClose={handleDrawerToggle}
                     classes={{
                         paper: classes.drawerPaper,

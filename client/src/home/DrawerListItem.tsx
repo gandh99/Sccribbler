@@ -4,21 +4,23 @@ import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 import { IDrawerListItem, DrawerLinkType } from '../interfaces/drawer'
 
-export default function DrawerListItem(props: {
+type Props = {
     item: IDrawerListItem,
     setActiveLink: Function,
     activeLink: DrawerLinkType,
-}) {
+}
+
+export default function DrawerListItem({item, setActiveLink, activeLink}: Props) {
     const classes = useStyles()
-    const { drawerLinkType, link, icon, text } = props.item
-    const isSelected: boolean = props.activeLink === drawerLinkType
+    const { drawerLinkType, link, icon, text } = item
+    const isSelected: boolean = activeLink === drawerLinkType
 
     return (
         <ListItem
             className={classes.root}
             selected={isSelected}
             onClick={() => {
-                props.setActiveLink(drawerLinkType)
+                setActiveLink(drawerLinkType)
             }}
             button
             key={drawerLinkType}>

@@ -5,9 +5,13 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import { Tooltip, Chip } from '@material-ui/core'
 import { ICategory } from '../../interfaces/category'
 
-export default function Footer(props: { timestamp: Date | undefined, category: ICategory | undefined }) {
+type Props = {
+    timestamp: Date | undefined, 
+    category: ICategory | undefined
+}
+
+export default function Footer({ timestamp, category }: Props) {
     const classes = useStyles()
-    const { category } = props
 
     return (
         <div className={classes.root}>
@@ -20,7 +24,7 @@ export default function Footer(props: { timestamp: Date | undefined, category: I
             }
             <AccessTimeIcon className={classes.accessTimeIcon} />
             <Tooltip title='Last Updated Time'>
-                <p className={classes.timestamp}>{formatTimestamp(props.timestamp)}</p>
+                <p className={classes.timestamp}>{formatTimestamp(timestamp)}</p>
             </Tooltip>
         </div>
     )

@@ -4,7 +4,11 @@ import { Typography, Hidden, AppBar, Toolbar } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 
-export default function Header(props: any) {
+type Props = {
+    setDrawerOpen: Function
+}
+
+export default function Header({ setDrawerOpen }: Props) {
     const classes = useStyles()
 
     return (
@@ -14,7 +18,7 @@ export default function Header(props: any) {
                     <Toolbar className={classes.toolbar}>
                         <div className={classes.left}>
                             <IconButton
-                                onClick={() => props.setDrawerOpen(true)}
+                                onClick={() => setDrawerOpen(true)}
                                 edge="start"
                                 className={classes.iconButton}
                                 aria-label="menu">

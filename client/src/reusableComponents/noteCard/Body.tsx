@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { IScribble } from '../../interfaces/notes'
 import { formatScribble } from '../../utils/allNotes'
 
-export default function Body(props: { allScribbles: IScribble[] }) {
+type Props = {
+    allScribbles: IScribble[]
+}
+
+export default function Body({ allScribbles }: Props) {
     const classes = useStyles()
-    const { allScribbles } = props
 
     return (
         <div className={classes.root}>

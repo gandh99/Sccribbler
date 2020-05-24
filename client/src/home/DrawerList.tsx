@@ -8,7 +8,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder'
 import CreateIcon from '@material-ui/icons/Create'
 import { DrawerLinkType, IDrawerListItem } from '../interfaces/drawer';
 
-export default function DrawerList(props: any) {
+export default function DrawerList() {
     const classes = useStyles()
     const [activeLink, setActiveLink] = useState(DrawerLinkType.ALL_NOTES)
     const drawerListItems: IDrawerListItem[] = [

@@ -6,10 +6,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getColorFromTimeElapsed, formatTimestamp } from '../../utils/createNote'
 import { setSeekTimeAction } from '../../redux/actions/videoPlayerActions'
 
-export default function Scribble(props: { scribble: IScribble }) {
+type Props = {
+    scribble: IScribble
+}
+
+export default function Scribble({ scribble }: Props) {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const { scribbleId, timeElapsed, text } = props.scribble
+    const { scribbleId, timeElapsed, text } = scribble
     const [color, setColor] = useState('rgb(255, 255, 255)')
     const duration: number = useSelector((state: any) => state.videoPlayer.duration)
 
