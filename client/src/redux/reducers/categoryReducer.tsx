@@ -38,10 +38,13 @@ export default function (state = initialState, action: any) {
                 allCategories: []
             }
         case category.DELETE_CATEGORY_SUCCESS:
+            const allCategories = state.allCategories.filter((category: ICategory) => category.categoryId !== action.payload.categoryId)
+
             return {
                 ...state,
+                activeCategory: allCategories.length <= 1 ? allOption : state.activeCategory,
                 deletedCategory: action.payload,
-                allCategories: state.allCategories.filter((category: ICategory) => category.categoryId !== action.payload.categoryId)
+                allCategories
             }
         case category.DELETE_CATEGORY_FAIL:
             return {
