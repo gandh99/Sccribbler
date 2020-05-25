@@ -23,20 +23,15 @@ module.exports.getAllNotes = async (req: Request, res: Response, next: NextFunct
 }
 
 module.exports.share = async (req: Request, res: Response, next: NextFunction) => {
-    const { note, recipient } = req.body
-    const { userData } = req.body.tokenData
+    const { recipient } = req.body
 
     const recipientUser = await Users.findByUsername(recipient)
     if (!recipientUser) {
         return res.status(400).send('User not found.')
     }
 
-    const shareNoteNotification = 
-        await Notifications.insertShareNoteNotification(userData.user_id, recipientUser.user_id, note)
-
-    res.status(200).json({
-        data: ''
-    })
+    res.locals.recipientUser = recipientUser
+    next()
 }
 
 module.exports.delete = async (req: Request, res: Response, next: NextFunction) => {

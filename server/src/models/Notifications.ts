@@ -8,7 +8,7 @@ module.exports.insertShareNoteNotification = async (
     note: INote,
 ) => {
     const query: string =
-        `INSERT INTO share_note_notification (sender_id, recipient_id, note_id) 
+        `INSERT INTO share_note_notifications (sender_id, recipient_id, note_id) 
         VALUES ($1, $2, $3)
         RETURNING *`
 
