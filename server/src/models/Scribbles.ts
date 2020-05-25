@@ -16,7 +16,7 @@ module.exports.insert = async (note_id: number, scribble: IScribble) => {
 
 module.exports.update = async (note_id: number, scribble: IScribble) => {
     const { timeElapsed, text } = scribble
-    const query: string = 
+    const query: string =
         `UPDATE scribbles 
         SET time_elapsed = ($1), text = ($2) 
         WHERE note_id = ($3) AND scribble_id = ($4) 
@@ -24,6 +24,25 @@ module.exports.update = async (note_id: number, scribble: IScribble) => {
 
     try {
         const note = await client.query(query, [timeElapsed, text, note_id, scribble.scribbleId])
+        return note.rows[0]
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+module.exports.deleteByNoteIdExcept = async (note_id: number, scribblesToKeep: IScribble[]) => {
+    const query: string =
+        `DELETE FROM scribbles 
+        WHERE note_id = ($1) AND NOT scribble_id = ANY ($2) 
+        RETURNING *`
+    const scribbleIdsToKeep = [
+        ...scribblesToKeep
+            .filter(scribble => typeof (scribble.scribbleId) === 'number')
+            .map(scribble => scribble.scribbleId)
+    ]
+
+    try {
+        const note = await client.query(query, [note_id, scribbleIdsToKeep])
         return note.rows[0]
     } catch (error) {
         console.error(error)

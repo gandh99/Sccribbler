@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Menu, MenuItem } from '@material-ui/core'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import { INote, IScribble } from '../../interfaces/notes'
+import { IScribble } from '../../interfaces/notes'
 import { useDispatch } from 'react-redux'
-import { deleteNoteAction } from '../../redux/actions/getOrDeleteNoteActions'
-import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
+import { deleteScribbleAction } from '../../redux/actions/saveNoteActions'
 
 type Props = {
     scribble: IScribble
@@ -25,11 +24,7 @@ export default function ScribbleMenu({ scribble }: Props) {
     }
 
     const deleteScribble = (scribble: IScribble): void => {
-        // dispatch(deleteNoteAction(
-        //     scribble,
-        //     () => dispatch(showSnackbarAction('Successfully deleted note.', 'success')),
-        //     () => dispatch(showSnackbarAction('Error deleting note.', 'error'))
-        // ))
+        dispatch(deleteScribbleAction(scribble))
         handleClose()
     }
 

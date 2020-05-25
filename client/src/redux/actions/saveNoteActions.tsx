@@ -32,6 +32,13 @@ export const saveScribbleAction = (scribble: IScribble) => (dispatch: any) => {
     })
 }
 
+export const deleteScribbleAction = (scribble: IScribble) => (dispatch: any) => {
+    dispatch({
+        type: saveNote.DELETE_SCRIBBLE,
+        payload: scribble
+    })
+}
+
 export const saveAllScribblesAction = (allScribbles: IScribble[]) => (dispatch: any) => {
     dispatch({
         type: saveNote.SAVE_ALL_SCRIBBLES,

@@ -7,6 +7,11 @@ module.exports.save = async (req: Request, res: Response, next: NextFunction) =>
     const { savedNote } = res.locals
     const note_id = savedNote.note_id
 
+    /* First, delete all the scribbles not involved in the update/insert operation below. 
+    This makes it possible for a user to delete a scribble in the frontend. 
+    If this happened after the operation below, then it would not be possible to insert new scribbles. */
+    await Scribbles.deleteByNoteIdExcept(note_id, allScribbles)
+
     /* In a single save operation, it is possible that some scribbles were inserted while others 
     were updated. Hence, we must differentiate them individually. A scribble is updated if its 
     scribbleId is a number; if it is a string, then it was generated via uuid and is hence inserted. */

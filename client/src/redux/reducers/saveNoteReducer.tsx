@@ -13,8 +13,8 @@ const initialState = {
     noteId: -1,     // will only be positive if the note already exists
     title: '',
     videoUrl: '',
-    newScribble: { scribbleId: '', timeElapsed: 0, text: '' },
     allScribbles: [],
+    newScribble: { scribbleId: '', timeElapsed: 0, text: '' },
 
     // For checking if the note was saved to the database
     savedNote: { noteId: '', title: '', videoUrl: '', allScribbles: [] }
@@ -57,6 +57,12 @@ export default function (state = initialState, action: any) {
                 newScribble: action.payload,
                 allScribbles: allScribbles
                     .sort((s1: IScribble, s2: IScribble) => sortByTimeElapsed(s1.timeElapsed, s2.timeElapsed))
+            }
+        case saveNote.DELETE_SCRIBBLE:
+            return {
+                ...state,
+                allScribbles: state.allScribbles
+                    .filter(scribble => scribble.scribbleId !== action.payload.scribbleId)
             }
         case saveNote.SAVE_ALL_SCRIBBLES:
             return {
