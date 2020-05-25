@@ -4,8 +4,9 @@ import error from './errorReducer'
 import globalDisplay from './globalDisplayReducer'
 import videoPlayer from './videoPlayerReducer'
 import saveNote from './saveNoteReducer'
-import getShareDeleteNote from './getShareDeleteNoteReducer'
+import getOrDeleteNote from './getOrDeleteNoteReducer'
 import category from './categoryReducer'
+import notifications from './notificationsReducer'
 
 export default combineReducers({
     authentication,
@@ -13,6 +14,7 @@ export default combineReducers({
     globalDisplay,
     videoPlayer,
     saveNote,
-    getShareDeleteNote,
-    category
+    getOrDeleteNote,
+    category,
+    notifications
 })

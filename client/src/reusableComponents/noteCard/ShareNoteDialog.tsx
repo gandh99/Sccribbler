@@ -4,7 +4,7 @@ import { Dialog, DialogTitle, DialogContent, InputBase, DialogActions, Button } 
 import { INote } from '../../interfaces/notes'
 import { useDispatch } from 'react-redux'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
-import { shareNoteAction } from '../../redux/actions/getShareDeleteNoteActions'
+import { shareNoteAction } from '../../redux/actions/notificationsActions'
 
 type Props = {
     open: boolean,

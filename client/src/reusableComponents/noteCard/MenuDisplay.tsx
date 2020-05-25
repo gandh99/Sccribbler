@@ -4,7 +4,7 @@ import { Menu, MenuItem } from '@material-ui/core'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import { INote } from '../../interfaces/notes'
 import { useDispatch } from 'react-redux'
-import { deleteNoteAction } from '../../redux/actions/getShareDeleteNoteActions'
+import { deleteNoteAction } from '../../redux/actions/getOrDeleteNoteActions'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 import ShareNoteDialog from './ShareNoteDialog'
 

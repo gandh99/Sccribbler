@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { deleteCategoryAction } from '../../redux/actions/categoryActions'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 import { Tooltip } from '@material-ui/core'
-import { getAllNotesAction } from '../../redux/actions/getShareDeleteNoteActions'
+import { getAllNotesAction } from '../../redux/actions/getOrDeleteNoteActions'
 
 type Props = {
     category: ICategory,

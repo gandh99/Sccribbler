@@ -9,7 +9,7 @@ import { ICategory } from '../../interfaces/category'
 export default function NotesDisplayArea() {
     const classes = useStyles()
     const activeCategory: ICategory = useSelector((state: any) => state.category.activeCategory)
-    const allNotes: INote[] = useSelector((state: any) => state.getShareDeleteNote.allNotes)
+    const allNotes: INote[] = useSelector((state: any) => state.getOrDeleteNote.allNotes)
 
     return (
         <Grid

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch } from 'react-redux'
-import { getAllNotesAction } from '../redux/actions/getShareDeleteNoteActions'
+import { getAllNotesAction } from '../redux/actions/getOrDeleteNoteActions'
 import NotesDisplayArea from './body/NotesDisplayArea'
 import { showLoadingBackgroundAction, hideLoadingBackgroundAction, showSnackbarAction } from '../redux/actions/globalDisplayActions'
 import Header from './header/Header'

@@ -21,6 +21,7 @@ app.use(express.json())
 app.use('/authentication', require('./routes/authentication'))
 app.use('/notes', require('./routes/notes'))
 app.use('/category', require('./routes/category'))
+app.use('/notifications', require('./routes/notifications'))
 
 // Start the server
 const port: string | number = process.env.SERVER_PORT || 5000
