@@ -4,7 +4,7 @@ import { List } from '@material-ui/core';
 import { Link } from "react-router-dom"
 import ListAltIcon from '@material-ui/icons/ListAlt'
 import DrawerListItem from './DrawerListItem'
-import StarBorderIcon from '@material-ui/icons/StarBorder'
+import NotificationsIcon from '@material-ui/icons/Notifications'
 import CreateIcon from '@material-ui/icons/Create'
 import { DrawerLinkType, IDrawerListItem } from '../interfaces/drawer';
 
@@ -19,10 +19,10 @@ export default function DrawerList() {
             text: 'All Notes'
         },
         {
-            drawerLinkType: DrawerLinkType.STARRED_NOTES,
-            link: '/',
-            icon: <StarBorderIcon />,
-            text: 'Starred Notes'
+            drawerLinkType: DrawerLinkType.NOTIFICATIONS,
+            link: '/notifications',
+            icon: <NotificationsIcon />,
+            text: 'Notifications'
         },
         {
             drawerLinkType: DrawerLinkType.CREATE_NOTE,

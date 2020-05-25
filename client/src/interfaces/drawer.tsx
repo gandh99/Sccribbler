@@ -1,6 +1,6 @@
 export enum DrawerLinkType {
     ALL_NOTES,
-    STARRED_NOTES,
+    NOTIFICATIONS,
     CREATE_NOTE,
 }
 
