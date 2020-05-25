@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { IScribble } from '../../interfaces/notes'
-import { Chip, InputBase } from '@material-ui/core'
+import { Chip } from '@material-ui/core'
 import { useSelector, useDispatch } from 'react-redux'
 import { getColorFromTimeElapsed, formatTimestamp } from '../../utils/createNote'
 import { setSeekTimeAction } from '../../redux/actions/videoPlayerActions'
 import { saveScribbleAction } from '../../redux/actions/saveNoteActions'
+import ScribbleMenu from './ScribbleMenu'
+import { TextareaAutosize } from 'react-autosize-textarea/lib/TextareaAutosize'
 
 type Props = {
     scribble: IScribble
@@ -34,39 +36,34 @@ export default function Scribble({ scribble }: Props) {
 
     return (
         <div className={classes.root}>
-            <span className={classes.scribbleContainer}>
-                {timeElapsed !== 0 &&
-                    <Chip
-                        onClick={() => dispatch(setSeekTimeAction(timeElapsed))}
-                        className={classes.chip}
-                        label={formatTimestamp(timeElapsed)}
-                        size='small'
-                        style={{ backgroundColor: color }}
-                    />
-                }
-                <InputBase 
-                    className={classes.scribbleText}
-                    value={scribbleText}
-                    onChange={(e) => onScribbleTextChange(e.target.value, scribble)}
+            {timeElapsed !== 0 &&
+                <Chip
+                    onClick={() => dispatch(setSeekTimeAction(timeElapsed))}
+                    className={classes.chip}
+                    label={formatTimestamp(timeElapsed)}
+                    size='small'
+                    style={{ backgroundColor: color }}
                 />
-            </span>
+            }
+            <TextareaAutosize
+                className={classes.scribbleTextArea}
+                value={scribbleText}
+                onChange={(e: any) => onScribbleTextChange(e.target.value, scribble)}
+                rows={1}
+            />
+            <ScribbleMenu scribble={scribble} />
         </div>
     )
 }
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        position: 'relative',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-start',
         margin: '1rem 0',
-        fontSize: 14
-    },
-    scribbleContainer: {
-        textAlign: 'left'
-    },
-    scribbleText: {
-        fontSize: 14
+        fontSize: 14,
     },
     chip: {
         marginRight: '0.5rem',
@@ -77,4 +74,13 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: theme.palette.secondary.dark
         }
     },
+    scribbleTextArea: {
+        border: 'none',
+        backgroundColor: 'transparent',
+        width: '100%',
+        resize: 'none',
+        overflowY: 'hidden',
+        fontFamily: 'inherit',
+        fontSize: 16,
+    }
 }))
