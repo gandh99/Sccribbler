@@ -42,12 +42,12 @@ export default function NoteCard({ note }: Props) {
             <Card className={classes.root}>
                 <CardContent className={classes.cardContent}>
                     <Header note={note} loadNoteData={loadNoteData} />
-                    <Divider className={classes.divider} />
                     <Link
                         onClick={() => loadNoteData(noteId, title, videoUrl, category, allScribbles)}
                         to={'/edit-note'}
                         style={{ textDecoration: 'none' }}
                         className={classes.link}>
+                        <Divider className={classes.divider} />
                         <Body allScribbles={allScribbles} />
                         <Footer
                             timestamp={updatedAt}
