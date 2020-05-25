@@ -30,9 +30,9 @@ export const getAllNotesAction = (success: Function, error: Function) => (dispat
         })
 }
 
-export const shareNoteAction = (note: INote, success: Function, error: Function) => (dispatch: any) => {
+export const shareNoteAction = (note: INote, recipient: string, success: Function, error: Function) => (dispatch: any) => {
     axios
-        .post('/notes/share', { note })
+        .post('/notes/share', { note, recipient })
         .then(res => {
             dispatch({
                 type: getShareDeleteNote.SHARE_NOTE_SUCCESS,
@@ -41,13 +41,12 @@ export const shareNoteAction = (note: INote, success: Function, error: Function)
             success()
         })
         .catch(err => {
-            console.info(err)
             dispatch({
                 type: getShareDeleteNote.SHARE_NOTE_FAIL,
                 payload: err
             })
             dispatch(returnErrors(err))
-            error(err)
+            error(err.response.data)
         })
 }
 

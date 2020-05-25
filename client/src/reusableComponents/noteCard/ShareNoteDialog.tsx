@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Dialog, DialogTitle, DialogContent, InputBase, DialogActions, Button } from '@material-ui/core'
 import { INote } from '../../interfaces/notes'
@@ -17,14 +17,21 @@ export default function ShareNoteDialog({ open, setOpen, note }: Props) {
     const dispatch = useDispatch()
     const [username, setUsername] = useState('')
 
+    useEffect(() => {
+        return () => {
+            setUsername('')
+        }
+    }, [])
+
     const handleClose = () => {
         setOpen(false)
     }
 
-    const shareNote = (note: INote): void => {
+    const shareNote = (note: INote, username: string): void => {
         if (username === '') return
         dispatch(shareNoteAction(
             note,
+            username,
             () => dispatch(showSnackbarAction('Successfully shared note.', 'success')),
             (errorMsg: string) => dispatch(showSnackbarAction(errorMsg, 'error')),
         ))
@@ -44,14 +51,14 @@ export default function ShareNoteDialog({ open, setOpen, note }: Props) {
                     value={username}
                     className={classes.input}
                     placeholder='Enter username of recipient...'
-                    onChange={(e: any) => setUsername(e.target.data)}
+                    onChange={(e: any) => setUsername(e.target.value)}
                 />
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} className={classes.button}>
                     Cancel
                 </Button>
-                <Button onClick={() => shareNote(note)} className={classes.button} autoFocus>
+                <Button onClick={() => shareNote(note, username)} className={classes.button} autoFocus>
                     Share
                 </Button>
             </DialogActions>
