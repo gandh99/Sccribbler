@@ -18,7 +18,7 @@ export const videoPlayer = {
 }
 
 export const saveNote = {
-    SAVE_NOTEID: 'SAVE_NOTEID',
+    SAVE_NOTE_ID: 'SAVE_NOTE_ID',
     SAVE_TITLE: 'SAVE_TITLE',
     SAVE_VIDEO_URL: 'SAVE_VIDEO_URL',
     SAVE_SCRIBBLE: 'SAVE_SCRIBBLE',

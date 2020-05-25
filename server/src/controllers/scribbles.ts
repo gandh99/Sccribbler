@@ -4,12 +4,15 @@ const Scribbles = require('../models/Scribbles')
 
 module.exports.save = async (req: Request, res: Response, next: NextFunction) => {
     const { allScribbles } = req.body
-    const { isUpdateOperation, savedNote } = res.locals
+    const { savedNote } = res.locals
     const note_id = savedNote.note_id
 
+    /* In a single save operation, it is possible that some scribbles were inserted while others 
+    were updated. Hence, we must differentiate them individually. A scribble is updated if its 
+    scribbleId is a number; if it is a string, then it was generated via uuid and is hence inserted. */
     const savedAllScribbles: IScribble[] = await Promise.all(
         allScribbles.map(async (scribble: IScribble) => {
-            return isUpdateOperation ?
+            return typeof(scribble.scribbleId) === 'number' ?
                 await Scribbles.update(note_id, scribble) :
                 await Scribbles.insert(note_id, scribble)
         })

@@ -4,7 +4,7 @@ import { sortByTimeElapsed } from '../../utils/createNote'
 
 interface IInitialState {
     newScribble?: IScribble,
-    allScribbles?: IScribble[],
+    allScribbles: IScribble[],
     savedNote?: INote
 }
 
@@ -22,7 +22,7 @@ const initialState = {
 
 export default function (state = initialState, action: any) {
     switch (action.type) {
-        case saveNote.SAVE_NOTEID:
+        case saveNote.SAVE_NOTE_ID:
             return {
                 ...state,
                 noteId: action.payload
@@ -38,10 +38,24 @@ export default function (state = initialState, action: any) {
                 videoUrl: action.payload
             }
         case saveNote.SAVE_SCRIBBLE:
+            let didUpdate = false
+            let allScribbles: IScribble[] = state.allScribbles.map(scribble => {
+                if (scribble.scribbleId === action.payload.scribbleId) {
+                    didUpdate = true
+                    return action.payload
+                }
+
+                return scribble
+            })
+
+            if (!didUpdate) {
+                allScribbles.push(action.payload)
+            }
+
             return {
                 ...state,
                 newScribble: action.payload,
-                allScribbles: [...state.allScribbles!, action.payload]
+                allScribbles: allScribbles
                     .sort((s1: IScribble, s2: IScribble) => sortByTimeElapsed(s1.timeElapsed, s2.timeElapsed))
             }
         case saveNote.SAVE_ALL_SCRIBBLES:

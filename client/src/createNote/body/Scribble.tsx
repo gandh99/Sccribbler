@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { IScribble } from '../../interfaces/notes'
-import { Chip } from '@material-ui/core'
+import { Chip, InputBase } from '@material-ui/core'
 import { useSelector, useDispatch } from 'react-redux'
 import { getColorFromTimeElapsed, formatTimestamp } from '../../utils/createNote'
 import { setSeekTimeAction } from '../../redux/actions/videoPlayerActions'
+import { saveScribbleAction } from '../../redux/actions/saveNoteActions'
 
 type Props = {
     scribble: IScribble
@@ -14,6 +15,7 @@ export default function Scribble({ scribble }: Props) {
     const classes = useStyles()
     const dispatch = useDispatch()
     const { scribbleId, timeElapsed, text } = scribble
+    const [scribbleText, setScribbleText] = useState('')
     const [color, setColor] = useState('rgb(255, 255, 255)')
     const duration: number = useSelector((state: any) => state.videoPlayer.duration)
 
@@ -21,9 +23,18 @@ export default function Scribble({ scribble }: Props) {
         setColor(getColorFromTimeElapsed(timeElapsed, duration))
     }, [duration])
 
+    useEffect(() => {
+        setScribbleText(text)
+    }, [text])
+
+    const onScribbleTextChange = (newText: string, scribble: IScribble): void => {
+        scribble.text = newText
+        dispatch(saveScribbleAction(scribble))
+    }
+
     return (
         <div className={classes.root}>
-            <span className={classes.scribble}>
+            <span className={classes.scribbleContainer}>
                 {timeElapsed !== 0 &&
                     <Chip
                         onClick={() => dispatch(setSeekTimeAction(timeElapsed))}
@@ -33,7 +44,11 @@ export default function Scribble({ scribble }: Props) {
                         style={{ backgroundColor: color }}
                     />
                 }
-                {text}
+                <InputBase 
+                    className={classes.scribbleText}
+                    value={scribbleText}
+                    onChange={(e) => onScribbleTextChange(e.target.value, scribble)}
+                />
             </span>
         </div>
     )
@@ -47,8 +62,11 @@ const useStyles = makeStyles((theme) => ({
         margin: '1rem 0',
         fontSize: 14
     },
-    scribble: {
+    scribbleContainer: {
         textAlign: 'left'
+    },
+    scribbleText: {
+        fontSize: 14
     },
     chip: {
         marginRight: '0.5rem',

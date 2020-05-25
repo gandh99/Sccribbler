@@ -6,7 +6,7 @@ import { ICategory } from '../../interfaces/category'
 
 export const saveNoteIdAction = (id: string | number) => (dispatch: any) => {
     dispatch({
-        type: saveNote.SAVE_NOTEID,
+        type: saveNote.SAVE_NOTE_ID,
         payload: id
     })
 }
