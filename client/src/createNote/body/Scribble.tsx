@@ -29,7 +29,7 @@ export default function Scribble({ scribble }: Props) {
         setScribbleText(text)
     }, [text])
 
-    const onScribbleTextChange = (newText: string, scribble: IScribble): void => {
+    const saveScribble = (newText: string, scribble: IScribble): void => {
         scribble.text = newText
         dispatch(saveScribbleAction(scribble))
     }
@@ -48,8 +48,8 @@ export default function Scribble({ scribble }: Props) {
             <TextareaAutosize
                 className={classes.scribbleTextArea}
                 value={scribbleText}
-                onChange={(e: any) => onScribbleTextChange(e.target.value, scribble)}
-                rows={1}
+                onChange={(e: any) => setScribbleText(e.target.value)}
+                onBlur={() => saveScribble(scribbleText, scribble)}
             />
             <ScribbleMenu scribble={scribble} />
         </div>
@@ -58,12 +58,12 @@ export default function Scribble({ scribble }: Props) {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        position: 'relative',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-start',
         margin: '1rem 0',
         fontSize: 14,
+        height: '100%',
     },
     chip: {
         marginRight: '0.5rem',
