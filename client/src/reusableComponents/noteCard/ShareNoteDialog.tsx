@@ -55,10 +55,10 @@ export default function ShareNoteDialog({ open, setOpen, note }: Props) {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} className={classes.button}>
+                <Button onClick={handleClose} className={classes.cancelButton}>
                     Cancel
                 </Button>
-                <Button onClick={() => shareNote(note, username)} className={classes.button} autoFocus>
+                <Button onClick={() => shareNote(note, username)} className={classes.shareButton} autoFocus>
                     Share
                 </Button>
             </DialogActions>
@@ -74,7 +74,15 @@ const useStyles = makeStyles((theme) => ({
     input: {
         width: '100%',
     },
-    button: {
-        color: theme.palette.primary.dark
+    shareButton: {
+        backgroundColor: theme.palette.primary.dark,
+        color: 'white',
+        fontSize: 12,
+        margin: '0.5rem'
+    },
+    cancelButton: {
+        color: theme.palette.grey[600],
+        fontSize: 12,
+        margin: '0.5rem'
     }
 }))

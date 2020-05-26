@@ -17,6 +17,7 @@ import LoadingBackground from '../reusableComponents/globalDisplay/LoadingBackgr
 import EditNote from '../allNotes/EditNote'
 import { useDispatch } from 'react-redux'
 import { getNotesSharedWithMeAction } from '../redux/actions/notificationsActions'
+import Notifications from '../notifications/Notifications'
 
 export default function Home() {
     const classes = useStyles()
@@ -45,6 +46,7 @@ export default function Home() {
                             <PrivateRoute path='/all-notes' component={AllNotes} />
                             <PrivateRoute path='/edit-note' component={EditNote} />
                             <PrivateRoute path='/create-note' component={CreateNote} />
+                            <PrivateRoute path='/notifications' component={Notifications} />
                             <Redirect from='*' to='/all-notes' />
                         </Switch>
                     </div>
