@@ -29,6 +29,14 @@ export default function (state = initialState, action: any) {
                 allNotesSharedWithMe: {}
             }
         case notifications.MARK_SHARED_NOTES_AS_SEEN_SUCCESS:
+            return {
+                ...state,
+                allNotesSharedWithMe: state.allNotesSharedWithMe
+                    .map((sharedNote: ISharedNote) => {
+                        sharedNote.seen = true
+                        return sharedNote
+                    })
+            }
         case notifications.RESPOND_TO_SHARED_NOTE_SUCCESS:
             return {
                 ...state,

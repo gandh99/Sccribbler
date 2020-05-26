@@ -48,6 +48,7 @@ export const markSharedNotesAsSeenAction = () => (dispatch: any) => {
         .then(res => {
             dispatch({
                 type: notifications.MARK_SHARED_NOTES_AS_SEEN_SUCCESS,
+                payload: res.data
             })
         })
         .catch(err => {
