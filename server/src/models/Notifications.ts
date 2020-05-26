@@ -22,7 +22,8 @@ module.exports.insertShareNoteNotification = async (
 
 module.exports.getShareNoteNotifications = async (userId: number) => {
     const query: string =
-        `SELECT share_note_notification_id, sender_id, username, notes.note_id, title, seen
+        `SELECT share_note_notification_id AS "shareNoteNotificationId", sender_id AS "senderId", 
+        username, notes.note_id AS noteId, title, seen
         FROM share_note_notifications
         JOIN users ON share_note_notifications.sender_id = users.user_id
         JOIN notes ON share_note_notifications.note_id = notes.note_id

@@ -25,7 +25,5 @@ module.exports.getShareNoteNotifications = async (req: Request, res: Response, n
     const shareNoteNotifications =
         await Notifications.getShareNoteNotifications(userData.user_id)
 
-    res.status(200).json({
-        data: shareNoteNotifications
-    })
+    res.status(200).send(shareNoteNotifications)
 }
