@@ -12,7 +12,8 @@ module.exports.insert = async (
     const query: string =
         `INSERT INTO notes (owner_id, title, video_url, category_id) 
         VALUES ($1, $2, $3, $4)
-        RETURNING *`
+        RETURNING note_id AS "noteId", title, video_url AS "videoUrl", updated_at AS "updatedAt",
+        category_id AS "categoryId"`
     const categoryValue: number | null = category.categoryId > 0 ? category.categoryId : null
 
     try {
@@ -34,7 +35,8 @@ module.exports.update = async (
         `UPDATE notes 
         SET owner_id = ($1), title = ($2), video_url = ($3), category_id = ($4)
         WHERE note_id = ($5)
-        RETURNING *`
+        RETURNING note_id AS "noteId", title, video_url AS "videoUrl", updated_at AS "updatedAt",
+        category_id AS "categoryId"`
     const categoryValue: number | null = category.categoryId > 0 ? category.categoryId : null
 
     try {

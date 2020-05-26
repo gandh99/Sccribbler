@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Dialog, DialogTitle, DialogContent, InputBase, DialogActions, Button } from '@material-ui/core'
 import { INote } from '../../interfaces/notes'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { showSnackbarAction } from '../../redux/actions/globalDisplayActions'
 import { shareNoteAction } from '../../redux/actions/notificationsActions'
 
@@ -15,6 +15,7 @@ type Props = {
 export default function ShareNoteDialog({ open, setOpen, note }: Props) {
     const classes = useStyles()
     const dispatch = useDispatch()
+    const self = useSelector((state: any) => state.authentication.userData)
     const [username, setUsername] = useState('')
 
     useEffect(() => {
@@ -29,6 +30,11 @@ export default function ShareNoteDialog({ open, setOpen, note }: Props) {
 
     const shareNote = (note: INote, username: string): void => {
         if (username === '') return
+        if (self.username === username) {
+            dispatch(showSnackbarAction('You cannot share a note with yourself.', 'error'))
+            return
+        }
+
         dispatch(shareNoteAction(
             note,
             username,

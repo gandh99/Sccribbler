@@ -2,19 +2,19 @@ export { }
 import { IScribble } from "../interfaces/notes"
 const client = require('../config/db')
 
-module.exports.insert = async (note_id: number, scribble: IScribble) => {
+module.exports.insert = async (noteId: number, scribble: IScribble) => {
     const { timeElapsed, text } = scribble
     const query: string = `INSERT INTO scribbles (note_id, time_elapsed, text) VALUES ($1, $2, $3) RETURNING *`
 
     try {
-        const note = await client.query(query, [note_id, timeElapsed, text])
+        const note = await client.query(query, [noteId, timeElapsed, text])
         return note.rows[0]
     } catch (error) {
         console.error(error)
     }
 }
 
-module.exports.update = async (note_id: number, scribble: IScribble) => {
+module.exports.update = async (noteId: number, scribble: IScribble) => {
     const { timeElapsed, text } = scribble
     const query: string =
         `UPDATE scribbles 
@@ -23,14 +23,14 @@ module.exports.update = async (note_id: number, scribble: IScribble) => {
         RETURNING *`
 
     try {
-        const note = await client.query(query, [timeElapsed, text, note_id, scribble.scribbleId])
+        const note = await client.query(query, [timeElapsed, text, noteId, scribble.scribbleId])
         return note.rows[0]
     } catch (error) {
         console.error(error)
     }
 }
 
-module.exports.deleteByNoteIdExcept = async (note_id: number, scribblesToKeep: IScribble[]) => {
+module.exports.deleteByNoteIdExcept = async (noteId: number, scribblesToKeep: IScribble[]) => {
     const query: string =
         `DELETE FROM scribbles 
         WHERE note_id = ($1) AND NOT scribble_id = ANY ($2) 
@@ -42,8 +42,22 @@ module.exports.deleteByNoteIdExcept = async (note_id: number, scribblesToKeep: I
     ]
 
     try {
-        const note = await client.query(query, [note_id, scribbleIdsToKeep])
+        const note = await client.query(query, [noteId, scribbleIdsToKeep])
         return note.rows[0]
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+module.exports.getByNoteId = async (noteId: number) => {
+    const query: string =
+        `SELECT scribble_id AS "scribbleId", text, time_elapsed AS "timeElapsed"
+        FROM scribbles 
+        WHERE note_id = ($1)` 
+
+    try {
+        const note = await client.query(query, [noteId])
+        return note.rows
     } catch (error) {
         console.error(error)
     }
