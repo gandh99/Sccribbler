@@ -7,15 +7,3 @@ client
     .catch((err: any) => console.log(err));
 
 module.exports = client
-
-    // client
-//     .query(query)
-//     .then(res => {
-//         console.log('Table is successfully created');
-//     })
-//     .catch(err => {
-//         console.error(err);
-//     })
-//     .finally(() => {
-//         client.end();
-//     });
