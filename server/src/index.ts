@@ -25,4 +25,6 @@ app.use('/notifications', require('./routes/notifications'))
 
 // Start the server
 const port: string | number = process.env.SERVER_PORT || 5000
-app.listen(port, () => console.log(`Server started on port ${port}...`))
+const server = app.listen(port, () => console.log(`Server started on port ${port}...`))
+const io = require('socket.io')(server)
+require('./config/io').init(io)

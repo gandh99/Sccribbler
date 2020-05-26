@@ -18,6 +18,7 @@ import EditNote from '../allNotes/EditNote'
 import { useDispatch } from 'react-redux'
 import { getNotesSharedWithMeAction } from '../redux/actions/notificationsActions'
 import Notifications from '../notifications/Notifications'
+import { initIO } from '../config/io'
 
 export default function Home() {
     const classes = useStyles()
@@ -25,6 +26,7 @@ export default function Home() {
     const [drawerOpen, setDrawerOpen] = useState(false)
 
     useEffect(() => {
+        initIO(dispatch)
         dispatch(getNotesSharedWithMeAction())
         return () => {
         }
