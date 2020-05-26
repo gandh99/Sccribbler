@@ -1,6 +1,6 @@
 import passport from 'passport'
 const LocalStrategy = require('passport-local').Strategy
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const Users = require('../models/Users')
 
 passport.serializeUser<any, any>((user, done) => done(null, user.user_id))

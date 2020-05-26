@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const Users = require('../models/Users')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
