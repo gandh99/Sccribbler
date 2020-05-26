@@ -22,3 +22,21 @@ export const shareNoteAction = (note: INote, recipient: string, success: Functio
             error(err.response.data)
         })
 }
+
+export const getNotesSharedWithMeAction = () => (dispatch: any) => {
+    axios
+        .get('/notifications/notes/shared-with-me')
+        .then(res => {
+            dispatch({
+                type: notifications.GET_SHARED_NOTES_SUCCESS,
+                payload: res.data
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: notifications.GET_SHARED_NOTES_FAIL,
+                payload: err
+            })
+            dispatch(returnErrors(err))
+        })
+}

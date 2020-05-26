@@ -18,3 +18,14 @@ module.exports.insertShareNoteNotification = async (req: Request, res: Response,
         data: shareNoteNotification
     })
 }
+
+module.exports.getShareNoteNotifications = async (req: Request, res: Response, next: NextFunction) => {
+    const { userData } = req.body.tokenData
+
+    const shareNoteNotifications =
+        await Notifications.getShareNoteNotifications(userData.user_id)
+
+    res.status(200).json({
+        data: shareNoteNotifications
+    })
+}

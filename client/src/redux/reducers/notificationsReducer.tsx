@@ -1,7 +1,8 @@
 import { notifications } from '../actionTypes'
 
 const initialState = {
-    sharedNote: {}
+    sharedNote: {},
+    allNotesSharedWithMe: []
 }
 
 export default function (state = initialState, action: any) {
@@ -15,6 +16,16 @@ export default function (state = initialState, action: any) {
             return {
                 ...state,
                 sharedNote: {}
+            }
+        case notifications.GET_SHARED_NOTES_SUCCESS:
+            return {
+                ...state,
+                allNotesSharedWithMe: action.payload
+            }
+        case notifications.GET_SHARED_NOTES_FAIL:
+            return {
+                ...state,
+                allNotesSharedWithMe: {}
             }
         default:
             return state

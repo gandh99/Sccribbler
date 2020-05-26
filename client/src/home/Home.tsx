@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -15,10 +15,19 @@ import Background from './Background'
 import CustomSnackbar from '../reusableComponents/globalDisplay/CustomSnackbar'
 import LoadingBackground from '../reusableComponents/globalDisplay/LoadingBackground'
 import EditNote from '../allNotes/EditNote'
+import { useDispatch } from 'react-redux'
+import { getNotesSharedWithMeAction } from '../redux/actions/notificationsActions'
 
 export default function Home() {
     const classes = useStyles()
+    const dispatch = useDispatch()
     const [drawerOpen, setDrawerOpen] = useState(false)
+
+    useEffect(() => {
+        dispatch(getNotesSharedWithMeAction())
+        return () => {
+        }
+    }, [])
 
     return (
         <Router>

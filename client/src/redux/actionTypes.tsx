@@ -52,6 +52,8 @@ export const category = {
 export const notifications = {
     SHARE_NOTE_SUCCESS: 'SHARE_NOTE_SUCCESS',
     SHARE_NOTE_FAIL: 'SHARE_NOTE_FAIL',
+    GET_SHARED_NOTES_SUCCESS: 'GET_SHARED_NOTES_SUCCESS',
+    GET_SHARED_NOTES_FAIL: 'GET_SHARED_NOTES_FAIL',
 }
 
 export const error = {
