@@ -6,10 +6,14 @@ import ListAltIcon from '@material-ui/icons/ListAlt'
 import DrawerListItem from './DrawerListItem'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import CreateIcon from '@material-ui/icons/Create'
-import { DrawerLinkType, IDrawerListItem } from '../interfaces/drawer';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import { DrawerLinkType, IDrawerListItem } from '../interfaces/drawer'
+import { useDispatch } from 'react-redux'
+import { logoutUserAction } from '../redux/actions/authenticationActions';
 
 export default function DrawerList() {
     const classes = useStyles()
+    const dispatch = useDispatch()
     const [activeLink, setActiveLink] = useState(DrawerLinkType.ALL_NOTES)
     const drawerListItems: IDrawerListItem[] = [
         {
@@ -47,6 +51,18 @@ export default function DrawerList() {
                     </div>
                 )
             })}
+            <div onClick={() => dispatch(logoutUserAction())}>
+                <DrawerListItem
+                    item={{
+                        drawerLinkType: DrawerLinkType.LOGOUT,
+                        link: '/authentication',
+                        icon: <ExitToAppIcon />,
+                        text: 'Logout'
+                    }}
+                    setActiveLink={setActiveLink}
+                    activeLink={activeLink}
+                />
+            </div>
         </List>
     )
 }

@@ -1,6 +1,7 @@
 import { authentication } from '../actionTypes'
 import axios from '../../config/axiosConfig'
 import { returnErrors } from './errorActions'
+import { history } from '../../config/history'
 
 export const registerUserAction = (username: string, password: string, success: Function, error: Function) => (dispatch: any) => {
     axios
@@ -40,4 +41,11 @@ export const loginUserAction = (username: string, password: string, success: Fun
             dispatch(returnErrors(err))
             error()
         })
+}
+
+export const logoutUserAction = () => (dispatch: any) => {
+    dispatch({
+        type: authentication.LOGOUT_SUCCESS
+    })
+    history.push('/authentication')
 }

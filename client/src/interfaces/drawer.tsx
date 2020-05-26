@@ -2,6 +2,7 @@ export enum DrawerLinkType {
     ALL_NOTES,
     NOTIFICATIONS,
     CREATE_NOTE,
+    LOGOUT
 }
 
 export interface IDrawerListItem {
