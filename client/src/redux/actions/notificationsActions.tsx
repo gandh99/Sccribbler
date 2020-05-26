@@ -4,9 +4,9 @@ import { returnErrors } from './errorActions'
 import { INote } from '../../interfaces/notes'
 import { ISharedNote } from '../../interfaces/notifications'
 
-export const shareNoteAction = (note: INote, recipient: string, success: Function, error: Function) => (dispatch: any) => {
+export const shareNoteAction = (note: INote, recipientUsername: string, success: Function, error: Function) => (dispatch: any) => {
     axios
-        .post('/notifications/notes/share', { note, recipient })
+        .post('/notifications/notes/share', { note, recipientUsername })
         .then(res => {
             dispatch({
                 type: notifications.SHARE_NOTE_SUCCESS,

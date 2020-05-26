@@ -5,18 +5,22 @@ const Notifications = require('../models/Notifications')
 const Users = require('../models/Users')
 const Notes = require('../models/Notes')
 const Scribbles = require('../models/Scribbles')
+const io = require('../config/io')
 
 module.exports.insertShareNoteNotification = async (req: Request, res: Response, next: NextFunction) => {
-    const { note, recipient } = req.body
+    const { note, recipientUsername } = req.body
     const { userData } = req.body.tokenData
 
-    const recipientUser = await Users.findByUsername(recipient)
+    const recipientUser = await Users.findByUsername(recipientUsername)
     if (!recipientUser) {
         return res.status(400).send('User not found.')
     }
 
     const shareNoteNotification =
         await Notifications.insertShareNoteNotification(userData.user_id, recipientUser.user_id, note)
+
+    // Emit event to recipient's client
+    io.sendShareNoteNotification(recipientUser.user_id)
 
     res.status(200).json({
         data: shareNoteNotification

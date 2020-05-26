@@ -20,7 +20,7 @@ module.exports.init = (ioObject: any) => {
 }
 
 // Signal to client to refresh for a received shared diary post
-module.exports.receivedSharedDiaryPostSignal = (userId: number) => {
-    // const receiverId = userToIOMap[userId]
-    // io.to(receiverId).emit('sharedDiaryPost')
+module.exports.sendShareNoteNotification = (recipientId: number) => {
+    const receiver: string | undefined = userToIOMap.get(recipientId)
+    io.to(receiver).emit('receiveShareNoteNotification')
 }
