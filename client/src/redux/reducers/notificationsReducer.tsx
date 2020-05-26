@@ -1,4 +1,5 @@
 import { notifications } from '../actionTypes'
+import { ISharedNote } from '../../interfaces/notifications'
 
 const initialState = {
     sharedNote: {},
@@ -28,7 +29,14 @@ export default function (state = initialState, action: any) {
                 allNotesSharedWithMe: {}
             }
         case notifications.MARK_SHARED_NOTES_AS_SEEN_SUCCESS:
+        case notifications.RESPOND_TO_SHARED_NOTE_SUCCESS:
+            return {
+                ...state,
+                allNotesSharedWithMe: state.allNotesSharedWithMe
+                    .filter((sharedNote: ISharedNote) => sharedNote.shareNoteNotificationId !== action.payload.shareNoteNotificationId)
+            }
         case notifications.MARK_SHARED_NOTES_AS_SEEN_FAIL:
+        case notifications.RESPOND_TO_SHARED_NOTE_FAIL:
         default:
             return state
     }

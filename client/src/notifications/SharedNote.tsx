@@ -4,6 +4,7 @@ import { Card, CardContent, Grid, DialogActions, Button } from '@material-ui/cor
 import { useDispatch } from 'react-redux'
 import { ISharedNote } from '../interfaces/notifications'
 import NewReleasesIcon from '@material-ui/icons/NewReleases'
+import { respondToSharedNoteAction } from '../redux/actions/notificationsActions'
 
 type Props = {
     sharedNote: ISharedNote
@@ -12,6 +13,10 @@ type Props = {
 export default function SharedNote({ sharedNote }: Props) {
     const classes = useStyles()
     const dispatch = useDispatch()
+
+    const respond = (sharedNote: ISharedNote, accept: boolean): void => {
+        dispatch(respondToSharedNoteAction(sharedNote, accept))
+    }
 
     return (
         <Grid item xs={12} sm={12} md={6} lg={4}>
@@ -25,10 +30,10 @@ export default function SharedNote({ sharedNote }: Props) {
                 <DialogActions>
                     {!sharedNote.seen &&
                         <NewReleasesIcon className={classes.newIcon} />}
-                    <Button className={classes.rejectButton}>
+                    <Button onClick={() => respond(sharedNote, false)} className={classes.rejectButton}>
                         Reject
                     </Button>
-                    <Button className={classes.acceptButton} autoFocus>
+                    <Button onClick={() => respond(sharedNote, true)} className={classes.acceptButton} autoFocus>
                         Accept
                     </Button>
                 </DialogActions>

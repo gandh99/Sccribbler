@@ -50,3 +50,32 @@ module.exports.markShareNoteNotificationsAsSeen = async (userId: number) => {
         console.error(error)
     }
 }
+
+module.exports.acceptShareNote = async (userId: number, shareNoteNotificationId: number) => {
+    const query: string =
+        `UPDATE share_note_notifications
+        SET seen = true
+        WHERE recipient_id = ($1)`
+
+    try {
+        const notification = await client.query(query, [userId])
+        return notification.rows
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+module.exports.rejectShareNote = async (shareNoteNotificationId: number) => {
+    const query: string =
+        `DELETE FROM share_note_notifications
+        WHERE share_note_notification_id = ($1)
+        RETURNING share_note_notification_id AS "shareNoteNotificationId", sender_id AS "senderId", 
+        note_id AS noteId`
+
+    try {
+        const notification = await client.query(query, [shareNoteNotificationId])
+        return notification.rows[0]
+    } catch (error) {
+        console.error(error)
+    }
+}

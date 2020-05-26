@@ -36,3 +36,18 @@ module.exports.markShareNoteNotificationsAsSeen = async (req: Request, res: Resp
 
     res.status(200).send(seenNotifications)
 }
+
+module.exports.respondToShareNote = async (req: Request, res: Response, next: NextFunction) => {
+    const { sharedNote, accept } = req.body
+    const { userData } = req.body.tokenData
+
+    if (accept) {
+        // const result =
+        //     await Notifications.acceptShareNote(userData.user_id, shareNoteNotificationId)
+        // return res.status(200).send(result)
+    } else {
+        const result =
+            await Notifications.rejectShareNote(sharedNote.shareNoteNotificationId)
+        return res.status(200).send(result)
+    }
+}
