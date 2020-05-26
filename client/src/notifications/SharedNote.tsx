@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Card, CardContent, Grid, DialogActions, Button } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import { ISharedNote } from '../interfaces/notifications'
+import NewReleasesIcon from '@material-ui/icons/NewReleases'
 
 type Props = {
     sharedNote: ISharedNote
@@ -22,6 +23,8 @@ export default function SharedNote({ sharedNote }: Props) {
                     <span> with you. </span>
                 </CardContent>
                 <DialogActions>
+                    {!sharedNote.seen &&
+                        <NewReleasesIcon className={classes.newIcon} />}
                     <Button className={classes.rejectButton}>
                         Reject
                     </Button>
@@ -52,10 +55,18 @@ const useStyles = makeStyles((theme) => ({
     noteTitle: {
         fontWeight: 'bold'
     },
+    newIcon: {
+        color: theme.palette.success.main,
+        marginRight: 'auto'
+    },
     acceptButton: {
         backgroundColor: theme.palette.primary.dark,
         color: 'white',
-        fontSize: 12
+        fontSize: 12,
+        '&:hover': {
+            backgroundColor: theme.palette.primary.dark,
+            opacity: 0.8
+        }
     },
     rejectButton: {
         color: theme.palette.grey[600],

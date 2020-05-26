@@ -78,7 +78,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.primary.dark,
         color: 'white',
         fontSize: 12,
-        margin: '0.5rem'
+        margin: '0.5rem',
+        '&:hover': {
+            backgroundColor: theme.palette.primary.dark,
+            opacity: 0.8
+        }
     },
     cancelButton: {
         color: theme.palette.grey[600],
