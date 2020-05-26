@@ -6,5 +6,6 @@ const notificationsController = require('../controllers/notifications')
 
 router.post('/notes/share', checkAuthenticated, notificationsController.insertShareNoteNotification);
 router.get('/notes/shared-with-me', checkAuthenticated, notificationsController.getShareNoteNotifications);
+router.post('/notes/mark-as-seen', checkAuthenticated, notificationsController.markShareNoteNotificationsAsSeen);
 
 module.exports = router;

@@ -1,23 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { ISharedNote } from '../interfaces/notifications'
 import Header from './Header'
-import SharedNote from './SharedNote'
+import { markSharedNotesAsSeenAction } from '../redux/actions/notificationsActions'
+import SharedNotesDisplayArea from './SharedNotesDisplayArea'
 
 export default function Notifications() {
     const classes = useStyles()
     const dispatch = useDispatch()
     const allNotesSharedWithMe: ISharedNote[] = useSelector((state: any) => state.notifications.allNotesSharedWithMe)
 
+    useEffect(() => {
+        return () => {
+            dispatch(markSharedNotesAsSeenAction())
+        }
+    }, [])
+
     return (
         <div className={classes.root}>
-            <Header 
-                title={'Shared Notes'}
-            />
-            {allNotesSharedWithMe && allNotesSharedWithMe.map((sharedNote: ISharedNote) => {
-                return <SharedNote sharedNote={sharedNote} />
-            })}
+            <Header title={'Shared Notes'} />
+            <SharedNotesDisplayArea allNotesSharedWithMe={allNotesSharedWithMe} />
         </div>
     )
 }

@@ -40,3 +40,20 @@ export const getNotesSharedWithMeAction = () => (dispatch: any) => {
             dispatch(returnErrors(err))
         })
 }
+
+export const markSharedNotesAsSeenAction = () => (dispatch: any) => {
+    axios
+        .post('/notifications/notes/mark-as-seen')
+        .then(res => {
+            dispatch({
+                type: notifications.MARK_SHARED_NOTES_AS_SEEN_SUCCESS,
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: notifications.MARK_SHARED_NOTES_AS_SEEN_FAIL,
+                payload: err
+            })
+            dispatch(returnErrors(err))
+        })
+}

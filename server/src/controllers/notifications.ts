@@ -27,3 +27,12 @@ module.exports.getShareNoteNotifications = async (req: Request, res: Response, n
 
     res.status(200).send(shareNoteNotifications)
 }
+
+module.exports.markShareNoteNotificationsAsSeen = async (req: Request, res: Response, next: NextFunction) => {
+    const { userData } = req.body.tokenData
+
+    const seenNotifications =
+        await Notifications.markShareNoteNotificationsAsSeen(userData.user_id)
+
+    res.status(200).send(seenNotifications)
+}

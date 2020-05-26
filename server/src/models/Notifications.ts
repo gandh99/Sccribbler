@@ -36,3 +36,17 @@ module.exports.getShareNoteNotifications = async (userId: number) => {
         console.error(error)
     }
 }
+
+module.exports.markShareNoteNotificationsAsSeen = async (userId: number) => {
+    const query: string =
+        `UPDATE share_note_notifications
+        SET seen = true
+        WHERE recipient_id = ($1)`
+
+    try {
+        const notification = await client.query(query, [userId])
+        return notification.rows
+    } catch (error) {
+        console.error(error)
+    }
+}

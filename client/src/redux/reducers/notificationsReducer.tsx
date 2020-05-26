@@ -27,6 +27,8 @@ export default function (state = initialState, action: any) {
                 ...state,
                 allNotesSharedWithMe: {}
             }
+        case notifications.MARK_SHARED_NOTES_AS_SEEN_SUCCESS:
+        case notifications.MARK_SHARED_NOTES_AS_SEEN_FAIL:
         default:
             return state
     }
