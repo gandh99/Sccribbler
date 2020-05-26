@@ -34,7 +34,7 @@ app.get('*', (req, res) => {
 })
 
 // Start the server
-const port: string | number = process.env.SERVER_PORT || 5000
+const port: string | number = process.env.PORT || 5000
 const server = app.listen(port, () => console.log(`Server started on port ${port}...`))
 const io = require('socket.io')(server)
 require('./config/io').init(io)
