@@ -1,7 +1,14 @@
 import openSocket from 'socket.io-client'
 import { getNotesSharedWithMeAction } from '../redux/actions/notificationsActions'
-const socket = openSocket('http://localhost:5000')
+
 let dispatch: any
+let socket: any
+
+if (process.env.NODE_ENV === 'development') {
+    socket = openSocket('http://localhost:5000')
+} else if (process.env.NODE_ENV === 'production') {
+    socket = openSocket('https://myscribbler.herokuapp.com')
+}
 
 export function initIO(dispatchObject: any) {
     dispatch = dispatchObject
