@@ -14,6 +14,7 @@ The best note-taking web app you would ever need. Play a video in the web app, s
   - NodeJS (Typescript)
   - ExpressJS
   - PassportJS and bcryptJS
+  - JWT
   - Socket.io
   - PostgreSQL
   
