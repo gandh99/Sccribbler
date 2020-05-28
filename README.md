@@ -32,7 +32,7 @@ The best note-taking web app you would ever need. Play a video in the web app, s
 
 **3. In the Create Note page, let's give our note a title. Next, enter the URL of the video we are following and click the Fetch Video button.**
 
-<img src="https://github.com/gandh99/Scribbler/blob/master/screenshots/craeate_note_1.png" alt="alt text" width="100%" height="50%">
+<img src="https://github.com/gandh99/Scribbler/blob/master/screenshots/create_note_1.png" alt="alt text" width="100%" height="50%">
 
 
 **4. (Optional) Click on the Category icon on the top right hand corner. Select an existing category to group this note, or create an entirely new one.**
@@ -72,7 +72,7 @@ The best note-taking web app you would ever need. Play a video in the web app, s
 
 **11. If they accept the note, it will appear in their home page.**
 
-<img src="https://github.com/gandh99/Scribbler/blob/master/screenshots/accept_share_note_notification.png" alt="alt text" width="100%" height="50%">
+<img src="https://github.com/gandh99/Scribbler/blob/master/screenshots/accepted_share_note_notification.png" alt="alt text" width="100%" height="50%">
 
 
 ## Useful Links
